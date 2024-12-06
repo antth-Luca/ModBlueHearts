@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "minecraft:slime_ball"
+        },
+        {
+            "item": "minecraft:glistering_melon_slice"
+        },
+        {
+            "tag": "minecraft:soul_fire_base_blocks"
+        },
+        {
+            "item": "minecraft:lapis_lazuli"
+        }
+    ],
+    "result": {
+        "item": "blue_hearts:vital_sap",
+        "count": 1
+    }
+}
