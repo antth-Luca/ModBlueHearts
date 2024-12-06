@@ -11,6 +11,7 @@ public class BlueHearts {
 
     public BlueHearts() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+
         InitItems.ITEMS.register(bus);
     }
 }
