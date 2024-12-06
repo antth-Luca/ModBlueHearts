@@ -1,39 +1,18 @@
-[06dez.2024 10:58:20.128] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgeclientuserdev, --version, MOD_DEV, --assetIndex, 1.18, --assetsDir, C:\Users\Luca\.gradle\caches\forge_gradle\assets, --gameDir, ., --fml.forgeVersion, 40.2.24, --fml.mcVersion, 1.18.2, --fml.forgeGroup, net.minecraftforge, --fml.mcpVersion, 20220404.173914]
-[06dez.2024 10:58:20.132] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 9.1.3+9.1.3+main.9b69c82a starting: java version 17.0.12 by Oracle Corporation
-[06dez.2024 10:58:20.240] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/C:/Users/Luca/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/9d1c0c3a304ae6697ecd477218fa61b850bf57fc/mixin-0.8.5.jar%2324!/ Service=ModLauncher Env=CLIENT
-[06dez.2024 10:58:20.512] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Luca\.gradle\caches\modules-2\files-2.1\net.minecraftforge\javafmllanguage\1.18.2-40.2.24\2ce920cc7ec1004cee40d3b8b5a21da63991fd50\javafmllanguage-1.18.2-40.2.24.jar is missing mods.toml file
-[06dez.2024 10:58:20.512] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Luca\.gradle\caches\modules-2\files-2.1\net.minecraftforge\lowcodelanguage\1.18.2-40.2.24\7e2e0f8a9504ad7387ce7eacd7d6673326c63522\lowcodelanguage-1.18.2-40.2.24.jar is missing mods.toml file
-[06dez.2024 10:58:20.517] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Luca\.gradle\caches\modules-2\files-2.1\net.minecraftforge\mclanguage\1.18.2-40.2.24\f5e212441d3eb47cefb4f046dd9077342621c086\mclanguage-1.18.2-40.2.24.jar is missing mods.toml file
-[06dez.2024 10:58:20.520] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Luca\.gradle\caches\modules-2\files-2.1\net.minecraftforge\fmlcore\1.18.2-40.2.24\f0ad2bb3504efdf460e67bc817fb35d2baab6fa0\fmlcore-1.18.2-40.2.24.jar is missing mods.toml file
-[06dez.2024 10:58:20.582] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: No dependencies to load found. Skipping!
-[06dez.2024 10:58:21.553] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgeclientuserdev' with arguments [--version, MOD_DEV, --gameDir, ., --assetsDir, C:\Users\Luca\.gradle\caches\forge_gradle\assets, --assetIndex, 1.18]
-[06dez.2024 10:58:28.277] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 40.2.24, for MC 1.18.2 with MCP 20220404.173914
-[06dez.2024 10:58:28.288] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v40.2.24 Initialized
-[06dez.2024 10:58:31.489] [Render thread/INFO] [net.minecraftforge.gametest.ForgeGameTestHooks/]: Enabled Gametest Namespaces: [blue_hearts]
-[06dez.2024 10:58:32.570] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Starting version check at https://files.minecraftforge.net/net/minecraftforge/forge/promotions_slim.json
-[06dez.2024 10:58:33.378] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Found status: OUTDATED Current: 40.2.24 Target: 40.2.26
-[06dez.2024 10:58:51.294] [Render thread/ERROR] [net.minecraftforge.registries.GameData/REGISTRIES]: Unidentified mapping from registry minecraft:item
-	blue_hearts:blue_blood_potion: 1102
-
-[06dez.2024 10:58:51.295] [Render thread/ERROR] [net.minecraftforge.registries.GameData/REGISTRIES]: Unidentified mapping from registry minecraft:potion
-	blue_hearts:blue_blood: 44
-
-[06dez.2024 10:58:51.297] [Render thread/WARN] [net.minecraftforge.registries.GameData/REGISTRIES]: Forge Mod Loader detected missing registry entries.
-
-There are 2 missing entries in this save.
-If you continue the missing entries will get removed.
-A world backup will be automatically created in your saves directory.
-
-
-[06dez.2024 10:58:51.297] [Render thread/WARN] [net.minecraftforge.registries.GameData/REGISTRIES]: Missing minecraft:item:
-    blue_hearts:blue_blood_potion
-
-Missing minecraft:potion:
-    blue_hearts:blue_blood
-
-
-[06dez.2024 10:58:51.297] [Render thread/ERROR] [net.minecraftforge.registries.GameData/REGISTRIES]: There are unidentified mappings in this world - we are going to attempt to process anyway
-[06dez.2024 10:58:58.194] [Server thread/INFO] [net.minecraftforge.server.permission.PermissionAPI/]: Successfully initialized permission handler forge:default_handler
-[06dez.2024 10:58:58.363] [Render thread/WARN] [io.netty.util.internal.SystemPropertyUtil/]: Unable to parse the boolean system property 'java.net.preferIPv6Addresses':system - using the default value: false
-[06dez.2024 10:58:58.925] [Netty Local Client IO #0/INFO] [net.minecraftforge.network.NetworkHooks/]: Connected to a modded server.
-[06dez.2024 10:58:58.963] [Server thread/INFO] [net.minecraftforge.common.AdvancementLoadFix/]: Using new advancement loading for net.minecraft.server.PlayerAdvancements@22623472
+[06dez.2024 12:36:42.684] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher running: args [--launchTarget, forgeclientuserdev, --version, MOD_DEV, --assetIndex, 1.18, --assetsDir, C:\Users\Luca\.gradle\caches\forge_gradle\assets, --gameDir, ., --fml.forgeVersion, 40.2.24, --fml.mcVersion, 1.18.2, --fml.forgeGroup, net.minecraftforge, --fml.mcpVersion, 20220404.173914]
+[06dez.2024 12:36:42.687] [main/INFO] [cpw.mods.modlauncher.Launcher/MODLAUNCHER]: ModLauncher 9.1.3+9.1.3+main.9b69c82a starting: java version 17.0.12 by Oracle Corporation
+[06dez.2024 12:36:42.782] [main/INFO] [mixin/]: SpongePowered MIXIN Subsystem Version=0.8.5 Source=union:/C:/Users/Luca/.gradle/caches/modules-2/files-2.1/org.spongepowered/mixin/0.8.5/9d1c0c3a304ae6697ecd477218fa61b850bf57fc/mixin-0.8.5.jar%2324!/ Service=ModLauncher Env=CLIENT
+[06dez.2024 12:36:43.067] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Luca\.gradle\caches\modules-2\files-2.1\net.minecraftforge\javafmllanguage\1.18.2-40.2.24\2ce920cc7ec1004cee40d3b8b5a21da63991fd50\javafmllanguage-1.18.2-40.2.24.jar is missing mods.toml file
+[06dez.2024 12:36:43.071] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Luca\.gradle\caches\modules-2\files-2.1\net.minecraftforge\lowcodelanguage\1.18.2-40.2.24\7e2e0f8a9504ad7387ce7eacd7d6673326c63522\lowcodelanguage-1.18.2-40.2.24.jar is missing mods.toml file
+[06dez.2024 12:36:43.074] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Luca\.gradle\caches\modules-2\files-2.1\net.minecraftforge\mclanguage\1.18.2-40.2.24\f5e212441d3eb47cefb4f046dd9077342621c086\mclanguage-1.18.2-40.2.24.jar is missing mods.toml file
+[06dez.2024 12:36:43.076] [main/WARN] [net.minecraftforge.fml.loading.moddiscovery.ModFileParser/LOADING]: Mod file C:\Users\Luca\.gradle\caches\modules-2\files-2.1\net.minecraftforge\fmlcore\1.18.2-40.2.24\f0ad2bb3504efdf460e67bc817fb35d2baab6fa0\fmlcore-1.18.2-40.2.24.jar is missing mods.toml file
+[06dez.2024 12:36:43.139] [main/INFO] [net.minecraftforge.fml.loading.moddiscovery.JarInJarDependencyLocator/]: No dependencies to load found. Skipping!
+[06dez.2024 12:36:44.151] [main/INFO] [cpw.mods.modlauncher.LaunchServiceHandler/MODLAUNCHER]: Launching target 'forgeclientuserdev' with arguments [--version, MOD_DEV, --gameDir, ., --assetsDir, C:\Users\Luca\.gradle\caches\forge_gradle\assets, --assetIndex, 1.18]
+[06dez.2024 12:36:51.197] [modloading-worker-0/INFO] [net.minecraftforge.common.ForgeMod/FORGEMOD]: Forge mod loading, version 40.2.24, for MC 1.18.2 with MCP 20220404.173914
+[06dez.2024 12:36:51.202] [modloading-worker-0/INFO] [net.minecraftforge.common.MinecraftForge/FORGE]: MinecraftForge v40.2.24 Initialized
+[06dez.2024 12:36:54.423] [Render thread/INFO] [net.minecraftforge.gametest.ForgeGameTestHooks/]: Enabled Gametest Namespaces: [blue_hearts]
+[06dez.2024 12:36:58.246] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Starting version check at https://files.minecraftforge.net/net/minecraftforge/forge/promotions_slim.json
+[06dez.2024 12:37:00.592] [Forge Version Check/INFO] [net.minecraftforge.fml.VersionChecker/]: [forge] Found status: OUTDATED Current: 40.2.24 Target: 40.2.26
+[06dez.2024 12:37:24.804] [Server thread/INFO] [net.minecraftforge.server.permission.PermissionAPI/]: Successfully initialized permission handler forge:default_handler
+[06dez.2024 12:37:25.021] [Render thread/WARN] [io.netty.util.internal.SystemPropertyUtil/]: Unable to parse the boolean system property 'java.net.preferIPv6Addresses':system - using the default value: false
+[06dez.2024 12:37:25.692] [Netty Local Client IO #0/INFO] [net.minecraftforge.network.NetworkHooks/]: Connected to a modded server.
+[06dez.2024 12:37:25.728] [Server thread/INFO] [net.minecraftforge.common.AdvancementLoadFix/]: Using new advancement loading for net.minecraft.server.PlayerAdvancements@2f0f2496
