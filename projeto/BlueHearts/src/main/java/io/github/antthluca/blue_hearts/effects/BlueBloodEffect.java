@@ -6,7 +6,7 @@ import net.minecraft.world.entity.LivingEntity;
 
 public class BlueBloodEffect extends MobEffect {
     public BlueBloodEffect() {
-        super(MobEffectCategory.BENEFICIAL, 0x0000FF); // Beneficial, cor azul
+        super(MobEffectCategory.BENEFICIAL, 0x5a82e2);
     }
 
     @Override
