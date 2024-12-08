@@ -1,5 +1,6 @@
 package io.github.antthluca.blue_hearts;
 
+import io.github.antthluca.blue_hearts.init.InitEffects;
 import io.github.antthluca.blue_hearts.init.InitItems;
 import io.github.antthluca.blue_hearts.init.InitPotions;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -14,6 +15,7 @@ public class BlueHearts {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
         InitItems.ITEMS.register(bus);
+        InitEffects.MOB_EFFECTS.register(bus);
         InitPotions.POTIONS.register(bus);
     }
 }
