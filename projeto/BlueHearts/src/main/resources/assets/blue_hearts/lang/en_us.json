@@ -1,5 +1,7 @@
 {
     "item.blue_hearts.vital_sap": "Vital Sap",
     "item.minecraft.potion.effect.blue_blood_potion": "Blue Blood Potion",
+    "item.minecraft.splash_potion.effect.blue_blood_potion": "Blue Blood Splash Potion",
+    "item.minecraft.lingering_potion.effect.blue_blood_potion": "Blue Blood Lingering Potion",
     "effect.blue_hearts.blue_blood": "Blue Blood Effect"
 }
