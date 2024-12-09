@@ -1,7 +1,14 @@
 {
     "item.blue_hearts.vital_sap": "Seiva Vital",
+
     "item.minecraft.potion.effect.blue_blood_potion": "Poção de Sangue Azul",
     "item.minecraft.splash_potion.effect.blue_blood_potion": "Poção Arremessável de Sangue Azul",
     "item.minecraft.lingering_potion.effect.blue_blood_potion": "Poção Prolongada de Sangue Azul",
-    "effect.blue_hearts.blue_blood": "Efeito de Sangue Azul"
+
+    "item.minecraft.potion.effect.orange_antidote_potion": "Poção de Antídoto Laranja",
+    "item.minecraft.splash_potion.effect.orange_antidote_potion": "Poção Arremessável de Antídoto Laranja",
+    "item.minecraft.lingering_potion.effect.orange_antidote_potion": "Poção Prolongada de Antídoto Laranja",
+
+    "effect.blue_hearts.blue_blood": "Efeito de Sangue Azul",
+    "effect.blue_hearts.orange_antidote": "Efeito de Antídoto Laranja"
 }
