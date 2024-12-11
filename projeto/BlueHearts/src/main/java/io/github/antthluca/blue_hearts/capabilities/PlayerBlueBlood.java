@@ -5,7 +5,7 @@ import net.minecraft.nbt.CompoundTag;
 public class PlayerBlueBlood {
     private int blue_blood;
     private final int MIN_BLUE_BLOOD = 0;
-    private final int MAX_BLUE_BLOOD = 0;
+    private int MAX_BLUE_BLOOD = 0;
 
     public int getBlueBlood() {
         return blue_blood;
@@ -24,7 +24,8 @@ public class PlayerBlueBlood {
     }
 
     public void copyFrom(PlayerBlueBlood source) {
-        this.blue_blood = source.blue_blood;
+        this.MAX_BLUE_BLOOD = source.MAX_BLUE_BLOOD;
+        this.blue_blood = source.MAX_BLUE_BLOOD;
     }
 
     public void saveNBTData(CompoundTag nbt) {
