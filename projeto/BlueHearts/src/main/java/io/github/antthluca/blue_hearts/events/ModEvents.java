@@ -3,7 +3,7 @@ package io.github.antthluca.blue_hearts.events;
 import io.github.antthluca.blue_hearts.BlueHearts;
 import io.github.antthluca.blue_hearts.capabilities.PlayerBlueBlood;
 import io.github.antthluca.blue_hearts.capabilities.PlayerBlueBloodProvider;
-import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
@@ -46,9 +46,8 @@ public class ModEvents {
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         if (event.side == LogicalSide.SERVER) {
             event.player.getCapability(PlayerBlueBloodProvider.PLAYER_BLUE_BLOOD).ifPresent(blue_blood -> {
-                if (blue_blood.getBlueBlood() > 0 && event.player.getRandom().nextFloat() < 0.005f) {
-                    blue_blood.subBlueBlood(1);
-                    event.player.sendMessage(Component.literal("Subtraído vida azul"));
+                if (event.player.tickCount % 20 == 0) {
+                    event.player.sendMessage(new TextComponent("Nível de sangue azul: " + blue_blood.getBlueBlood()), event.player.getUUID());
                 }
             })
         }
