@@ -11,11 +11,15 @@ public class PlayerBlueBlood {
     }
 
     public void addBlueBlood(int add) {
-        this.blue_blood = blue_blood + add;
+        if (add > 0) {
+            this.blue_blood = blue_blood + add;
+        }
     }
 
     public void subBlueBlood(int sub) {
-        this.blue_blood = Math.max(blue_blood - sub, MIN_BLUE_BLOOD);
+        if (sub > 0) {
+            this.blue_blood = Math.max(blue_blood - sub, MIN_BLUE_BLOOD);
+        }
     }
 
     public void copyFrom(PlayerBlueBlood source) {
