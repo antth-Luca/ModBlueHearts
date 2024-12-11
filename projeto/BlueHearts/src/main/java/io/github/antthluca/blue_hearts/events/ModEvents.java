@@ -32,7 +32,7 @@ public class ModEvents {
             event.getOriginal().getCapability(PlayerBlueBloodProvider.PLAYER_BLUE_BLOOD).ifPresent(oldStore -> {
                 event.getOriginal().getCapability(PlayerBlueBloodProvider.PLAYER_BLUE_BLOOD).ifPresent(newStore -> {
                     newStore.copyFrom(oldStore);
-                })
+                });
             });
         }
     }
@@ -46,10 +46,10 @@ public class ModEvents {
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         if (event.side == LogicalSide.SERVER) {
             event.player.getCapability(PlayerBlueBloodProvider.PLAYER_BLUE_BLOOD).ifPresent(blue_blood -> {
-                if (event.player.tickCount % 20 == 0) {
+                if (event.player.tickCount % 20 == 0) {  // A cada segundo
                     event.player.sendMessage(new TextComponent("Nível de sangue azul: " + blue_blood.getBlueBlood()), event.player.getUUID());
                 }
-            })
+            });
         }
     }
 }

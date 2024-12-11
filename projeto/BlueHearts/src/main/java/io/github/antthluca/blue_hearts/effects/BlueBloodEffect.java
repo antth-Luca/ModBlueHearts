@@ -1,8 +1,10 @@
 package io.github.antthluca.blue_hearts.effects;
 
+import io.github.antthluca.blue_hearts.capabilities.PlayerBlueBloodProvider;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 
 public class BlueBloodEffect extends MobEffect {
     public BlueBloodEffect() {
@@ -11,10 +13,11 @@ public class BlueBloodEffect extends MobEffect {
 
     @Override
     public void applyEffectTick(LivingEntity entity, int amplifier) {
-        // Lógica do efeito "instantâneo"
-        if (!entity.level.isClientSide) {
-            System.out.println(">>> Adição de " + amplifier + " corações azuis!!!");
-            // Adicione aqui a lógica que altera os corações, por exemplo
+        if (!entity.level.isClientSide && entity instanceof Player player) {
+            player.getCapability(PlayerBlueBloodProvider.PLAYER_BLUE_BLOOD).ifPresent(blue_blood -> {
+                blue_blood.addMAXBlueBlood(amplifier);
+                blue_blood.addBlueBlood(amplifier);
+            });
         }
     }
 

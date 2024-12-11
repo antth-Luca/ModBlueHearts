@@ -14,8 +14,8 @@ public class InitPotions {
 
     // Potions
     public static final RegistryObject<Potion> BLUE_BLOOD_POTION = POTIONS.register(
-        "blue_blood_potion", () -> new Potion(new MobEffectInstance(InitEffects.BLUE_BLOOD.get(), 1, 0)));
+        "blue_blood_potion", () -> new Potion(new MobEffectInstance(InitEffects.BLUE_BLOOD.get(), 1, 1)));
 
     public static final RegistryObject<Potion> ORANGE_ANTIDOTE_POTION = POTIONS.register(
-        "orange_antidote_potion", () -> new Potion(new MobEffectInstance(InitEffects.ORANGE_ANTIDOTE.get(), 1, 0)));
+        "orange_antidote_potion", () -> new Potion(new MobEffectInstance(InitEffects.ORANGE_ANTIDOTE.get(), 1, 1)));
 }
