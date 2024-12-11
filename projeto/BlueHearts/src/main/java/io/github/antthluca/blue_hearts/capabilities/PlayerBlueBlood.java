@@ -5,6 +5,7 @@ import net.minecraft.nbt.CompoundTag;
 public class PlayerBlueBlood {
     private int blue_blood;
     private final int MIN_BLUE_BLOOD = 0;
+    private final int MAX_BLUE_BLOOD = 0;
 
     public int getBlueBlood() {
         return blue_blood;
@@ -12,7 +13,7 @@ public class PlayerBlueBlood {
 
     public void addBlueBlood(int add) {
         if (add > 0) {
-            this.blue_blood = blue_blood + add;
+            this.blue_blood = Math.min(blue_blood + add, MAX_BLUE_BLOOD);
         }
     }
 
