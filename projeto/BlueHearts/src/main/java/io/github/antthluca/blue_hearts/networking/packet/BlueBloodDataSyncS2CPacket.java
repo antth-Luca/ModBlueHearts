@@ -10,7 +10,7 @@ public class BlueBloodDataSyncS2CPacket {
     private final int blueBlood;
 
     public BlueBloodDataSyncS2CPacket(int blueBlood) {
-        this.blueBlood = blueBlood;
+        this.blueBlood = Math.max(0, blueBlood);
     }
 
     public BlueBloodDataSyncS2CPacket(FriendlyByteBuf buf) {
