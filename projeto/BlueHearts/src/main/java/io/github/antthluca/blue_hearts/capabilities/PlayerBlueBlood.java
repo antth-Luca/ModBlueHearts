@@ -3,7 +3,7 @@ package io.github.antthluca.blue_hearts.capabilities;
 import net.minecraft.nbt.CompoundTag;
 
 public class PlayerBlueBlood {
-    private int blue_blood;
+    private int blue_blood = 0;
     private final int MIN_BLUE_BLOOD = 0;
     private int MAX_BLUE_BLOOD = 0;
 
