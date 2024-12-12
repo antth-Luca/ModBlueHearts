@@ -34,7 +34,7 @@ public class ModEvents {
     public static void onPlayerCloned(PlayerEvent.Clone event) {
         if (event.isWasDeath()) {
             event.getOriginal().getCapability(PlayerBlueBloodProvider.PLAYER_BLUE_BLOOD).ifPresent(oldStore -> {
-                event.getOriginal().getCapability(PlayerBlueBloodProvider.PLAYER_BLUE_BLOOD).ifPresent(newStore -> {
+                event.getEntity().getCapability(PlayerBlueBloodProvider.PLAYER_BLUE_BLOOD).ifPresent(newStore -> {
                     newStore.copyFrom(oldStore);
                 });
             });
@@ -51,7 +51,7 @@ public class ModEvents {
         if (event.side == LogicalSide.SERVER) {
             event.player.getCapability(PlayerBlueBloodProvider.PLAYER_BLUE_BLOOD).ifPresent(blue_blood -> {
                 if (event.player.tickCount % 20 == 0) {  // A cada segundo
-                    ModMessages.sendToPlayer(new BlueBloodDataSyncS2CPacket(blue_blood.getBlueBlood()), ((ServerPlayer) event.player));
+                    ModMessages.sendToPlayer(new BlueBloodDataSyncS2CPacket(blue_blood.getBlueBlood(), blue_blood.getMAXBlueBlood()), ((ServerPlayer) event.player));
                 }
             });
         }
@@ -62,7 +62,7 @@ public class ModEvents {
         if (!event.getWorld().isClientSide()) {
             if (event.getEntity() instanceof ServerPlayer player) {
                 player.getCapability(PlayerBlueBloodProvider.PLAYER_BLUE_BLOOD).ifPresent(blue_blood -> {
-                    ModMessages.sendToPlayer(new BlueBloodDataSyncS2CPacket(blue_blood.getBlueBlood()), player);
+                    ModMessages.sendToPlayer(new BlueBloodDataSyncS2CPacket(blue_blood.getBlueBlood(), blue_blood.getMAXBlueBlood()), player);
                 });
             }
         }
