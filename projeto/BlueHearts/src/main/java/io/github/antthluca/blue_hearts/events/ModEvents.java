@@ -3,13 +3,17 @@ package io.github.antthluca.blue_hearts.events;
 import io.github.antthluca.blue_hearts.BlueHearts;
 import io.github.antthluca.blue_hearts.capabilities.PlayerBlueBlood;
 import io.github.antthluca.blue_hearts.capabilities.PlayerBlueBloodProvider;
+import io.github.antthluca.blue_hearts.networking.ModMessages;
+import io.github.antthluca.blue_hearts.networking.packet.BlueBloodDataSyncS2CPacket;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.event.entity.EntityJoinWorldEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
@@ -47,9 +51,20 @@ public class ModEvents {
         if (event.side == LogicalSide.SERVER) {
             event.player.getCapability(PlayerBlueBloodProvider.PLAYER_BLUE_BLOOD).ifPresent(blue_blood -> {
                 if (event.player.tickCount % 20 == 0) {  // A cada segundo
-                    event.player.sendMessage(new TextComponent("Nível de sangue azul: " + blue_blood.getBlueBlood()), event.player.getUUID());
+                    ModMessages.sendToPlayer(new BlueBloodDataSyncS2CPacket(blue_blood.getBlueBlood()), ((ServerPlayer) event.player));
                 }
             });
+        }
+    }
+
+    @SubscribeEvent
+    public static void onPlayerJoinWorld(EntityJoinWorldEvent event) {
+        if (!event.getWorld().isClientSide()) {
+            if (event.getEntity() instanceof ServerPlayer player) {
+                player.getCapability(PlayerBlueBloodProvider.PLAYER_BLUE_BLOOD).ifPresent(blue_blood -> {
+                    ModMessages.sendToPlayer(new BlueBloodDataSyncS2CPacket(blue_blood.getBlueBlood()), player);
+                });
+            }
         }
     }
 }

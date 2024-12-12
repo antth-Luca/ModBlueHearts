@@ -4,6 +4,7 @@ import io.github.antthluca.blue_hearts.init.InitEffects;
 import io.github.antthluca.blue_hearts.init.InitItems;
 import io.github.antthluca.blue_hearts.init.InitPotions;
 import io.github.antthluca.blue_hearts.init.InitRecipes;
+import io.github.antthluca.blue_hearts.networking.ModMessages;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -24,6 +25,11 @@ public class BlueHearts {
     }
 
     private void setup(final FMLCommonSetupEvent event) {
-        event.enqueueWork(InitRecipes::registerBrewingRecipes);
+        event.enqueueWork(() -> {
+            ModMessages.register();
+            
+            // Registrar receitas de poções
+            InitRecipes.registerBrewingRecipes();
+        });
     }
 }

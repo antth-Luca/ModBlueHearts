@@ -45,4 +45,7 @@ public class PlayerBlueBloodProvider implements ICapabilityProvider, INBTSeriali
     public void deserializeNBT(CompoundTag nbt) {
         createPlayerBlueBlood().loadNBTData(nbt);
     }
+
+    public class Storage {
+    }
 }
