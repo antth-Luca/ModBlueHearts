@@ -8,24 +8,29 @@ import net.minecraftforge.network.NetworkEvent;
 
 public class BlueBloodDataSyncS2CPacket {
     private final int blueBlood;
+    private final int maxBlueBlood;
 
-    public BlueBloodDataSyncS2CPacket(int blueBlood) {
+    public BlueBloodDataSyncS2CPacket(int blueBlood, int maxBlueBlood) {
         this.blueBlood = Math.max(0, blueBlood);
+        this.maxBlueBlood = Math.max(0, maxBlueBlood);
     }
 
     public BlueBloodDataSyncS2CPacket(FriendlyByteBuf buf) {
         this.blueBlood = buf.readInt();
+        this.maxBlueBlood = buf.readInt();
     }
 
     public void toBytes(FriendlyByteBuf buf) {
         buf.writeInt(blueBlood);
+        buf.writeInt(maxBlueBlood);
     }
 
     public boolean handle(Supplier<NetworkEvent.Context> supplier) {
         NetworkEvent.Context context = supplier.get();
         context.enqueueWork(() -> {
             // Aqui está a lógica específica do pacote no cliente
-            ClientBlueBloodData.set(blueBlood);
+            ClientBlueBloodData.setPlayerBlueBlood(blueBlood);
+            ClientBlueBloodData.setMaxBlueBlood(maxBlueBlood);
         });
         context.setPacketHandled(true);
         return true;

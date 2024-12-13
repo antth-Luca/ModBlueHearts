@@ -5,7 +5,6 @@ import io.github.antthluca.blue_hearts.capabilities.PlayerBlueBlood;
 import io.github.antthluca.blue_hearts.capabilities.PlayerBlueBloodProvider;
 import io.github.antthluca.blue_hearts.networking.ModMessages;
 import io.github.antthluca.blue_hearts.networking.packet.BlueBloodDataSyncS2CPacket;
-import net.minecraft.network.chat.TextComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
