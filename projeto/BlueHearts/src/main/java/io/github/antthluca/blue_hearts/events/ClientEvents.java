@@ -21,7 +21,7 @@ public class ClientEvents {
         // Verifica se estamos desenhando todos os elementos da HUD
         if (event.getType() == RenderGameOverlayEvent.ElementType.ALL) {
             Minecraft mc = Minecraft.getInstance();
-            if (mc.player == null) return;
+            if (mc.player == null || mc.player.isCreative()) return;
 
             int blueBlood = ClientBlueBloodData.getPlayerBlueBlood();
             if (blueBlood <= 0) return; // Não desenha se não houver blue blood
