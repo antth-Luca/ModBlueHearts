@@ -6,6 +6,7 @@ public class PlayerBlueBlood {
     private int blue_blood = 0;
     private final int MIN_BLUE_BLOOD = 0;
     private int MAX_BLUE_BLOOD = 0;
+    private final int GLOBAL_MAX_BLUE_BLOOD = 10;
 
     // Blue Blood
     public int getBlueBlood() {
@@ -26,7 +27,7 @@ public class PlayerBlueBlood {
 
     public void setBlueBlood(int set) {
         if (set >= 0) {
-            this.blue_blood = set;
+            this.blue_blood = Math.max(MIN_BLUE_BLOOD, Math.min(set, MAX_BLUE_BLOOD));
         }
     }
 
@@ -37,7 +38,7 @@ public class PlayerBlueBlood {
 
     public void addMAXBlueBlood(int add) {
         if (add > 0) {
-            this.MAX_BLUE_BLOOD += add;
+            this.MAX_BLUE_BLOOD = Math.min(MAX_BLUE_BLOOD + add, GLOBAL_MAX_BLUE_BLOOD);
         }
     }
 
@@ -49,7 +50,7 @@ public class PlayerBlueBlood {
 
     public void setMAXBlueBlood(int set) {
         if (set >= 0) {
-            this.MAX_BLUE_BLOOD = set;
+            this.MAX_BLUE_BLOOD = Math.max(MIN_BLUE_BLOOD, Math.min(set, GLOBAL_MAX_BLUE_BLOOD));
         }
     }
 
