@@ -230,13 +230,20 @@
   },
   "minecraft:husbandry/balanced_diet": {
     "criteria": {
-      "bread": "2024-12-08 16:07:51 -0300"
+      "bread": "2024-12-08 16:07:51 -0300",
+      "golden_apple": "2024-12-14 10:42:27 -0300"
     },
     "done": false
   },
   "minecraft:recipes/building_blocks/glowstone": {
     "criteria": {
       "has_glowstone_dust": "2024-12-08 16:01:24 -0300"
+    },
+    "done": true
+  },
+  "minecraft:recipes/misc/mojang_banner_pattern": {
+    "criteria": {
+      "has_enchanted_golden_apple": "2024-12-14 10:42:23 -0300"
     },
     "done": true
   },

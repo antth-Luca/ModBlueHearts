@@ -23,12 +23,17 @@ public class ClientEvents {
             Minecraft mc = Minecraft.getInstance();
             if (mc.player == null) return;
 
-            int blueBlood = ClientBlueBloodData.getPlayerBlueBlood(); // Obtém valor sincronizado do atributo
+            int blueBlood = ClientBlueBloodData.getPlayerBlueBlood();
             if (blueBlood <= 0) return; // Não desenha se não houver blue blood
 
             // Configurações de posição e renderização
-            int x = mc.getWindow().getGuiScaledWidth() / 2 - 91; // Início na HUD padrão
-            int y = mc.getWindow().getGuiScaledHeight() - 39;   // Ajusta altura da barra de vida
+            int x = mc.getWindow().getGuiScaledWidth() / 2 - 94;  // ==> - 91 - 3
+            int y = mc.getWindow().getGuiScaledHeight();
+            if ((int) mc.player.getAbsorptionAmount() > 0) {
+                y -= 62;
+            } else {
+                y -= 52;
+            }
 
             RenderSystem.setShader(GameRenderer::getPositionTexShader);
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
@@ -36,7 +41,7 @@ public class ClientEvents {
 
             // Renderiza os corações azuis
             for (int i = 0; i < blueBlood; i++) {
-                GuiComponent.blit(event.getMatrixStack(), x + (i * 9), y, 0, 0, 9, 9, 9, 9);
+                GuiComponent.blit(event.getMatrixStack(), x + (i * 8), y, 0, 0, 16, 16, 16, 16);
             }
         }
     }
