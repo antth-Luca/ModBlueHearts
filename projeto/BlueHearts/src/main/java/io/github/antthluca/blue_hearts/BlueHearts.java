@@ -1,10 +1,13 @@
 package io.github.antthluca.blue_hearts;
 
+import io.github.antthluca.blue_hearts.commands.BlueHeartsManagerCommands;
 import io.github.antthluca.blue_hearts.init.InitEffects;
 import io.github.antthluca.blue_hearts.init.InitItems;
 import io.github.antthluca.blue_hearts.init.InitPotions;
 import io.github.antthluca.blue_hearts.init.InitRecipes;
 import io.github.antthluca.blue_hearts.networking.ModMessages;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -30,6 +33,13 @@ public class BlueHearts {
             
             // Registrar receitas de poções
             InitRecipes.registerBrewingRecipes();
+
+            // Registrar comandos no barramento de eventos do servidor
+            MinecraftForge.EVENT_BUS.addListener(this::registerCommands);
         });
+    }
+
+    private void registerCommands(RegisterCommandsEvent event) {
+        BlueHeartsManagerCommands.register(event.getDispatcher());
     }
 }
