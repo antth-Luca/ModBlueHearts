@@ -23,6 +23,16 @@ public class BlueHeartsManagerCommands {
                     )
                 )
             )
+            .then(Commands.literal("rmhearts")
+                .then(Commands.argument("int_hearts", IntegerArgumentType.integer(0))
+                    .then(Commands.argument("target", EntityArgument.player())
+                        .executes(ctx -> rmHearts(ctx,
+                            IntegerArgumentType.getInteger(ctx, "int_hearts"),
+                            EntityArgument.getPlayer(ctx, "target")
+                        ))
+                    )
+                )
+            )
         );
     }
 
@@ -48,6 +58,29 @@ public class BlueHeartsManagerCommands {
             return 0;
         }
     }
-    // "Removed " + hearts + " blue hearts from " + target.getName().getString()
+
+    private static int rmHearts(CommandContext<CommandSourceStack> ctx, int hearts, ServerPlayer targetPlayer) {
+        CommandSourceStack source = ctx.getSource();
+
+        if (hearts < 0) {
+            source.sendFailure(new TextComponent("The number of hearts must be positive or zero."));
+            return 0;
+        }
+
+        boolean success = targetPlayer.getCapability(PlayerBlueBloodProvider.PLAYER_BLUE_BLOOD).map(blueBlood -> {
+            blueBlood.subMAXBlueBlood(hearts);
+            blueBlood.subBlueBlood(hearts);
+            return true;
+        }).orElse(false);
+
+        if (success) {
+            source.sendSuccess(new TextComponent("Removed " + hearts + " blue hearts from " + targetPlayer.getName().getString()), true);
+            return 1;
+        } else {
+            source.sendFailure(new TextComponent("Target player does not support blue blood capability."));
+            return 0;
+        }
+    }
+
     // "Set blue hearts of " + target.getName().getString() + " to " + hearts
 }
