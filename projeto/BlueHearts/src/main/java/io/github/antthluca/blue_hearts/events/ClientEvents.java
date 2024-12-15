@@ -28,13 +28,16 @@ public class ClientEvents {
 
             // Configurações de posição e renderização
             int x = mc.getWindow().getGuiScaledWidth() / 2 - 94;  // ==> - 91 - 3
-            int y = mc.getWindow().getGuiScaledHeight();
+            int y = mc.getWindow().getGuiScaledHeight() - 52;
+            // Calculando altura da linha contando a absorção
             if ((int) mc.player.getAbsorptionAmount() > 0) {
-                y -= 62;
-            } else {
-                y -= 52;
+                y -= 10;
             }
-
+            // Calculando altura da linha contando a armadura
+            if ((int) mc.player.getArmorValue() > 0) {
+                y -= 10;
+            }
+            // Renderizando
             RenderSystem.setShader(GameRenderer::getPositionTexShader);
             RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
             RenderSystem.setShaderTexture(0, FULL_BLUE_HEART);
