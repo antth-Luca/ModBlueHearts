@@ -8,37 +8,33 @@ import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
 import net.minecraft.network.chat.TextComponent;
-import net.minecraft.server.level.ServerPlayer;
 
 public class BlueHeartsManagerCommands {
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
         dispatcher.register(Commands.literal("bhmanager")
             .then(Commands.literal("addhearts")
                 .then(Commands.argument("int_hearts", IntegerArgumentType.integer(0))
-                    .then(Commands.argument("target", EntityArgument.player())
+                    .then(Commands.argument("targets", EntityArgument.players())
                         .executes(ctx -> addHearts(ctx,
-                            IntegerArgumentType.getInteger(ctx, "int_hearts"),
-                            EntityArgument.getPlayer(ctx, "target")
+                            IntegerArgumentType.getInteger(ctx, "int_hearts")
                         ))
                     )
                 )
             )
             .then(Commands.literal("rmhearts")
                 .then(Commands.argument("int_hearts", IntegerArgumentType.integer(0))
-                    .then(Commands.argument("target", EntityArgument.player())
+                    .then(Commands.argument("targets", EntityArgument.players())
                         .executes(ctx -> rmHearts(ctx,
-                            IntegerArgumentType.getInteger(ctx, "int_hearts"),
-                            EntityArgument.getPlayer(ctx, "target")
+                            IntegerArgumentType.getInteger(ctx, "int_hearts")
                         ))
                     )
                 )
             )
             .then(Commands.literal("sethearts")
                 .then(Commands.argument("int_hearts", IntegerArgumentType.integer(0))
-                    .then(Commands.argument("target", EntityArgument.player())
+                    .then(Commands.argument("targets", EntityArgument.players())
                         .executes(ctx -> setHearts(ctx,
-                            IntegerArgumentType.getInteger(ctx, "int_hearts"),
-                            EntityArgument.getPlayer(ctx, "target")
+                            IntegerArgumentType.getInteger(ctx, "int_hearts")
                         ))
                     )
                 )
@@ -46,89 +42,104 @@ public class BlueHeartsManagerCommands {
         );
     }
 
-    private static int addHearts(CommandContext<CommandSourceStack> ctx, int hearts, ServerPlayer targetPlayer) {
+    private static int addHearts(CommandContext<CommandSourceStack> ctx, int hearts) {
         CommandSourceStack source = ctx.getSource();
-
+        // Não pertmite números negativos
         if (hearts < 0) {
             source.sendFailure(new TextComponent("The number of hearts must be positive or zero."));
             return 0;
         }
-
+        // Não permite número maior que 10
         if (hearts > 10) {
             source.sendSuccess(new TextComponent("The number of hearts was capped to 10."), true);
             hearts = 10;
         }
         final int adjustedHearts = hearts;
 
-        boolean success = targetPlayer.getCapability(PlayerBlueBloodProvider.PLAYER_BLUE_BLOOD).map(blueBlood -> {
-            blueBlood.addMAXBlueBlood(adjustedHearts);
-            blueBlood.addBlueBlood(adjustedHearts);
-            return true;
-        }).orElse(false);
+        try {
+            var targetPlayers = EntityArgument.getPlayers(ctx, "targets");
 
-        if (success) {
-            source.sendSuccess(new TextComponent("Added " + adjustedHearts + " blue hearts to " + targetPlayer.getName().getString()), true);
-            return 1;
-        } else {
-            source.sendFailure(new TextComponent("Target player does not support blue blood capability."));
+            // Iterar sobre os jogadores e aplicar as mudanças
+            targetPlayers.forEach(targetPlayer -> {
+                targetPlayer.getCapability(PlayerBlueBloodProvider.PLAYER_BLUE_BLOOD).ifPresent(blueBlood -> {
+                    blueBlood.addMAXBlueBlood(adjustedHearts);
+                    blueBlood.addBlueBlood(adjustedHearts);
+                });
+    
+                source.sendSuccess(new TextComponent("Added " + adjustedHearts + " blue hearts to " + targetPlayer.getName().getString()), true);
+            });
+
+            return targetPlayers.size();
+        } catch (Exception e) {
+            source.sendFailure(new TextComponent("No valid players found for the given selector."));
             return 0;
         }
     }
 
-    private static int rmHearts(CommandContext<CommandSourceStack> ctx, int hearts, ServerPlayer targetPlayer) {
+    private static int rmHearts(CommandContext<CommandSourceStack> ctx, int hearts) {
         CommandSourceStack source = ctx.getSource();
-
+        // Não pertmite números negativos
         if (hearts < 0) {
             source.sendFailure(new TextComponent("The number of hearts must be positive or zero."));
             return 0;
         }
-
+        // Não permite número maior que 10
         if (hearts > 10) {
             source.sendSuccess(new TextComponent("The number of hearts was capped to 10."), true);
             hearts = 10;
         }
         final int adjustedHearts = hearts;
 
-        boolean success = targetPlayer.getCapability(PlayerBlueBloodProvider.PLAYER_BLUE_BLOOD).map(blueBlood -> {
-            blueBlood.subMAXBlueBlood(adjustedHearts);
-            blueBlood.subBlueBlood(adjustedHearts);
-            return true;
-        }).orElse(false);
+        try {
+            var targetPlayers = EntityArgument.getPlayers(ctx, "targets");
 
-        if (success) {
-            source.sendSuccess(new TextComponent("Removed " + adjustedHearts + " blue hearts from " + targetPlayer.getName().getString()), true);
-            return 1;
-        } else {
-            source.sendFailure(new TextComponent("Target player does not support blue blood capability."));
+            // Iterar sobre os jogadores e aplicar as mudanças
+            targetPlayers.forEach(targetPlayer -> {
+                targetPlayer.getCapability(PlayerBlueBloodProvider.PLAYER_BLUE_BLOOD).ifPresent(blueBlood -> {
+                    blueBlood.subMAXBlueBlood(adjustedHearts);
+                    blueBlood.subBlueBlood(adjustedHearts);
+                });
+    
+                source.sendSuccess(new TextComponent("Removed " + adjustedHearts + " blue hearts from " + targetPlayer.getName().getString()), true);
+            });
+
+            return targetPlayers.size();
+        } catch (Exception e) {
+            source.sendFailure(new TextComponent("No valid players found for the given selector."));
             return 0;
         }
     }
 
-    private static int setHearts(CommandContext<CommandSourceStack> ctx, int hearts, ServerPlayer targetPlayer) {
+    private static int setHearts(CommandContext<CommandSourceStack> ctx, int hearts) {
         CommandSourceStack source = ctx.getSource();
-
+        // Não pertmite números negativos
         if (hearts < 0) {
             source.sendFailure(new TextComponent("The number of hearts must be positive or zero."));
             return 0;
         }
-
+        // Não permite número maior que 10
         if (hearts > 10) {
             source.sendSuccess(new TextComponent("The number of hearts was capped to 10."), true);
             hearts = 10;
         }
         final int adjustedHearts = hearts;
 
-        boolean success = targetPlayer.getCapability(PlayerBlueBloodProvider.PLAYER_BLUE_BLOOD).map(blueBlood -> {
-            blueBlood.setMAXBlueBlood(adjustedHearts);
-            blueBlood.setBlueBlood(adjustedHearts);
-            return true;
-        }).orElse(false);
+        try {
+            var targetPlayers = EntityArgument.getPlayers(ctx, "targets");
 
-        if (success) {
-            source.sendSuccess(new TextComponent("Set blue hearts of " + targetPlayer.getName().getString() + " to " + adjustedHearts), true);
-            return 1;
-        } else {
-            source.sendFailure(new TextComponent("Target player does not support blue blood capability."));
+            // Iterar sobre os jogadores e aplicar as mudanças
+            targetPlayers.forEach(targetPlayer -> {
+                targetPlayer.getCapability(PlayerBlueBloodProvider.PLAYER_BLUE_BLOOD).ifPresent(blueBlood -> {
+                    blueBlood.setMAXBlueBlood(adjustedHearts);
+                    blueBlood.setBlueBlood(adjustedHearts);
+                });
+    
+                source.sendSuccess(new TextComponent("Set blue hearts of " + targetPlayer.getName().getString() + " to " + adjustedHearts), true);
+            });
+
+            return targetPlayers.size();
+        } catch (Exception e) {
+            source.sendFailure(new TextComponent("No valid players found for the given selector."));
             return 0;
         }
     }
