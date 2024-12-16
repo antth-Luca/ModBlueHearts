@@ -1,6 +1,7 @@
 package io.github.antthluca.blue_hearts;
 
 import io.github.antthluca.blue_hearts.commands.BlueHeartsManagerCommands;
+import io.github.antthluca.blue_hearts.config.BlueHeartsCommonConfigs;
 import io.github.antthluca.blue_hearts.init.InitEffects;
 import io.github.antthluca.blue_hearts.init.InitItems;
 import io.github.antthluca.blue_hearts.init.InitPotions;
@@ -9,7 +10,9 @@ import io.github.antthluca.blue_hearts.networking.ModMessages;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
@@ -23,6 +26,8 @@ public class BlueHearts {
         InitItems.ITEMS.register(bus);
         InitEffects.MOB_EFFECTS.register(bus);
         InitPotions.POTIONS.register(bus);
+
+        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, BlueHeartsCommonConfigs.SPEC, "bluehearts-common.toml");
 
         bus.addListener(this::setup);
     }

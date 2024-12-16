@@ -1,0 +1,6 @@
+
+["Configs for Blue Hearts"]
+	#How many blue hearts should new players have when they enter the world for the first time?
+	#Range: 0 ~ 10
+	"Initial Blue Hearts Per Player" = 5
+

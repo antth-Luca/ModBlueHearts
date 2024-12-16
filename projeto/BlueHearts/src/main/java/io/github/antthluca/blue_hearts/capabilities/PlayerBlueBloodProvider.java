@@ -2,6 +2,7 @@ package io.github.antthluca.blue_hearts.capabilities;
 
 import org.jetbrains.annotations.NotNull;
 
+import io.github.antthluca.blue_hearts.config.BlueHeartsCommonConfigs;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraftforge.common.capabilities.Capability;
@@ -20,11 +21,17 @@ public class PlayerBlueBloodProvider implements ICapabilityProvider, INBTSeriali
     private PlayerBlueBlood createPlayerBlueBlood() {
         if (this.blue_blood == null) {
             this.blue_blood = new PlayerBlueBlood();
+
+            int initialHearts = BlueHeartsCommonConfigs.INITIAL_BLUE_HEARTS_PER_PLAYER.get();
+
+            this.blue_blood.setMAXBlueBlood(initialHearts);
+            this.blue_blood.setBlueBlood(initialHearts);
         }
 
         return this.blue_blood;
     }
 
+    @SuppressWarnings("null")
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @NotNull Direction side) {
         if (cap == PLAYER_BLUE_BLOOD) {

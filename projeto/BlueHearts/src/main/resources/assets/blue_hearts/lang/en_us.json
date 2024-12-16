@@ -2,8 +2,12 @@
     "item.blue_hearts.vital_sap": "Vital Sap",
 
     "item.minecraft.potion.effect.blue_blood_potion": "Blue Blood Potion",
+    "item.minecraft.splash_potion.effect.blue_blood_potion": "[Non-functional]",
+    "item.minecraft.lingering_potion.effect.blue_blood_potion": "[Non-functional]",
 
     "item.minecraft.potion.effect.orange_antidote_potion": "Orange Antidote Potion",
+    "item.minecraft.splash_potion.effect.orange_antidote_potion": "[Non-functional]",
+    "item.minecraft.lingering_potion.effect.orange_antidote_potion": "[Non-functional]",
 
     "effect.blue_hearts.blue_blood": "Blue Blood Effect",
     "effect.blue_hearts.orange_antidote": "Orange Antidote Effect"
