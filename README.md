@@ -1,3 +1,5 @@
+![Blue Hearts Logo](https://github.com/antth-Luca/ModBlueHearts/blob/v1.0-mc1.18.2/projeto/BlueHearts/src/main/resources/logo.png)
+ 
  # Repository: ModBlueHearts
 
 This repository houses the mod Forge “Blue Hearts” for Minecraft. Blue hearts doesn't add much. 
