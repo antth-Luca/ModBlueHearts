@@ -7,22 +7,22 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkEvent;
 
 public class BlueBloodDataSyncS2CPacket {
-    private final int blueBlood;
-    private final int maxBlueBlood;
+    private final float blueBlood;
+    private final float maxBlueBlood;
 
-    public BlueBloodDataSyncS2CPacket(int blueBlood, int maxBlueBlood) {
+    public BlueBloodDataSyncS2CPacket(float blueBlood, float maxBlueBlood) {
         this.blueBlood = Math.max(0, blueBlood);
         this.maxBlueBlood = Math.max(0, maxBlueBlood);
     }
 
     public BlueBloodDataSyncS2CPacket(FriendlyByteBuf buf) {
-        this.blueBlood = buf.readInt();
-        this.maxBlueBlood = buf.readInt();
+        this.blueBlood = buf.readFloat();
+        this.maxBlueBlood = buf.readFloat();
     }
 
     public void toBytes(FriendlyByteBuf buf) {
-        buf.writeInt(blueBlood);
-        buf.writeInt(maxBlueBlood);
+        buf.writeFloat(blueBlood);
+        buf.writeFloat(maxBlueBlood);
     }
 
     public boolean handle(Supplier<NetworkEvent.Context> supplier) {

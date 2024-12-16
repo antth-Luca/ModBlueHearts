@@ -14,7 +14,7 @@ public class SleepHandler {
         Player player = event.getPlayer();
         if (!player.level.isClientSide()) { // Garante que é no lado do servidor
             player.getCapability(PlayerBlueBloodProvider.PLAYER_BLUE_BLOOD).ifPresent(blueBlood -> {
-                int maxBlueBlood = blueBlood.getMAXBlueBlood();
+                float maxBlueBlood = blueBlood.getMAXBlueBlood();
                 blueBlood.setBlueBlood(maxBlueBlood); // Restaura até o máximo
             });
         }

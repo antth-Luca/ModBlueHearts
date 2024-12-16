@@ -19,8 +19,8 @@ public class BlueBloodHudOverlay {
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
     
-        int blueBlood = ClientBlueBloodData.getPlayerBlueBlood();
-        int maxBlueBlood = ClientBlueBloodData.getMaxBlueBlood();
+        float blueBlood = ClientBlueBloodData.getPlayerBlueBlood();
+        float maxBlueBlood = ClientBlueBloodData.getMaxBlueBlood();
     
         for (int i = 0; i < maxBlueBlood; i++) {
             if (blueBlood > i) {
