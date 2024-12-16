@@ -6,7 +6,7 @@ This repository houses the mod Forge “Blue Hearts” for Minecraft. Blue heart
 
 I've always wanted to create a mod for Minecraft and I'm very creative, but everything has to start somehow. Taking advantage of my need to master Java, I created my first simple mod!
 
-Take a look at the [wiki](https://github.com/antth-Luca/ModBlueHearts/wiki)
+Take a look at the [wiki](https://github.com/antth-Luca/ModBlueHearts/wiki/Home‐en‐us)
 
 ## Minecraft versions supported
 * 1.18.2.
