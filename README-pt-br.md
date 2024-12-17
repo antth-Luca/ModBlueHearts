@@ -8,6 +8,9 @@ Eu sempre quis criar um mod para o Minecraft e sou muito criativo, mas tudo tem 
 
 Dê uma olhada no [wiki](https://github.com/antth-Luca/ModBlueHearts/wiki/Home‐pt‐br)
 
+## Licença
+Este projeto está sobre licença. [Ver licença](https://github.com/antth-Luca/ModBlueHearts/blob/v1.0-mc1.18.1/LICENSE-pt-br).
+
 ## Versões de Minecraft suportadas
 * 1.18.2.
 
