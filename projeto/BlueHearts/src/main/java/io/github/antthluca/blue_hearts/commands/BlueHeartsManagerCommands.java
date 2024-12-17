@@ -7,7 +7,7 @@ import com.mojang.brigadier.arguments.IntegerArgumentType;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
-import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.Component;
 
 public class BlueHeartsManagerCommands {
     public static void register(CommandDispatcher<CommandSourceStack> dispatcher) {
@@ -46,12 +46,12 @@ public class BlueHeartsManagerCommands {
         CommandSourceStack source = ctx.getSource();
         // Não pertmite números negativos
         if (hearts < 0) {
-            source.sendFailure(new TextComponent("The number of hearts must be positive or zero."));
+            source.sendFailure(Component.literal("The number of hearts must be positive or zero."));
             return 0;
         }
         // Não permite número maior que 10
         if (hearts > 10) {
-            source.sendSuccess(new TextComponent("The number of hearts was capped to 10."), true);
+            source.sendSuccess(Component.literal("The number of hearts was capped to 10."), true);
             hearts = 10;
         }
         final int adjustedHearts = hearts;
@@ -66,12 +66,12 @@ public class BlueHeartsManagerCommands {
                     blueBlood.addBlueBlood(adjustedHearts);
                 });
     
-                source.sendSuccess(new TextComponent("Added " + adjustedHearts + " blue hearts to " + targetPlayer.getName().getString()), true);
+                source.sendSuccess(Component.literal("Added " + adjustedHearts + " blue hearts to " + targetPlayer.getName().getString()), true);
             });
 
             return targetPlayers.size();
         } catch (Exception e) {
-            source.sendFailure(new TextComponent("No valid players found for the given selector."));
+            source.sendFailure(Component.literal("No valid players found for the given selector."));
             return 0;
         }
     }
@@ -80,12 +80,12 @@ public class BlueHeartsManagerCommands {
         CommandSourceStack source = ctx.getSource();
         // Não pertmite números negativos
         if (hearts < 0) {
-            source.sendFailure(new TextComponent("The number of hearts must be positive or zero."));
+            source.sendFailure(Component.literal("The number of hearts must be positive or zero."));
             return 0;
         }
         // Não permite número maior que 10
         if (hearts > 10) {
-            source.sendSuccess(new TextComponent("The number of hearts was capped to 10."), true);
+            source.sendSuccess(Component.literal("The number of hearts was capped to 10."), true);
             hearts = 10;
         }
         final int adjustedHearts = hearts;
@@ -100,12 +100,12 @@ public class BlueHeartsManagerCommands {
                     blueBlood.subBlueBlood(adjustedHearts);
                 });
     
-                source.sendSuccess(new TextComponent("Removed " + adjustedHearts + " blue hearts from " + targetPlayer.getName().getString()), true);
+                source.sendSuccess(Component.literal("Removed " + adjustedHearts + " blue hearts from " + targetPlayer.getName().getString()), true);
             });
 
             return targetPlayers.size();
         } catch (Exception e) {
-            source.sendFailure(new TextComponent("No valid players found for the given selector."));
+            source.sendFailure(Component.literal("No valid players found for the given selector."));
             return 0;
         }
     }
@@ -114,12 +114,12 @@ public class BlueHeartsManagerCommands {
         CommandSourceStack source = ctx.getSource();
         // Não pertmite números negativos
         if (hearts < 0) {
-            source.sendFailure(new TextComponent("The number of hearts must be positive or zero."));
+            source.sendFailure(Component.literal("The number of hearts must be positive or zero."));
             return 0;
         }
         // Não permite número maior que 10
         if (hearts > 10) {
-            source.sendSuccess(new TextComponent("The number of hearts was capped to 10."), true);
+            source.sendSuccess(Component.literal("The number of hearts was capped to 10."), true);
             hearts = 10;
         }
         final int adjustedHearts = hearts;
@@ -134,12 +134,12 @@ public class BlueHeartsManagerCommands {
                     blueBlood.setBlueBlood(adjustedHearts);
                 });
     
-                source.sendSuccess(new TextComponent("Set blue hearts of " + targetPlayer.getName().getString() + " to " + adjustedHearts), true);
+                source.sendSuccess(Component.literal("Set blue hearts of " + targetPlayer.getName().getString() + " to " + adjustedHearts), true);
             });
 
             return targetPlayers.size();
         } catch (Exception e) {
-            source.sendFailure(new TextComponent("No valid players found for the given selector."));
+            source.sendFailure(Component.literal("No valid players found for the given selector."));
             return 0;
         }
     }

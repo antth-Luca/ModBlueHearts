@@ -11,8 +11,8 @@ import net.minecraftforge.fml.common.Mod;
 public class SleepHandler {
     @SubscribeEvent
     public static void onPlayerWakeUp(PlayerWakeUpEvent event) {
-        Player player = event.getPlayer();
-        if (!player.level.isClientSide()) { // Garante que é no lado do servidor
+        Player player = event.getEntity();
+        if (!event.isCanceled() && !player.level.isClientSide()) { // Garante que é no lado do servidor
             player.getCapability(PlayerBlueBloodProvider.PLAYER_BLUE_BLOOD).ifPresent(blueBlood -> {
                 float maxBlueBlood = blueBlood.getMAXBlueBlood();
                 blueBlood.setBlueBlood(maxBlueBlood); // Restaura até o máximo
