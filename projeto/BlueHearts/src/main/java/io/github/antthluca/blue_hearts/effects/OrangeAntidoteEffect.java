@@ -1,6 +1,7 @@
 package io.github.antthluca.blue_hearts.effects;
 
 import io.github.antthluca.blue_hearts.capabilities.PlayerBlueBloodProvider;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
@@ -12,11 +13,17 @@ public class OrangeAntidoteEffect extends MobEffect {
     }
 
     @Override
-    public void applyEffectTick(@SuppressWarnings("null") LivingEntity entity, int amplifier) {
+    public void applyEffectTick(LivingEntity entity, int amplifier) {
         if (!entity.level.isClientSide && entity instanceof Player player) {
             player.getCapability(PlayerBlueBloodProvider.PLAYER_BLUE_BLOOD).ifPresent(blue_blood -> {
-                blue_blood.setMAXBlueBlood(0);
-                blue_blood.setBlueBlood(0);
+                float currentBlueBlood = blue_blood.getBlueBlood();
+
+                if (currentBlueBlood == 0) {  // Se o player não tiver Blue Blood, recebe dano
+                    player.hurt(DamageSource.MAGIC, 19f);  // Dano de 9.5 corações
+                } else {  // Se tiver, reduz para zero
+                    blue_blood.setMAXBlueBlood(0);
+                    blue_blood.setBlueBlood(0);
+                }
             });
         }
     }
