@@ -15,17 +15,17 @@ public class BlueBloodHudOverlay {
     private static final ResourceLocation HALF_BLUE_HEART = new ResourceLocation(BlueHearts.MODID, "textures/hud/half_blue_heart.png");
 
     public static final IGuiOverlay HUD_BLUE_BLOOD = ((gui, poseStack, partialTick, width, height) -> {
+        @SuppressWarnings("resource")
+        Player player = Minecraft.getInstance().player;
+
+        if (player.isCreative()) return;
+
         float blueBlood = ClientBlueBloodData.getPlayerBlueBlood();
         if (blueBlood <= 0) return; // Não desenha se não houver blue blood
         float maxBlueBlood = ClientBlueBloodData.getMaxBlueBlood();
 
-        if (blueBlood <= 0 || maxBlueBlood <= 0) return;
-
         int x = width / 2 - 94;
         int y = height - 52;
-
-        @SuppressWarnings("resource")
-        Player player = Minecraft.getInstance().player;
 
         if ((int) player.getAbsorptionAmount() > 0) {
             y -= 10;
