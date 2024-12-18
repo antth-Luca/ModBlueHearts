@@ -11,7 +11,13 @@
             "tag": "minecraft:soul_fire_base_blocks"
         },
         {
-            "item": "minecraft:lapis_lazuli"
+            "item": "minecraft:glow_berries"
+        },
+        {
+            "item": "blue_hearts:lazuli_apple"
+        },
+        {
+            "item": "minecraft:sugar"
         }
     ],
     "result": {
