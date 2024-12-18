@@ -1,0 +1,12 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "blue_hearts:vital_fruit"
+        }
+    ],
+    "result": {
+        "item": "blue_hearts:vital_sap",
+        "count": 1
+    }
+}
