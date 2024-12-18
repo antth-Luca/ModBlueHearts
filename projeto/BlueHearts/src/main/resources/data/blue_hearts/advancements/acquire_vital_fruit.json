@@ -1,0 +1,28 @@
+{
+    "criteria": {
+        "acquire_lazuli_apple": {
+            "trigger": "minecraft:inventory_changed",
+            "conditions": {
+                "item": {
+                    "item": "blue_hearts:vital_fruit"
+                }
+            }
+        }
+    },
+    "display": {
+        "icon": {
+            "item": "blue_hearts:vital_fruit"
+        },
+        "title": {
+            "translate": "advancement.blue_hearts.acquire_vital_fruit.title"
+        },
+        "description": {
+            "translate": "advancement.blue_hearts.acquire_vital_fruit.description"
+        },
+        "frame": "task",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false
+    },
+    "parent": "minecraft:adventure/root"
+}
