@@ -21,6 +21,11 @@ public class InitItems {
         "vital_sap", () -> new Item(new Item.Properties()
             .tab(CreativeModeTab.TAB_BREWING)));
 
+    public static final RegistryObject<Item> VITAL_FRUIT = ITEMS.register(
+        "vital_fruit", () -> new Item(new Item.Properties()
+            .food(Foods.VITAL_FRUIT_FOOD)
+            .tab(CreativeModeTab.TAB_FOOD)));
+
     // Foods
     public static final RegistryObject<Item> LAZULI_APPLE = ITEMS.register(
         "lazuli_apple", () -> new Item(new Item.Properties()
@@ -49,6 +54,11 @@ public class InitItems {
             .effect(() -> new MobEffectInstance(
                 MobEffects.MOVEMENT_SPEED, 1200, 0), 1.0f // Velocidade por 1:00
             )
+            .build();
+
+            public static final FoodProperties VITAL_FRUIT_FOOD = new FoodProperties.Builder()
+            .nutrition(2)
+            .saturationMod(0.4f)
             .build();
     }
 }

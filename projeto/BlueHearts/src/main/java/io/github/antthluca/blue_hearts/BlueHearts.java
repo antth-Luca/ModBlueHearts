@@ -35,7 +35,7 @@ public class BlueHearts {
     private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
             ModMessages.register();
-            
+
             // Registrar receitas de poções
             InitRecipes.registerBrewingRecipes();
 
