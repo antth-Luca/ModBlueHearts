@@ -3,11 +3,14 @@ package io.github.antthluca.blue_hearts.blocks;
 import io.github.antthluca.blue_hearts.init.InitFoods;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
@@ -50,13 +53,13 @@ public class CustomBlocks {
         }
 
         @Override
-        public ItemStack getCloneItemStack(BlockGetter block, BlockPos pos, BlockState state) {
-            return new ItemStack(InitFoods.VITAL_FRUIT.get());
-        }
-
-        @Override
         public boolean canSurvive(BlockState state, LevelReader world, BlockPos pos) {
-            return world.getBlockState(pos.above()).isFaceSturdy(world, pos.above(), Direction.DOWN);
+            // Obtém o estado do bloco acima, onde o arbusto será ancorado.
+            BlockState aboveBlockState = world.getBlockState(pos.above());
+
+            // Define os blocos permitidos para o arbusto ser plantado.
+            return aboveBlockState.is(BlockTags.create(new ResourceLocation("blue_hearts:valid_blocks_for_vital_bush")))
+                && aboveBlockState.isFaceSturdy(world, pos.above(), Direction.DOWN);
         }
 
         @Override
@@ -97,6 +100,11 @@ public class CustomBlocks {
             } else {
                 return InteractionResult.PASS;
             }
+        }
+
+        @Override
+        public ItemStack getCloneItemStack(BlockGetter block, BlockPos pos, BlockState state) {
+            return new ItemStack(InitFoods.VITAL_FRUIT.get());
         }
 
         @Override
