@@ -20,24 +20,22 @@ import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.phys.BlockHitResult;
 
 public class CustomBlocks {
+    @SuppressWarnings("null")
     public static class VitalBushBlock extends SweetBerryBushBlock {
         public VitalBushBlock(Properties properties) {
             super(properties);
         }
 
-        @SuppressWarnings("null")
         @Override
         public ItemStack getCloneItemStack(BlockGetter block, BlockPos pos, BlockState state) {
             return new ItemStack(InitFoods.VITAL_FRUIT.get());
         }
 
-        @SuppressWarnings("null")
         @Override
         public void entityInside(BlockState p_57270_, Level p_57271_, BlockPos p_57272_, Entity p_57273_) {
             return;  // Não causa dano!
         }
 
-        @SuppressWarnings("null")
         @Override
         public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand interactionHand, BlockHitResult hitResult) {
             int i = state.getValue(AGE);
@@ -62,7 +60,6 @@ public class CustomBlocks {
             }
         }
 
-        @SuppressWarnings("null")
         @Override
         public void performBonemeal(ServerLevel level, RandomSource randomSource, BlockPos pos, BlockState blockState) {
             if (level.random.nextInt() < 0.2f) {  // 20% de chance da bonemeal funcionar
