@@ -3,6 +3,9 @@
     "ingredients": [
         {
             "item": "blue_hearts:vital_fruit"
+        },
+        {
+            "item": "blue_hearts:vital_fruit"
         }
     ],
     "result": {
