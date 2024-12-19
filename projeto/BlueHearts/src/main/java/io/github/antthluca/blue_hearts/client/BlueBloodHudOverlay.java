@@ -14,6 +14,7 @@ public class BlueBloodHudOverlay {
     private static final ResourceLocation FULL_BLUE_HEART = new ResourceLocation(BlueHearts.MODID, "textures/hud/full_blue_heart.png");
     private static final ResourceLocation HALF_BLUE_HEART = new ResourceLocation(BlueHearts.MODID, "textures/hud/half_blue_heart.png");
 
+    @SuppressWarnings("null")
     public static final IGuiOverlay HUD_BLUE_BLOOD = ((gui, poseStack, partialTick, width, height) -> {
         @SuppressWarnings("resource")
         Player player = Minecraft.getInstance().player;

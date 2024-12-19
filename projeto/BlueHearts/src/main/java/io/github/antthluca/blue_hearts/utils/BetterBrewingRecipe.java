@@ -21,15 +21,16 @@ public class BetterBrewingRecipe implements IBrewingRecipe {
     }
 
     @Override
-    public boolean isInput(ItemStack input) {
+    public boolean isInput(@SuppressWarnings("null") ItemStack input) {
         return PotionUtils.getPotion(input) == this.input;
     }
 
     @Override
-    public boolean isIngredient(ItemStack ingredient) {
+    public boolean isIngredient(@SuppressWarnings("null") ItemStack ingredient) {
         return ingredient.getItem() == this.ingredient;
     }
 
+    @SuppressWarnings("null")
     @Override
     public ItemStack getOutput(ItemStack input, ItemStack ingredient) {
         if(!this.isInput(input) || !this.isIngredient(ingredient)) {
