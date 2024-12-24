@@ -31,7 +31,6 @@ public class PlayerBlueBloodProvider implements ICapabilityProvider, INBTSeriali
         return this.blue_blood;
     }
 
-    @SuppressWarnings("null")
     @Override
     public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @NotNull Direction side) {
         if (cap == PLAYER_BLUE_BLOOD) {

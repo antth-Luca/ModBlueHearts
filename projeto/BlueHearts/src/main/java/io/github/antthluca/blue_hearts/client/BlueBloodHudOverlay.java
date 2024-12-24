@@ -16,7 +16,6 @@ public class BlueBloodHudOverlay {
 
     @SuppressWarnings("null")
     public static final IGuiOverlay HUD_BLUE_BLOOD = ((gui, poseStack, partialTick, width, height) -> {
-        @SuppressWarnings("resource")
         Player player = Minecraft.getInstance().player;
 
         if (player.isCreative()) return;

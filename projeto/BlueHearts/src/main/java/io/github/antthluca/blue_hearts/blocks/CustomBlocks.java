@@ -1,5 +1,6 @@
 package io.github.antthluca.blue_hearts.blocks;
 
+import io.github.antthluca.blue_hearts.BlueHearts;
 import io.github.antthluca.blue_hearts.init.InitFoods;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -36,10 +37,7 @@ public class CustomBlocks {
 
         @Override
         public BlockState getStateForPlacement(BlockPlaceContext context) {
-            if (context.getClickedFace() == Direction.DOWN) {
-                return this.defaultBlockState().setValue(AGE, 0); // Substitua AGE pelo seu atributo de estado, se houver.
-            }
-            return null; // Retorna nulo para impedir que seja colocado em superfícies inválidas.
+            return context.getClickedFace() == Direction.DOWN ? this.defaultBlockState().setValue(AGE, 0) : null;
         }
 
         @Override
@@ -57,8 +55,7 @@ public class CustomBlocks {
             BlockState aboveBlockState = world.getBlockState(pos.above());
 
             // Define os blocos permitidos para o arbusto ser plantado.
-            return aboveBlockState.is(BlockTags.create(new ResourceLocation("blue_hearts:valid_blocks_for_vital_bush")))
-                && aboveBlockState.isFaceSturdy(world, pos.above(), Direction.DOWN);
+            return aboveBlockState.is(BlockTags.create(new ResourceLocation(BlueHearts.MODID, "valid_blocks_for_vital_bush")));
         }
 
         @Override
