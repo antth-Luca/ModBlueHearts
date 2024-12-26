@@ -1,0 +1,24 @@
+{
+    "advancement.blue_hearts.acquire_vital_fruit.title": "Perpetuação de espécie",
+    "advancement.blue_hearts.acquire_vital_fruit.description": "Encontre um arbusto e colha um Fruto Vital.",
+    "advancement.blue_hearts.eat_lazuli_apple.title": "Cuidado com seus dentes!",
+    "advancement.blue_hearts.eat_lazuli_apple.description": "Deguste as duas camadas de minério de uma Maçã Lazulada e sinta o poder.",
+
+    "block.blue_hearts.vital_bush": "Arbusto Vital",
+
+    "item.blue_hearts.vital_sap": "Seiva Vital",
+    "item.blue_hearts.lazuli_apple": "Maçã Lazulada",
+    "item.blue_hearts.vital_fruit": "Fruto Vital",
+    "item.blue_hearts.revitalizing_crying_charm": "Amuleto do Choro Revitalizante",
+
+    "item.minecraft.potion.effect.blue_blood_potion": "Poção de Sangue Azul",
+    "item.minecraft.splash_potion.effect.blue_blood_potion": "[Não funcional]",
+    "item.minecraft.lingering_potion.effect.blue_blood_potion": "[Não funcional]",
+
+    "item.minecraft.potion.effect.orange_antidote_potion": "Poção de Antídoto Laranja",
+    "item.minecraft.splash_potion.effect.orange_antidote_potion": "[Não funcional]",
+    "item.minecraft.lingering_potion.effect.orange_antidote_potion": "[Não funcional]",
+
+    "effect.blue_hearts.blue_blood": "Efeito de Sangue Azul",
+    "effect.blue_hearts.orange_antidote": "Efeito de Antídoto Laranja"
+}

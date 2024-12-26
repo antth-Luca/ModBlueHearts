@@ -8,19 +8,25 @@ import io.github.antthluca.blue_hearts.init.InitFoods;
 import io.github.antthluca.blue_hearts.init.InitItems;
 import io.github.antthluca.blue_hearts.init.InitPotions;
 import io.github.antthluca.blue_hearts.init.InitRecipes;
+import io.github.antthluca.blue_hearts.integration.curios.InitItemsCurios;
 import io.github.antthluca.blue_hearts.networking.ModMessages;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fml.InterModComms;
+import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import top.theillusivec4.curios.api.SlotTypePreset;
 
 @Mod(BlueHearts.MODID)
 public class BlueHearts {
     public static final String MODID = "blue_hearts";
+    public static final boolean HAS_CURIOS = ModList.get().isLoaded("curios");
 
     public BlueHearts() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
@@ -37,6 +43,13 @@ public class BlueHearts {
 
         // Registra o evento de configuração do mod
         bus.addListener(this::setup);
+
+        // Curios
+        if (HAS_CURIOS) {
+            InitItemsCurios.ITEMS.register(bus);
+
+            bus.addListener(this::sendIMC);
+        }
     }
 
     private void setup(final FMLCommonSetupEvent event) {
@@ -54,5 +67,11 @@ public class BlueHearts {
 
     private void registerCommands(RegisterCommandsEvent event) {
         BlueHeartsManagerCommands.register(event.getDispatcher());
+    }
+
+    public void sendIMC(InterModEnqueueEvent e) {
+        InterModComms.sendTo("curios", "register_type", () -> {
+            return SlotTypePreset.CHARM.getMessageBuilder().build();
+        });
     }
 }

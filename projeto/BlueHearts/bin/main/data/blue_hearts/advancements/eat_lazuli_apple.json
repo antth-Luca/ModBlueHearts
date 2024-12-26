@@ -1,0 +1,28 @@
+{
+    "criteria": {
+        "eat_lazuli_apple": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+                "item": {
+                    "item": "blue_hearts:lazuli_apple"
+                }
+            }
+        }
+    },
+    "display": {
+        "icon": {
+            "item": "blue_hearts:lazuli_apple"
+        },
+        "title": {
+            "translate": "advancement.blue_hearts.eat_lazuli_apple.title"
+        },
+        "description": {
+            "translate": "advancement.blue_hearts.eat_lazuli_apple.description"
+        },
+        "frame": "task",
+        "show_toast": true,
+        "announce_to_chat": true,
+        "hidden": false
+    },
+    "parent": "minecraft:husbandry/root"
+}

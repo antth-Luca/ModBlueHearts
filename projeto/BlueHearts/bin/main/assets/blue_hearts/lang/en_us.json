@@ -1,0 +1,24 @@
+{
+    "advancement.blue_hearts.acquire_vital_fruit.title": "Perpetuation of species",
+    "advancement.blue_hearts.acquire_vital_fruit.description": "Find a bush and pick a Vital Fruit.",
+    "advancement.blue_hearts.eat_lazuli_apple.title": "Watch your teeth!",
+    "advancement.blue_hearts.eat_lazuli_apple.description": "Taste the two layers of ore in a Lazuli Apple and feel the power.",      
+
+    "block.blue_hearts.vital_bush": "Vital Bush",
+
+    "item.blue_hearts.vital_sap": "Vital Sap",
+    "item.blue_hearts.lazuli_apple": "Lazuli Apple",
+    "item.blue_hearts.vital_fruit": "Vital Fruit",
+    "item.blue_hearts.revitalizing_crying_charm": "Revitalizing Crying Charm",
+
+    "item.minecraft.potion.effect.blue_blood_potion": "Blue Blood Potion",
+    "item.minecraft.splash_potion.effect.blue_blood_potion": "[Non-functional]",
+    "item.minecraft.lingering_potion.effect.blue_blood_potion": "[Non-functional]",
+
+    "item.minecraft.potion.effect.orange_antidote_potion": "Orange Antidote Potion",
+    "item.minecraft.splash_potion.effect.orange_antidote_potion": "[Non-functional]",
+    "item.minecraft.lingering_potion.effect.orange_antidote_potion": "[Non-functional]",
+
+    "effect.blue_hearts.blue_blood": "Blue Blood Effect",
+    "effect.blue_hearts.orange_antidote": "Orange Antidote Effect"
+}

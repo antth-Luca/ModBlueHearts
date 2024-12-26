@@ -1,0 +1,6 @@
+{
+    "type": "forge:add_features",
+    "biomes": "minecraft:lush_caves",
+    "features": "blue_hearts:vital_bush",
+    "step": "surface_structures"
+}
