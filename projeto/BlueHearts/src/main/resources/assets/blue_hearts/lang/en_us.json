@@ -6,10 +6,12 @@
 
     "block.blue_hearts.vital_bush": "Vital Bush",
 
+    "item.blue_hearts.common_tooltip": "Press SHIFT for details",
     "item.blue_hearts.vital_sap": "Vital Sap",
     "item.blue_hearts.lazuli_apple": "Lazuli Apple",
     "item.blue_hearts.vital_fruit": "Vital Fruit",
     "item.blue_hearts.crying_charm": "Revitalizing Crying Charm",
+    "item.blue_hearts.crying_charm.tooltip": "This amulet brought by pain, cry eternally, tears of Blue Blood.",
 
     "item.minecraft.potion.effect.blue_blood_potion": "Blue Blood Potion",
     "item.minecraft.splash_potion.effect.blue_blood_potion": "[Non-functional]",

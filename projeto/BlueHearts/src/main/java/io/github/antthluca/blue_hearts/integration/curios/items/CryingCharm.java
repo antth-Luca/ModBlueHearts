@@ -5,6 +5,7 @@ import java.util.List;
 import io.github.antthluca.blue_hearts.handlers.CurioItemsHandler;
 import io.github.antthluca.blue_hearts.integration.curios.init.InitItemsCurios;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -26,7 +27,11 @@ public class CryingCharm extends Item implements ICurioItem, Wearable {
     @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack stack, Level worldIn, List<Component> tooltip, TooltipFlag flagIn) {
         super.appendHoverText(stack, worldIn, tooltip, flagIn);
-        tooltip.add(Component.translatable("item.blue_hearts.crying_charm.tooltip").withStyle(ChatFormatting.GRAY));
+        if (Screen.hasShiftDown()) {
+            tooltip.add(Component.translatable("item.blue_hearts.crying_charm.tooltip").withStyle(ChatFormatting.GRAY));
+        } else {
+            tooltip.add(Component.translatable("item.blue_hearts.common_tooltip").withStyle(ChatFormatting.GRAY));
+        }
     }
 
     @Override
