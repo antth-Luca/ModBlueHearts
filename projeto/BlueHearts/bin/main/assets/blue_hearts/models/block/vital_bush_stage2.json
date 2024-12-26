@@ -1,6 +1,0 @@
-{
-    "parent": "block/cross",
-    "textures": {
-        "cross": "blue_hearts:block/vital_bush_stage2"
-    }
-}

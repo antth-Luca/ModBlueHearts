@@ -8,7 +8,7 @@ import io.github.antthluca.blue_hearts.init.InitFoods;
 import io.github.antthluca.blue_hearts.init.InitItems;
 import io.github.antthluca.blue_hearts.init.InitPotions;
 import io.github.antthluca.blue_hearts.init.InitRecipes;
-import io.github.antthluca.blue_hearts.integration.curios.InitItemsCurios;
+import io.github.antthluca.blue_hearts.integration.curios.init.InitItemsCurios;
 import io.github.antthluca.blue_hearts.networking.ModMessages;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
