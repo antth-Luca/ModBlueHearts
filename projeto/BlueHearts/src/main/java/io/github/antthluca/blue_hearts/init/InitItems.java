@@ -16,4 +16,8 @@ public class InitItems {
     public static final RegistryObject<Item> VITAL_SAP = ITEMS.register(
         "vital_sap", () -> new Item(new Item.Properties()
             .tab(CreativeModeTab.TAB_BREWING)));
+
+    public static final RegistryObject<Item> REVITALIZING_CRYING_CHARM = ITEMS.register(
+        "revitalizing_crying_charm", () -> new Item(new Item.Properties()
+            .tab(CreativeModeTab.TAB_BREWING)));
 }
