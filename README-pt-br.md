@@ -18,7 +18,6 @@ Este projeto está sobre licença. [Ver licença](https://github.com/antth-Luca/
 ## Recursos das versões:
 * v.2:
     * Arbusto Vital: Um novo arbusto gerado pelo teto das Cavernas Exuberantes/Cavernas Verdejante. Ele produz o novo Fruto Vital que pode ser consumido, usado para replante ou para a fabricação de Seiva Vital;
-    * Amuleto do Choro Revitalizante: Este item só está disponível, se houver o Curios API instalado. Após equipado com este amuleto, seus corações azuis serão restaurados gradualmente;
     * Conteúdo extra com o Curios API:
         * Amuleto do Choro Revitalizante: Este amuleto pode ser equipado no slot 'charm' do Curios e após isso, ele regenerará um pouco dos corações azuis de tempos em tempos.
     * Todos os itens da versão anterior.
