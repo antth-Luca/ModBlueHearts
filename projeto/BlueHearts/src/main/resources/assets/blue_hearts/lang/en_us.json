@@ -16,6 +16,10 @@
     "block.blue_hearts.vital_bush": "Vital Bush",
 
     "item.blue_hearts.common_tooltip": "Press SHIFT for details",
+
+    "item.blue_hearts.blue_blood_potion": "Blue Blood Potion",
+    "item.blue_hearts.orange_antidote_potion": "Orange Antidote Potion",
+
     "item.blue_hearts.blue_eye": "Blue Eye",
     "item.blue_hearts.vital_sap": "Vital Sap",
     "item.blue_hearts.lazuli_apple": "Lazuli Apple",
@@ -25,14 +29,6 @@
     "item.blue_hearts.crying_charm.effect_tooltip": "§6Effect: §rFrom time to time, it supplies 0.5 blue hearts with its tear.",
     "item.blue_hearts.myst_blue_gem": "Mysterious Blue Gem",
     "item.blue_hearts.myst_blue_gem.tooltip": "The effect of this jewel is not pleasant, but its product is restorative. Use RIGHT CLICK.",
-
-    "item.minecraft.potion.effect.blue_blood_potion": "Blue Blood Potion",
-    "item.minecraft.splash_potion.effect.blue_blood_potion": "[Non-functional]",
-    "item.minecraft.lingering_potion.effect.blue_blood_potion": "[Non-functional]",
-
-    "item.minecraft.potion.effect.orange_antidote_potion": "Orange Antidote Potion",
-    "item.minecraft.splash_potion.effect.orange_antidote_potion": "[Non-functional]",
-    "item.minecraft.lingering_potion.effect.orange_antidote_potion": "[Non-functional]",
 
     "effect.blue_hearts.blue_blood": "Blue Blood Effect",
     "effect.blue_hearts.orange_antidote": "Orange Antidote Effect",

@@ -1,20 +1,22 @@
 package io.github.antthluca.blue_hearts.utils;
 
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraftforge.common.brewing.IBrewingRecipe;
 
-// BetterBrewingRecipe Class by CAS-ual-TY from https://github.com/CAS-ual-TY/Extra-Potions (GPL-3.0 License)
+// TWO-BASED CLASS:
+// 1. BetterBrewingRecipe Class by CAS-ual-TY from https://github.com/CAS-ual-TY/Extra-Potions (GPL-3.0 License)
 // https://github.com/CAS-ual-TY/Extra-Potions/blob/main/LICENSE
+// 2. SpecialBrewingRecipe Class by Aizistral-Studios from https://github.com/Aizistral-Studios/Enigmatic-Legacy/tree/1.19.X (Custom License)
+// https://github.com/Aizistral-Studios/Enigmatic-Legacy/blob/1.19.X/LICENSE.md
 public class BetterBrewingRecipe implements IBrewingRecipe {
     private final Potion input;
     private final Item ingredient;
-    private final Potion output;
+    private final Item output;
 
-    public BetterBrewingRecipe(Potion input, Item ingredient, Potion output) {
+    public BetterBrewingRecipe(Potion input, Item ingredient, Item output) {
         this.input = input;
         this.ingredient = ingredient;
         this.output = output;
@@ -22,24 +24,21 @@ public class BetterBrewingRecipe implements IBrewingRecipe {
 
     @Override
     public boolean isInput(@SuppressWarnings("null") ItemStack input) {
-        return PotionUtils.getPotion(input) == this.input;
+        return input != null && PotionUtils.getPotion(input) == this.input;
     }
 
     @Override
     public boolean isIngredient(@SuppressWarnings("null") ItemStack ingredient) {
-        return ingredient.getItem() == this.ingredient;
+        return ingredient != null && ingredient.getItem() == this.ingredient;
     }
 
     @SuppressWarnings("null")
     @Override
     public ItemStack getOutput(ItemStack input, ItemStack ingredient) {
-        if(!this.isInput(input) || !this.isIngredient(ingredient)) {
-            return ItemStack.EMPTY;
-        }
+        return this.isInput(input) && this.isIngredient(ingredient) ? new ItemStack(this.getOutput()) : ItemStack.EMPTY;
+    }
 
-        ItemStack itemStack = new ItemStack(input.getItem());
-        itemStack.setTag(new CompoundTag());
-        PotionUtils.setPotion(itemStack, this.output);
-        return itemStack;
+    public Item getOutput() {
+        return this.output;
     }
 }

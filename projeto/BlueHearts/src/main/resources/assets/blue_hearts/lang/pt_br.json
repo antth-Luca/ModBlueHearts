@@ -16,6 +16,10 @@
     "block.blue_hearts.vital_bush": "Arbusto Vital",
 
     "item.blue_hearts.common_tooltip": "Pressione SHIFT para detalhes",
+
+    "item.blue_hearts.blue_blood_potion": "Poção de Sangue Azul",
+    "item.blue_hearts.orange_antidote_potion": "Poção de Antídoto Laranja",
+
     "item.blue_hearts.blue_eye": "Olho Azul",
     "item.blue_hearts.vital_sap": "Seiva Vital",
     "item.blue_hearts.lazuli_apple": "Maçã Lazulada",
@@ -25,14 +29,6 @@
     "item.blue_hearts.crying_charm.effect_tooltip": "§6Efeito: §rDe tempo em tempo, ele abastece 0.5 corações azuis com sua lágrima.",
     "item.blue_hearts.myst_blue_gem": "Jóia Azul Misteriosa",
     "item.blue_hearts.myst_blue_gem.tooltip": "O efeito dessa jóia não é agradável, mas seu produto é restaurador. Use CLIQUE DIREITO.",
-
-    "item.minecraft.potion.effect.blue_blood_potion": "Poção de Sangue Azul",
-    "item.minecraft.splash_potion.effect.blue_blood_potion": "[Não funcional]",
-    "item.minecraft.lingering_potion.effect.blue_blood_potion": "[Não funcional]",
-
-    "item.minecraft.potion.effect.orange_antidote_potion": "Poção de Antídoto Laranja",
-    "item.minecraft.splash_potion.effect.orange_antidote_potion": "[Não funcional]",
-    "item.minecraft.lingering_potion.effect.orange_antidote_potion": "[Não funcional]",
 
     "effect.blue_hearts.blue_blood": "Efeito de Sangue Azul",
     "effect.blue_hearts.orange_antidote": "Efeito de Antídoto Laranja",

@@ -6,7 +6,6 @@ import io.github.antthluca.blue_hearts.init.InitBlocks;
 import io.github.antthluca.blue_hearts.init.InitEffects;
 import io.github.antthluca.blue_hearts.init.InitFoods;
 import io.github.antthluca.blue_hearts.init.InitItems;
-import io.github.antthluca.blue_hearts.init.InitPotions;
 import io.github.antthluca.blue_hearts.init.InitRecipes;
 import io.github.antthluca.blue_hearts.integration.curios.init.InitEffectsCurios;
 import io.github.antthluca.blue_hearts.integration.curios.init.InitItemsCurios;
@@ -45,7 +44,6 @@ public class BlueHearts {
         InitBlocks.BLOCKS.register(bus);
         InitEffects.MOB_EFFECTS.register(bus);
         InitFoods.FOOD_ITEMS.register(bus);
-        InitPotions.POTIONS.register(bus);
 
         // Registrando a configuração
         ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, BlueHeartsCommonConfigs.SPEC, "bluehearts-common.toml");
