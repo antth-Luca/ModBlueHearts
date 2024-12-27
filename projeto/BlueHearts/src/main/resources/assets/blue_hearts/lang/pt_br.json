@@ -12,6 +12,7 @@
     "item.blue_hearts.vital_fruit": "Fruto Vital",
     "item.blue_hearts.crying_charm": "Amuleto do Choro Revitalizante",
     "item.blue_hearts.crying_charm.tooltip": "Este amuleto trazido pela dor, chora eternamente, lágrimas de Sangue Azul.",
+    "item.blue_hearts.crying_charm.effect_tooltip": "§6Efeito: §rDe tempo em tempo, ele abastece 0.5 corações azuis com sua lágrima.",
 
     "item.minecraft.potion.effect.blue_blood_potion": "Poção de Sangue Azul",
     "item.minecraft.splash_potion.effect.blue_blood_potion": "[Não funcional]",
