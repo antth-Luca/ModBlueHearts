@@ -1,0 +1,29 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "conditions": [
+        {
+            "type": "forge:mod_loaded",
+            "modid": "curios"
+        }
+    ],
+    "pattern": [
+        " GR",
+        "GEG",
+        "RG "
+    ],
+    "key": {
+        "G": {
+            "item": "minecraft:gold_ingot"
+        },
+        "R": {
+            "item": "minecraft:rotten_flesh"
+        },
+        "E": {
+            "item": "blue_hearts:blue_eye"
+        }
+    },
+    "result": {
+        "item": "blue_hearts:myst_blue_gem",
+        "count": 1
+    }
+}

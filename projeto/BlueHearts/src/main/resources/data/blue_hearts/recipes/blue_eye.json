@@ -1,0 +1,24 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "conditions": [
+        {
+            "type": "forge:mod_loaded",
+            "modid": "curios"
+        }
+    ],
+    "ingredients": [
+        {
+            "item": "minecraft:blaze_powder"
+        },
+        {
+            "item": "minecraft:ender_pearl"
+        },
+        {
+            "item": "blue_hearts:vital_sap"
+        }
+    ],
+    "result": {
+        "item": "blue_hearts:blue_eye",
+        "count": 1
+    }
+}

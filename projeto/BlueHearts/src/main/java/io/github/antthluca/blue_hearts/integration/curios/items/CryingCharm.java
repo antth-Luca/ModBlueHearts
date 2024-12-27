@@ -20,8 +20,8 @@ import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 public class CryingCharm extends Item implements ICurioItem, Wearable {
-    public CryingCharm(Properties properties) {
-        super(properties);
+    public CryingCharm(Properties prop) {
+        super(prop);
     }
 
     @SuppressWarnings("null")
