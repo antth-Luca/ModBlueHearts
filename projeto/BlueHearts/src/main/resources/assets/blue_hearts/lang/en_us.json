@@ -2,7 +2,14 @@
     "advancement.blue_hearts.acquire_vital_fruit.title": "Perpetuation of species",
     "advancement.blue_hearts.acquire_vital_fruit.description": "Find a bush and pick a Vital Fruit.",
     "advancement.blue_hearts.eat_lazuli_apple.title": "Watch your teeth!",
-    "advancement.blue_hearts.eat_lazuli_apple.description": "Taste the two layers of ore in a Lazuli Apple and feel the power.",      
+    "advancement.blue_hearts.eat_lazuli_apple.description": "Taste the two layers of ore in a Lazuli Apple and feel the power.",     
+
+    "command.blue_hearts.invalid_number": "[Blue Hearts] The number of hearts must be positive or zero.",
+    "command.blue_hearts.capped_number": "[Blue Hearts] The number of hearts was capped to 10.",
+    "command.blue_hearts.invalid_players": "[Blue Hearts] No valid players found for the given selector.",
+    "command.blue_hearts.success.add": "[Blue Hearts] Added %s blue hearts to %s",
+    "command.blue_hearts.success.rm": "[Blue Hearts] Removed %s blue hearts from %s",
+    "command.blue_hearts.success.set": "[Blue Hearts] Set blue hearts of %s to %s",
 
     "block.blue_hearts.vital_bush": "Vital Bush",
 

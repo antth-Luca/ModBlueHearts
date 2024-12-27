@@ -46,12 +46,12 @@ public class BlueHeartsManagerCommands {
         CommandSourceStack source = ctx.getSource();
         // Não pertmite números negativos
         if (hearts < 0) {
-            source.sendFailure(Component.literal("The number of hearts must be positive or zero."));
+            source.sendFailure(Component.translatable("command.blue_hearts.invalid_number"));
             return 0;
         }
         // Não permite número maior que 10
         if (hearts > 10) {
-            source.sendSuccess(Component.literal("The number of hearts was capped to 10."), true);
+            source.sendSuccess(Component.translatable("command.blue_hearts.capped_number"), true);
             hearts = 10;
         }
         final int adjustedHearts = hearts;
@@ -66,12 +66,17 @@ public class BlueHeartsManagerCommands {
                     blueBlood.addBlueBlood(adjustedHearts);
                 });
     
-                source.sendSuccess(Component.literal("Added " + adjustedHearts + " blue hearts to " + targetPlayer.getName().getString()), true);
+                source.sendSuccess(
+                    Component.translatable(
+                        "command.blue_hearts.success.add",
+                        adjustedHearts,
+                        targetPlayer.getName().getString()
+                    ), true);
             });
 
             return targetPlayers.size();
         } catch (Exception e) {
-            source.sendFailure(Component.literal("No valid players found for the given selector."));
+            source.sendFailure(Component.translatable("command.blue_hearts.invalid_players"));
             return 0;
         }
     }
@@ -80,12 +85,12 @@ public class BlueHeartsManagerCommands {
         CommandSourceStack source = ctx.getSource();
         // Não pertmite números negativos
         if (hearts < 0) {
-            source.sendFailure(Component.literal("The number of hearts must be positive or zero."));
+            source.sendFailure(Component.translatable("command.blue_hearts.invalid_number"));
             return 0;
         }
         // Não permite número maior que 10
         if (hearts > 10) {
-            source.sendSuccess(Component.literal("The number of hearts was capped to 10."), true);
+            source.sendSuccess(Component.translatable("command.blue_hearts.capped_number"), true);
             hearts = 10;
         }
         final int adjustedHearts = hearts;
@@ -100,12 +105,17 @@ public class BlueHeartsManagerCommands {
                     blueBlood.subBlueBlood(adjustedHearts);
                 });
     
-                source.sendSuccess(Component.literal("Removed " + adjustedHearts + " blue hearts from " + targetPlayer.getName().getString()), true);
+                source.sendSuccess(
+                    Component.translatable(
+                        "command.blue_hearts.success.rm",
+                        adjustedHearts,
+                        targetPlayer.getName().getString()
+                    ), true);
             });
 
             return targetPlayers.size();
         } catch (Exception e) {
-            source.sendFailure(Component.literal("No valid players found for the given selector."));
+            source.sendFailure(Component.translatable("command.blue_hearts.invalid_players"));
             return 0;
         }
     }
@@ -114,12 +124,12 @@ public class BlueHeartsManagerCommands {
         CommandSourceStack source = ctx.getSource();
         // Não pertmite números negativos
         if (hearts < 0) {
-            source.sendFailure(Component.literal("The number of hearts must be positive or zero."));
+            source.sendFailure(Component.translatable("command.blue_hearts.invalid_number"));
             return 0;
         }
         // Não permite número maior que 10
         if (hearts > 10) {
-            source.sendSuccess(Component.literal("The number of hearts was capped to 10."), true);
+            source.sendSuccess(Component.translatable("command.blue_hearts.capped_number"), true);
             hearts = 10;
         }
         final int adjustedHearts = hearts;
@@ -134,12 +144,17 @@ public class BlueHeartsManagerCommands {
                     blueBlood.setBlueBlood(adjustedHearts);
                 });
     
-                source.sendSuccess(Component.literal("Set blue hearts of " + targetPlayer.getName().getString() + " to " + adjustedHearts), true);
+                source.sendSuccess(
+                    Component.translatable(
+                        "command.blue_hearts.success.set",
+                        targetPlayer.getName().getString(),
+                        adjustedHearts
+                    ), true);
             });
 
             return targetPlayers.size();
         } catch (Exception e) {
-            source.sendFailure(Component.literal("No valid players found for the given selector."));
+            source.sendFailure(Component.translatable("command.blue_hearts.invalid_players"));
             return 0;
         }
     }

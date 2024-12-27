@@ -4,6 +4,13 @@
     "advancement.blue_hearts.eat_lazuli_apple.title": "Cuidado com seus dentes!",
     "advancement.blue_hearts.eat_lazuli_apple.description": "Deguste as duas camadas de minério de uma Maçã Lazulada e sinta o poder.",
 
+    "command.blue_hearts.invalid_number": "[Blue Hearts] O número de corações deve ser positivo ou zero.",
+    "command.blue_hearts.capped_number": "[Blue Hearts] O número de corações foi limitado a 10.",
+    "command.blue_hearts.invalid_players": "[Blue Hearts] Nenhum jogador válido foi encontrado para o seletor fornecido.",
+    "command.blue_hearts.success.add": "[Blue Hearts] Adicionados %s corações azuis para %s",
+    "command.blue_hearts.success.rm": "[Blue Hearts] Removidos %s corações azuis de %s",
+    "command.blue_hearts.success.set": "[Blue Hearts] Definido os corações azuis de %s como %s",
+
     "block.blue_hearts.vital_bush": "Arbusto Vital",
 
     "item.blue_hearts.common_tooltip": "Pressione SHIFT para detalhes",
