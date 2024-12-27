@@ -30,6 +30,13 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
+// UNIFIED CLASS, of:
+// 1. items/generic/ItemBasePotion
+// 2. items/generic/ItemBase
+// 3. api/items/ICreativeTabMember
+// 4. handlers/SuperpositionHandler
+// ALL CLASSES BY Aizistral FROM https://github.com/Aizistral-Studios/Enigmatic-Legacy/tree/1.19.X (Custom License)
+// https://github.com/Aizistral-Studios/Enigmatic-Legacy/blob/1.19.X/LICENSE.md
 public abstract class ItemBasePotion extends Item {
     protected static final Random random = new Random();
     protected boolean isPlaceholder;

@@ -6,11 +6,8 @@ import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraftforge.common.brewing.IBrewingRecipe;
 
-// TWO-BASED CLASS:
-// 1. BetterBrewingRecipe Class by CAS-ual-TY from https://github.com/CAS-ual-TY/Extra-Potions (GPL-3.0 License)
+// BetterBrewingRecipe Class by CAS-ual-TY from https://github.com/CAS-ual-TY/Extra-Potions (GPL-3.0 License)
 // https://github.com/CAS-ual-TY/Extra-Potions/blob/main/LICENSE
-// 2. SpecialBrewingRecipe Class by Aizistral-Studios from https://github.com/Aizistral-Studios/Enigmatic-Legacy/tree/1.19.X (Custom License)
-// https://github.com/Aizistral-Studios/Enigmatic-Legacy/blob/1.19.X/LICENSE.md
 public class BetterBrewingRecipe implements IBrewingRecipe {
     private final Potion input;
     private final Item ingredient;
