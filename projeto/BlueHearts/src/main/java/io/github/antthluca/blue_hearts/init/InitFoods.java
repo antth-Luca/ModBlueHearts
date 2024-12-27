@@ -2,7 +2,6 @@ package io.github.antthluca.blue_hearts.init;
 
 import io.github.antthluca.blue_hearts.BlueHearts;
 import io.github.antthluca.blue_hearts.foods.CustomFoods;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.item.Rarity;
@@ -21,11 +20,11 @@ public class InitFoods {
             InitBlocks.VITAL_BUSH.get(), 
             new Item.Properties()
                 .food(CustomFoods.VITAL_FRUIT_FOOD)
-                .tab(CreativeModeTab.TAB_FOOD)));
+                .tab(BlueHearts.TAB)));
 
     public static final RegistryObject<Item> LAZULI_APPLE = FOOD_ITEMS.register(
         "lazuli_apple", () -> new Item(new Item.Properties()
             .food(CustomFoods.LAZULI_APPLE_FOOD)
             .rarity(Rarity.RARE)
-            .tab(CreativeModeTab.TAB_FOOD)));
+            .tab(BlueHearts.TAB)));
 }

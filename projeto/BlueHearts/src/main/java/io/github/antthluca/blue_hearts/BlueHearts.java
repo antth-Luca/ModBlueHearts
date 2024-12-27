@@ -11,6 +11,8 @@ import io.github.antthluca.blue_hearts.init.InitRecipes;
 import io.github.antthluca.blue_hearts.integration.curios.init.InitEffectsCurios;
 import io.github.antthluca.blue_hearts.integration.curios.init.InitItemsCurios;
 import io.github.antthluca.blue_hearts.networking.ModMessages;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -28,6 +30,12 @@ import top.theillusivec4.curios.api.SlotTypePreset;
 public class BlueHearts {
     public static final String MODID = "blue_hearts";
     public static final boolean HAS_CURIOS = ModList.get().isLoaded("curios");
+    public static final CreativeModeTab TAB = new CreativeModeTab(MODID) {
+        @Override
+        public ItemStack makeIcon() {
+            return InitItems.VITAL_SAP.get().getDefaultInstance();
+        }
+    };
 
     public BlueHearts() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
