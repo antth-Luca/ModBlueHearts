@@ -26,5 +26,6 @@
     "item.minecraft.lingering_potion.effect.orange_antidote_potion": "[Non-functional]",
 
     "effect.blue_hearts.blue_blood": "Blue Blood Effect",
-    "effect.blue_hearts.orange_antidote": "Orange Antidote Effect"
+    "effect.blue_hearts.orange_antidote": "Orange Antidote Effect",
+    "effect.blue_hearts.crying_charm_effect": "Crying Charm"
 }
