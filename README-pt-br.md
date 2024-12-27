@@ -19,6 +19,8 @@ Este projeto está sobre licença. [Ver licença](https://github.com/antth-Luca/
 * v.2:
     * Arbusto Vital: Um novo arbusto gerado pelo teto das Cavernas Exuberantes/Cavernas Verdejante. Ele produz o novo Fruto Vital que pode ser consumido, usado para replante ou para a fabricação de Seiva Vital;
     * Amuleto do Choro Revitalizante: Este item só está disponível, se houver o Curios API instalado. Após equipado com este amuleto, seus corações azuis serão restaurados gradualmente;
+    * Conteúdo extra com o Curios API:
+        * Amuleto do Choro Revitalizante: Este amuleto pode ser equipado no slot 'charm' do Curios e após isso, ele regenerará um pouco dos corações azuis de tempos em tempos.
     * Todos os itens da versão anterior.
 * v.1:
     * Coração azul: Um novo tipo de coração de vida/saúde que não pode ser regenerado com saturação, mas pode ser regenerado ao dormir. O dano causado a eles não pode ser reduzido pela armadura. Esses corações azuis podem ser obtidos com a Poção de Sangue Azul ou zerados com o Antídoto Laranja, com um máximo de 10 e um mínimo de 0 corações.
