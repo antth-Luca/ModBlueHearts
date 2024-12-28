@@ -36,6 +36,7 @@ public class BlueHearts {
         }
     };
 
+    @SuppressWarnings("removal")
     public BlueHearts() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
