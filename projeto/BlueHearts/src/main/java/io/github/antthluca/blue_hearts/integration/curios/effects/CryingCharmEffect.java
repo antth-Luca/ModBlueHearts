@@ -1,5 +1,6 @@
 package io.github.antthluca.blue_hearts.integration.curios.effects;
 
+import io.github.antthluca.blue_hearts.damage.ModDamageSources;
 import io.github.antthluca.blue_hearts.integration.curios.init.InitItemsCurios;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
@@ -17,7 +18,8 @@ public class CryingCharmEffect extends MobEffect {
     public void applyEffectTick(@SuppressWarnings("null") LivingEntity entity, int amplifier) {
         if (entity instanceof Player player) {
             if (player.getHealth() > 1.0f) {
-                player.hurt(DamageSource.MAGIC, 1.0f);
+                DamageSource magic = new ModDamageSources(player.getLevel().registryAccess()).magic();
+                player.hurt(magic, 1.0f);
             } else {
                 for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
                     ItemStack stack = player.getInventory().getItem(i);

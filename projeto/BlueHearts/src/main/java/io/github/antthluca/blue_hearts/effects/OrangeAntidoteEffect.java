@@ -1,6 +1,7 @@
 package io.github.antthluca.blue_hearts.effects;
 
 import io.github.antthluca.blue_hearts.capabilities.PlayerBlueBloodProvider;
+import io.github.antthluca.blue_hearts.damage.ModDamageSources;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -19,7 +20,8 @@ public class OrangeAntidoteEffect extends MobEffect {
                 float currentBlueBlood = blue_blood.getBlueBlood();
 
                 if (currentBlueBlood == 0) {  // Se o player não tiver Blue Blood, recebe dano
-                    player.hurt(DamageSource.MAGIC, 19f);  // Dano de 9.5 corações
+                    DamageSource magic = new ModDamageSources(player.getLevel().registryAccess()).magic();
+                    player.hurt(magic, 19f);  // Dano de 9.5 corações
                 } else {  // Se tiver, reduz para zero
                     blue_blood.setMAXBlueBlood(0);
                     blue_blood.setBlueBlood(0);
