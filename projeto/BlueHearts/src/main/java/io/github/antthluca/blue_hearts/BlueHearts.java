@@ -18,7 +18,6 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -49,6 +48,8 @@ public class BlueHearts {
 
         // Registra o evento de configuração do mod
         bus.addListener(this::setup);
+        bus.addListener(this::onCreativeTabRegistry);
+        bus.addListener(this::onCreativeTabContents);
 
         // Curios
         if (HAS_CURIOS) {
@@ -84,21 +85,21 @@ public class BlueHearts {
         });
     }
 
-    @SubscribeEvent
 	public void onCreativeTabRegistry(CreativeModeTabEvent.Register event) {
 		TAB = event.registerCreativeModeTab(new ResourceLocation(MODID, MODID), builder -> {
-			builder.title(Component.translatable("itemGroup.", MODID))
+			builder.title(Component.translatable("itemGroup.blue_hearts"))
 			    .icon(() -> new ItemStack(InitItems.VITAL_SAP.get()));
 		});
 	}
 
-    @SubscribeEvent
 	public void onCreativeTabContents(CreativeModeTabEvent.BuildContents event) {
         // Default content without Curios
         InitItems.ITEMS.getEntries().forEach(item -> event.accept(item.get()));
         InitFoods.FOOD_ITEMS.getEntries().forEach(item -> event.accept(item.get()));
 
-        // Extra content with Curios
-        InitItemsCurios.ITEMS.getEntries().forEach(item -> event.accept(item.get()));
+        if (HAS_CURIOS) {
+            // Extra content with Curios
+            InitItemsCurios.ITEMS.getEntries().forEach(item -> event.accept(item.get()));
+        }
 	}
 }
