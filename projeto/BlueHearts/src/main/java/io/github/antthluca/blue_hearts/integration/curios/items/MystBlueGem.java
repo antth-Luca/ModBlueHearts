@@ -39,7 +39,7 @@ public class MystBlueGem extends Item {
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         if (!level.isClientSide) {
-            player.addEffect(new MobEffectInstance(InitEffectsCurios.CRYING_CHARM_EFFECT.get(), 6000, 0));
+            player.addEffect(new MobEffectInstance(InitEffectsCurios.CRYING_CHARM_EFFECT.get(), -1, 0));
             return InteractionResultHolder.success(player.getItemInHand(hand));
         }
 
