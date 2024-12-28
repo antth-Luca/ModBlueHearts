@@ -94,13 +94,15 @@ public class BlueHearts {
 	}
 
 	public void onCreativeTabContents(CreativeModeTabEvent.BuildContents event) {
-        // Default content without Curios
-        InitItems.ITEMS.getEntries().forEach(item -> event.accept(item.get()));
-        InitFoods.FOOD_ITEMS.getEntries().forEach(item -> event.accept(item.get()));
+        if (event.getTab() == TAB) {
+            // Default content without Curios
+            InitItems.ITEMS.getEntries().forEach(item -> event.accept(item.get()));
+            InitFoods.FOOD_ITEMS.getEntries().forEach(item -> event.accept(item.get()));
 
-        if (HAS_CURIOS) {
             // Extra content with Curios
-            InitItemsCurios.ITEMS.getEntries().forEach(item -> event.accept(item.get()));
+            if (HAS_CURIOS) {
+                InitItemsCurios.ITEMS.getEntries().forEach(item -> event.accept(item.get()));
+            }
         }
 	}
 }
