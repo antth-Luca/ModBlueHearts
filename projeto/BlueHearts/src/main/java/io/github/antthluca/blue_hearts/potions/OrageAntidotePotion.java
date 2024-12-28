@@ -1,6 +1,5 @@
 package io.github.antthluca.blue_hearts.potions;
 
-import io.github.antthluca.blue_hearts.BlueHearts;
 import io.github.antthluca.blue_hearts.init.InitEffects;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -11,7 +10,7 @@ import net.minecraft.world.level.Level;
 
 public class OrageAntidotePotion extends ItemBasePotion {
     public OrageAntidotePotion() {
-        super(getDefaultProperties().stacksTo(1).rarity(Rarity.RARE).tab(BlueHearts.TAB));
+        super(getDefaultProperties().stacksTo(1).rarity(Rarity.RARE));
     }
 
     @Override

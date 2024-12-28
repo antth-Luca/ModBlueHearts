@@ -2,7 +2,7 @@ package io.github.antthluca.blue_hearts.blocks;
 
 import io.github.antthluca.blue_hearts.BlueHearts;
 import io.github.antthluca.blue_hearts.init.InitBlocks;
-import net.minecraft.data.DataGenerator;
+import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -15,9 +15,8 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import java.util.function.Function;
 
 public class CustomCropStageProvider extends BlockStateProvider {
-
-    public CustomCropStageProvider(DataGenerator generator, ExistingFileHelper exFileHelper) {
-        super(generator, BlueHearts.MODID, exFileHelper);
+    public CustomCropStageProvider(PackOutput output, ExistingFileHelper exFileHelper) {
+        super(output, BlueHearts.MODID, exFileHelper);
     }
 
     @Override

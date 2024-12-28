@@ -18,16 +18,13 @@ public class InitItemsCurios {
     public static final RegistryObject<Item> CRYING_CHARM = ITEMS.register(
             "crying_charm", () -> new CryingCharm(new Item.Properties()
                 .stacksTo(1)
-                .rarity(Rarity.RARE)
-                .tab(BlueHearts.TAB)));
+                .rarity(Rarity.RARE)));
 
     public static final RegistryObject<Item> BLUE_EYE = ITEMS.register(
         "blue_eye", () -> new Item(new Item.Properties()
-            .stacksTo(16)
-            .tab(BlueHearts.TAB)));
+            .stacksTo(16)));
 
     public static final RegistryObject<Item> MYST_BLUE_GEM = ITEMS.register(
         "myst_blue_gem", () -> new MystBlueGem(new Item.Properties()
-            .stacksTo(1)
-            .tab(BlueHearts.TAB)));
+            .stacksTo(1)));
 }

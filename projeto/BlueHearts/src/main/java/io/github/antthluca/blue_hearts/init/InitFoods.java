@@ -19,12 +19,10 @@ public class InitFoods {
         "vital_fruit", () -> new ItemNameBlockItem(
             InitBlocks.VITAL_BUSH.get(), 
             new Item.Properties()
-                .food(CustomFoods.VITAL_FRUIT_FOOD)
-                .tab(BlueHearts.TAB)));
+                .food(CustomFoods.VITAL_FRUIT_FOOD)));
 
     public static final RegistryObject<Item> LAZULI_APPLE = FOOD_ITEMS.register(
         "lazuli_apple", () -> new Item(new Item.Properties()
             .food(CustomFoods.LAZULI_APPLE_FOOD)
-            .rarity(Rarity.RARE)
-            .tab(BlueHearts.TAB)));
+            .rarity(Rarity.RARE)));
 }

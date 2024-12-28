@@ -10,11 +10,15 @@ import io.github.antthluca.blue_hearts.init.InitRecipes;
 import io.github.antthluca.blue_hearts.integration.curios.init.InitEffectsCurios;
 import io.github.antthluca.blue_hearts.integration.curios.init.InitItemsCurios;
 import io.github.antthluca.blue_hearts.networking.ModMessages;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.InterModComms;
 import net.minecraftforge.fml.ModList;
 import net.minecraftforge.fml.ModLoadingContext;
@@ -29,14 +33,8 @@ import top.theillusivec4.curios.api.SlotTypePreset;
 public class BlueHearts {
     public static final String MODID = "blue_hearts";
     public static final boolean HAS_CURIOS = ModList.get().isLoaded("curios");
-    public static final CreativeModeTab TAB = new CreativeModeTab(MODID) {
-        @Override
-        public ItemStack makeIcon() {
-            return InitItems.VITAL_SAP.get().getDefaultInstance();
-        }
-    };
+    public static CreativeModeTab TAB = null;
 
-    @SuppressWarnings("removal")
     public BlueHearts() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
@@ -85,4 +83,22 @@ public class BlueHearts {
             return SlotTypePreset.CHARM.getMessageBuilder().build();
         });
     }
+
+    @SubscribeEvent
+	public void onCreativeTabRegistry(CreativeModeTabEvent.Register event) {
+		TAB = event.registerCreativeModeTab(new ResourceLocation(MODID, MODID), builder -> {
+			builder.title(Component.translatable("itemGroup.", MODID))
+			    .icon(() -> new ItemStack(InitItems.VITAL_SAP.get()));
+		});
+	}
+
+    @SubscribeEvent
+	public void onCreativeTabContents(CreativeModeTabEvent.BuildContents event) {
+        // Default content without Curios
+        InitItems.ITEMS.getEntries().forEach(item -> event.accept(item.get()));
+        InitFoods.FOOD_ITEMS.getEntries().forEach(item -> event.accept(item.get()));
+
+        // Extra content with Curios
+        InitItemsCurios.ITEMS.getEntries().forEach(item -> event.accept(item.get()));
+	}
 }

@@ -15,8 +15,7 @@ public class InitItems {
 
     // Items
     public static final RegistryObject<Item> VITAL_SAP = ITEMS.register(
-        "vital_sap", () -> new Item(new Item.Properties()
-            .tab(BlueHearts.TAB)));
+        "vital_sap", () -> new Item(new Item.Properties()));
 
     // Potion Items
     public static final RegistryObject<Item> BLUE_BLOOD_POTION = ITEMS.register(
