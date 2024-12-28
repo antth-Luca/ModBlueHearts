@@ -1,11 +1,13 @@
 {
     "criteria": {
-        "acquire_lazuli_apple": {
+        "acquire_vital_fruit": {
             "trigger": "minecraft:inventory_changed",
             "conditions": {
-                "item": {
-                    "item": "blue_hearts:vital_fruit"
-                }
+                "items": [
+                    {
+                        "items": ["blue_hearts:vital_fruit"]
+                    }
+                ]
             }
         }
     },

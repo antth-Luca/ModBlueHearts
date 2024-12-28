@@ -1,5 +1,5 @@
 modLoader="javafml" 
-loaderVersion="[41,)" 
+loaderVersion="[42,)" 
 license="Custom license (on GitHub repository)"
 [[mods]] 
 modId="blue_hearts" 
@@ -18,12 +18,12 @@ Blue hearts that are restored by sleep...
 [[dependencies.blue_hearts]]
     modId="forge"
     mandatory=true
-    versionRange="[41,)"
+    versionRange="[42,)"
     ordering="NONE"
     side="BOTH"
 [[dependencies.blue_hearts]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.19,1.20)"
+    versionRange="[1.19.1,1.20)"
     ordering="NONE"
     side="BOTH"
