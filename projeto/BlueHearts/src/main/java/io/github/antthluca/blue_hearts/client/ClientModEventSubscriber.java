@@ -11,7 +11,7 @@ import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(modid = BlueHearts.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientModEventSubscriber {
-    @SuppressWarnings("removal")
+    @SuppressWarnings("deprecation")
     @SubscribeEvent
     public static void onRegisterRenderTypes(ModelEvent.RegisterAdditional event) {
         // Configurar RenderType para o VitalBush

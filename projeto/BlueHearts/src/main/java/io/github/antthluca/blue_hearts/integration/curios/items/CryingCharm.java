@@ -40,7 +40,7 @@ public class CryingCharm extends Item implements ICurioItem {
     public void curioTick(SlotContext slotContext, ItemStack stack) {
         if (slotContext.entity() instanceof Player player) {
             // Rastrear tempo global do jogo
-            long gameTime = player.level.getGameTime();
+            long gameTime = player.level().getGameTime();
             
             // A cada 30 segundos (600 ticks)
             if (gameTime % 600 == 0) {

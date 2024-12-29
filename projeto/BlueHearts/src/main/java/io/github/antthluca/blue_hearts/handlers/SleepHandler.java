@@ -15,8 +15,8 @@ public class SleepHandler {
         Player player = event.getEntity();
         
         // Verifica se não é cancelado, está no lado do servidor, e o jogador realmente dormiu por uma noite
-        if (!event.isCanceled() && !player.level.isClientSide() && player.level instanceof ServerLevel) {
-            ServerLevel serverLevel = (ServerLevel) player.level;
+        if (!event.isCanceled() && !player.level().isClientSide() && player.level() instanceof ServerLevel) {
+            ServerLevel serverLevel = (ServerLevel) player.level();
 
             // Checa se o mundo está no início do dia (geralmente quando o tempo é 0)
             if (serverLevel.getDayTime() % 24000L == 0) {

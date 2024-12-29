@@ -15,12 +15,12 @@ public class OrangeAntidoteEffect extends MobEffect {
 
     @Override
     public void applyEffectTick(@SuppressWarnings("null") LivingEntity entity, int amplifier) {
-        if (!entity.level.isClientSide && entity instanceof Player player) {
+        if (!entity.level().isClientSide && entity instanceof Player player) {
             player.getCapability(PlayerBlueBloodProvider.PLAYER_BLUE_BLOOD).ifPresent(blue_blood -> {
                 float currentBlueBlood = blue_blood.getBlueBlood();
 
                 if (currentBlueBlood == 0) {  // Se o player não tiver Blue Blood, recebe dano
-                    DamageSource magic = new ModDamageSources(player.getLevel().registryAccess()).magic();
+                    DamageSource magic = new ModDamageSources(player.level().registryAccess()).magic();
                     player.hurt(magic, 19f);  // Dano de 9.5 corações
                 } else {  // Se tiver, reduz para zero
                     blue_blood.setMAXBlueBlood(0);

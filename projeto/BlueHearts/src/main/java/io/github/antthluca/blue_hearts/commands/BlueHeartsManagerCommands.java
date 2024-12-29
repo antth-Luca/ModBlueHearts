@@ -51,7 +51,7 @@ public class BlueHeartsManagerCommands {
         }
         // Não permite número maior que 10
         if (hearts > 10) {
-            source.sendSuccess(Component.translatable("command.blue_hearts.capped_number"), true);
+            source.sendSuccess(() -> Component.translatable("command.blue_hearts.capped_number"), true);
             hearts = 10;
         }
         final int adjustedHearts = hearts;
@@ -67,7 +67,7 @@ public class BlueHeartsManagerCommands {
                 });
     
                 source.sendSuccess(
-                    Component.translatable(
+                    () -> Component.translatable(
                         "command.blue_hearts.success.add",
                         adjustedHearts,
                         targetPlayer.getName().getString()
@@ -90,7 +90,7 @@ public class BlueHeartsManagerCommands {
         }
         // Não permite número maior que 10
         if (hearts > 10) {
-            source.sendSuccess(Component.translatable("command.blue_hearts.capped_number"), true);
+            source.sendSuccess(() -> Component.translatable("command.blue_hearts.capped_number"), true);
             hearts = 10;
         }
         final int adjustedHearts = hearts;
@@ -106,7 +106,7 @@ public class BlueHeartsManagerCommands {
                 });
     
                 source.sendSuccess(
-                    Component.translatable(
+                    () -> Component.translatable(
                         "command.blue_hearts.success.rm",
                         adjustedHearts,
                         targetPlayer.getName().getString()
@@ -129,7 +129,7 @@ public class BlueHeartsManagerCommands {
         }
         // Não permite número maior que 10
         if (hearts > 10) {
-            source.sendSuccess(Component.translatable("command.blue_hearts.capped_number"), true);
+            source.sendSuccess(() -> Component.translatable("command.blue_hearts.capped_number"), true);
             hearts = 10;
         }
         final int adjustedHearts = hearts;
@@ -145,7 +145,7 @@ public class BlueHeartsManagerCommands {
                 });
     
                 source.sendSuccess(
-                    Component.translatable(
+                    () -> Component.translatable(
                         "command.blue_hearts.success.set",
                         targetPlayer.getName().getString(),
                         adjustedHearts

@@ -13,7 +13,7 @@ public class BlueBloodEffect extends MobEffect {
 
     @Override
     public void applyEffectTick(@SuppressWarnings("null") LivingEntity entity, int amplifier) {
-        if (!entity.level.isClientSide && entity instanceof Player player) {
+        if (!entity.level().isClientSide && entity instanceof Player player) {
             player.getCapability(PlayerBlueBloodProvider.PLAYER_BLUE_BLOOD).ifPresent(blue_blood -> {
                 blue_blood.addMAXBlueBlood(amplifier + 1);
                 blue_blood.addBlueBlood(amplifier + 1);

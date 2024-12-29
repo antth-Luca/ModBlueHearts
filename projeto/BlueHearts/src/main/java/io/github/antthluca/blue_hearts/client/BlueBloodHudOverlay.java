@@ -4,7 +4,6 @@ import com.mojang.blaze3d.systems.RenderSystem;
 
 import io.github.antthluca.blue_hearts.BlueHearts;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiComponent;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Player;
@@ -15,7 +14,7 @@ public class BlueBloodHudOverlay {
     private static final ResourceLocation HALF_BLUE_HEART = new ResourceLocation(BlueHearts.MODID, "textures/hud/half_blue_heart.png");
 
     @SuppressWarnings("null")
-    public static final IGuiOverlay HUD_BLUE_BLOOD = ((gui, poseStack, partialTick, width, height) -> {
+    public static final IGuiOverlay HUD_BLUE_BLOOD = ((gui, guiGraphics, partialTick, width, height) -> {
         Player player = Minecraft.getInstance().player;
 
         if (player.isCreative()) return;
@@ -43,12 +42,10 @@ public class BlueBloodHudOverlay {
         for (int i = 0; i < maxBlueBlood; i++) {
             if (i < fullHearts) {
                 // Renderiza corações inteiros
-                RenderSystem.setShaderTexture(0, FULL_BLUE_HEART);
-                GuiComponent.blit(poseStack, x + (i * 8), y, 0, 0, 16, 16, 16, 16);
+                guiGraphics.blit(FULL_BLUE_HEART, x + (i * 8), y, 0, 0, 16, 16, 16, 16);
             } else if (hasHalfHeart && i == fullHearts) {
                 // Renderiza meio coração
-                RenderSystem.setShaderTexture(0, HALF_BLUE_HEART);
-                GuiComponent.blit(poseStack, x + (i * 8), y, 0, 0, 16, 16, 16, 16);
+                guiGraphics.blit(HALF_BLUE_HEART, x + (i * 8), y, 0, 0, 16, 16, 16, 16);
             } else {
                 break; // Finaliza o loop após renderizar todos os corações necessários
             }

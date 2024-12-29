@@ -18,7 +18,7 @@ public class CryingCharmEffect extends MobEffect {
     public void applyEffectTick(@SuppressWarnings("null") LivingEntity entity, int amplifier) {
         if (entity instanceof Player player) {
             if (player.getHealth() > 1.0f) {
-                DamageSource magic = new ModDamageSources(player.getLevel().registryAccess()).magic();
+                DamageSource magic = new ModDamageSources(player.level().registryAccess()).magic();
                 player.hurt(magic, 1.0f);
             } else {
                 for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
