@@ -30,6 +30,7 @@ public class BlueHearts {
     public static final String MODID = "blue_hearts";
     public static final boolean HAS_CURIOS = ModList.get().isLoaded("curios");
 
+    @SuppressWarnings("removal")
     public BlueHearts() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
@@ -74,7 +75,7 @@ public class BlueHearts {
         BlueHeartsManagerCommands.register(event.getDispatcher());
     }
 
-    @SuppressWarnings("deprecation")
+    @SuppressWarnings({ "deprecation", "removal" })
     public void sendIMC(InterModEnqueueEvent e) {
         InterModComms.sendTo("curios", SlotTypeMessage.REGISTER_TYPE, () -> SlotTypePreset.CHARM.getMessageBuilder().build());
     }

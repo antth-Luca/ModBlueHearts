@@ -11,7 +11,7 @@ import top.theillusivec4.curios.api.CuriosApi;
 
 public class CurioItemsHandler {
     public static boolean hasCurio(final LivingEntity entity, final Item curio) {
-		@SuppressWarnings("deprecation")
+		@SuppressWarnings({ "deprecation", "removal" })
         final Optional<ImmutableTriple<String, Integer, ItemStack>> data = CuriosApi.getCuriosHelper().findEquippedCurio(curio, entity);
 		return data.isPresent();
 	}
