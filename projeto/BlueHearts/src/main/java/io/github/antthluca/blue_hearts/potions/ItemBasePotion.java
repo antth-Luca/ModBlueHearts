@@ -3,11 +3,8 @@ package io.github.antthluca.blue_hearts.potions;
 import java.util.List;
 import java.util.Random;
 
-import org.jetbrains.annotations.Nullable;
-
 import com.google.common.collect.ImmutableList;
 
-import io.github.antthluca.blue_hearts.BlueHearts;
 import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.network.chat.Component;
@@ -18,7 +15,6 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -56,11 +52,6 @@ public abstract class ItemBasePotion extends Item {
     @Override
     public void onCraftedBy(ItemStack stack, Level worldIn, Player playerIn) {
         // Existential void
-    }
-
-    @Nullable
-    public CreativeModeTab getCreativeTab() {
-        return BlueHearts.TAB;
     }
 
     public List<ItemStack> getCreativeTabStacks() {
