@@ -1,10 +1,8 @@
 package io.github.antthluca.blue_hearts.networking.packet;
 
-import java.util.function.Supplier;
-
 import io.github.antthluca.blue_hearts.client.ClientBlueBloodData;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraftforge.network.NetworkEvent;
+import net.minecraftforge.event.network.CustomPayloadEvent;
 
 public class BlueBloodDataSyncS2CPacket {
     private final float blueBlood;
@@ -25,8 +23,7 @@ public class BlueBloodDataSyncS2CPacket {
         buf.writeFloat(maxBlueBlood);
     }
 
-    public boolean handle(Supplier<NetworkEvent.Context> supplier) {
-        NetworkEvent.Context context = supplier.get();
+    public boolean handle(CustomPayloadEvent.Context context) {
         context.enqueueWork(() -> {
             // Aqui está a lógica específica do pacote no cliente
             ClientBlueBloodData.setPlayerBlueBlood(blueBlood);

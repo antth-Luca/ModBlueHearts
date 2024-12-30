@@ -4,10 +4,10 @@ import io.github.antthluca.blue_hearts.BlueHearts;
 import io.github.antthluca.blue_hearts.networking.packet.BlueBloodDataSyncS2CPacket;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraftforge.network.ChannelBuilder;
 import net.minecraftforge.network.NetworkDirection;
-import net.minecraftforge.network.NetworkRegistry;
 import net.minecraftforge.network.PacketDistributor;
-import net.minecraftforge.network.simple.SimpleChannel;
+import net.minecraftforge.network.SimpleChannel;
 
 public class ModMessages {
     private static SimpleChannel INSTANCE;
@@ -18,11 +18,11 @@ public class ModMessages {
     }
 
     public static void register() {
-        SimpleChannel net = NetworkRegistry.ChannelBuilder
+        SimpleChannel net = ChannelBuilder
                 .named(new ResourceLocation(BlueHearts.MODID, "messages"))
-                .networkProtocolVersion(() -> "1.0")
-                .clientAcceptedVersions(s -> true)
-                .serverAcceptedVersions(s -> true)
+                .networkProtocolVersion(1)
+                .clientAcceptedVersions((status, version) -> true)
+                .serverAcceptedVersions((status, version) -> true)
                 .simpleChannel();
 
         INSTANCE = net;
@@ -35,10 +35,10 @@ public class ModMessages {
     }
 
     public static <MSG> void sendToServer(MSG message) {
-            INSTANCE.sendToServer(message);
+            INSTANCE.send(message, PacketDistributor.SERVER.noArg());
     }
 
     public static <MSG> void sendToPlayer(MSG message, ServerPlayer player) {
-        INSTANCE.send(PacketDistributor.PLAYER.with(() -> player), message);
+        INSTANCE.send(message, PacketDistributor.PLAYER.with(player));
     }
 }

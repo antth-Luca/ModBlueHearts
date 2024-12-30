@@ -31,8 +31,7 @@ public class OrangeAntidoteEffect extends MobEffect {
     }
 
     @Override
-    public boolean isDurationEffectTick(int duration, int amplifier) {
-        // Retorna true para aplicar o efeito no primeiro tick
+    public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
         return duration > 0;
     }
 }

@@ -30,7 +30,6 @@ public class BlueHearts {
     public static final String MODID = "blue_hearts";
     public static final boolean HAS_CURIOS = ModList.get().isLoaded("curios");
 
-    @SuppressWarnings("removal")
     public BlueHearts() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
