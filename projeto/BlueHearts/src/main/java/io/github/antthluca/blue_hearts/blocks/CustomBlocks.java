@@ -99,7 +99,7 @@ public class CustomBlocks {
         }
 
         @Override
-        public ItemStack getCloneItemStack(BlockGetter block, BlockPos pos, BlockState state) {
+        public ItemStack getCloneItemStack(LevelReader p_312054_, BlockPos p_57257_, BlockState p_57258_) {
             return new ItemStack(InitFoods.VITAL_FRUIT.get());
         }
 

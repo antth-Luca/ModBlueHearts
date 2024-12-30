@@ -17,5 +17,5 @@ public class InitBlocks {
     // Blocks
     public static final RegistryObject<Block> VITAL_BUSH = BLOCKS.register(
         "vital_bush", () -> new CustomBlocks.VitalBushBlock(BlockBehaviour.Properties
-            .copy(Blocks.SWEET_BERRY_BUSH)));
+            .ofFullCopy(Blocks.SWEET_BERRY_BUSH)));
 }
