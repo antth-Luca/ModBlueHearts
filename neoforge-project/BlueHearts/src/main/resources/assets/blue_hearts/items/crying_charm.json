@@ -1,0 +1,6 @@
+{
+    "model": {
+        "type": "minecraft:model",
+        "model": "blue_hearts:item/crying_charm"
+    }
+}

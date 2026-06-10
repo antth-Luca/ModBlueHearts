@@ -29,7 +29,10 @@ sourceSets.main.resources {
 repositories {
     // Add here additional repositories if required by some of the dependencies below.
     maven {
-        url = "https://theillusivec4.top"
+        url = "https://maven.theillusivec4.top/"
+        content {
+            includeGroup "top.theillusivec4.curios"
+        }
     }
 }
 
@@ -139,9 +142,8 @@ dependencies {
     // Example project dependency using a sister or child project:
     // implementation project(":myproject")
 
-    implementation "top.theillusivec4.curios:curios-neoforge:9.5.1+1.21.1:api"
     compileOnly "top.theillusivec4.curios:curios-neoforge:9.5.1+1.21.1:api"
-    runtimeOnly "top.theillusivec4.curios:curios-neoforge:9.5.1+1.21.1"
+    localRuntime "top.theillusivec4.curios:curios-neoforge:9.5.1+1.21.1"
 
     // For more info:
     // http://www.gradle.org/docs/current/userguide/artifact_dependencies_tutorial.html

@@ -1,11 +1,5 @@
 {
     "type": "minecraft:crafting_shapeless",
-    "conditions": [
-        {
-            "type": "forge:mod_loaded",
-            "modid": "curios"
-        }
-    ],
     "ingredients": [
         {
             "item": "minecraft:blaze_powder"
