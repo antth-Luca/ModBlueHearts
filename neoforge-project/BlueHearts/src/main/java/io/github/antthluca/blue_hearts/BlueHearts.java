@@ -1,13 +1,12 @@
 package io.github.antthluca.blue_hearts;
 
 import com.mojang.logging.LogUtils;
-import io.github.antthluca.blue_hearts.init.InitBlocks;
-import io.github.antthluca.blue_hearts.init.InitEffects;
-import io.github.antthluca.blue_hearts.init.InitFoods;
-import io.github.antthluca.blue_hearts.init.InitItems;
+import io.github.antthluca.blue_hearts.config.BHCommonConfig;
+import io.github.antthluca.blue_hearts.init.*;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
 import org.slf4j.Logger;
 
 @Mod(BlueHearts.MODID)
@@ -17,9 +16,14 @@ public class BlueHearts {
 
     public BlueHearts(IEventBus bus, ModContainer container) {
         // Init
-        InitBlocks.BLOCKS.register(bus);
+        InitAttachmentTypes.TYPES.register(bus);
+        InitEffects.MOB_EFFECTS.register(bus);
         InitFoods.FOODS.register(bus);
         InitItems.ITEMS.register(bus);
-        InitEffects.MOB_EFFECTS.register(bus);
+        InitBlocks.BLOCKS.register(bus);
+        InitCreativeTabs.TABS.register(bus);
+
+        // Config
+        container.registerConfig(ModConfig.Type.COMMON, BHCommonConfig.SPEC, "bluehearts-common.toml");
     }
 }

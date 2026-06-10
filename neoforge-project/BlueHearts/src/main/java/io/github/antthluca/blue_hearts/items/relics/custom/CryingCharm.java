@@ -1,7 +1,9 @@
 package io.github.antthluca.blue_hearts.items.relics.custom;
 
 import io.github.antthluca.blue_hearts.handlers.CurioItemsHandler;
+import io.github.antthluca.blue_hearts.init.InitAttachmentTypes;
 import io.github.antthluca.blue_hearts.init.InitItems;
+import io.github.antthluca.blue_hearts.serializers.custom.BlueBloodData;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
@@ -12,11 +14,8 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
-import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
-import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
-import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
 
 import java.util.List;
 
@@ -53,16 +52,17 @@ public class CryingCharm extends Item implements ICurioItem {
 
             // A cada 30 segundos (600 ticks)
             if (gameTime % 600 == 0) {
-                player.getCapability(PlayerBlueBloodProvider.PLAYER_BLUE_BLOOD).ifPresent(blueBlood -> {
-                    float maxBlueBlood = blueBlood.getMAXBlueBlood();
-                    if (maxBlueBlood <= 0) return; // Sem "Max Blue Blood", sem efeito
+                BlueBloodData currentData = player.getData(InitAttachmentTypes.PLAYER_BLUE_BLOOD);
 
-                    float currentBlueBlood = blueBlood.getBlueBlood();
-                    if (currentBlueBlood >= maxBlueBlood) return; // Já está no máximo
+                if (currentData.getMaxBlueBlood() <= 0) return; // Sem "Max Blue Blood", sem efeito
 
-                    // Incrementar Blue Blood em 0.5
-                    blueBlood.addBlueBlood(0.5f);
-                });
+                if (currentData.isMaximum()) return;  // Já está no máximo
+
+                // Incrementar Blue Blood em 0.5
+                player.setData(
+                        InitAttachmentTypes.PLAYER_BLUE_BLOOD,
+                        currentData.addBlueBlood(0.5F)
+                );
             }
         }
     }
