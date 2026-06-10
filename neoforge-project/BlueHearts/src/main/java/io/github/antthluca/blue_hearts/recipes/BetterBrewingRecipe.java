@@ -25,8 +25,8 @@ public class BetterBrewingRecipe implements IBrewingRecipe {
 
         PotionContents contents = input.get(DataComponents.POTION_CONTENTS);
         if (contents != null) {
-            Potion potion = contents.potion().get().value();
-            return contents.potion().map(holder -> this.input.is(holder.value())).orElse(false);
+            Holder<Potion> potion = contents.potion().get();
+            return potion.is(this.input);
         }
 
         return false;

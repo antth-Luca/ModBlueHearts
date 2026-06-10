@@ -1,5 +1,6 @@
 package io.github.antthluca.blue_hearts.items.relics.custom;
 
+import io.github.antthluca.blue_hearts.handlers.CurioItemsHandler;
 import io.github.antthluca.blue_hearts.init.InitItems;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
@@ -68,6 +69,7 @@ public class CryingCharm extends Item implements ICurioItem {
 
     @Override
     public boolean canEquip(SlotContext context, ItemStack stack) {
-        return ICurioItem.super.canEquip(context, stack) && !CuriosApi.getCuriosHelper().findFirstCurio(context.entity(), InitItems.CRYING_CHARM.get()).isPresent();
+        return ICurioItem.super.canEquip(context, stack)
+                && !CurioItemsHandler.hasCurio(context.entity(), InitItems.CRYING_CHARM.get());
     }
 }

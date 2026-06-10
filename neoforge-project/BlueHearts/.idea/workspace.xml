@@ -5,26 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eb7b1f9e-0a5e-4757-a346-dbcb647c33ba" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/antthluca/blue_hearts/datagen/BHItemTagsProvider.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/antthluca/blue_hearts/events/BHRegisterBrewingRecipes.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/antthluca/blue_hearts/recipes/BetterBrewingRecipe.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/blue_hearts/items/blue_blood_potion.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/blue_hearts/items/blue_eye.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/blue_hearts/items/crying_charm.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/blue_hearts/items/lazuli_apple.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/blue_hearts/items/myst_blue_gem.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/blue_hearts/items/orange_antidote_potion.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/blue_hearts/items/vital_fruit.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/assets/blue_hearts/items/vital_sap.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/antthluca/blue_hearts/events/BHDataGeneration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/antthluca/blue_hearts/events/BHDataGeneration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/antthluca/blue_hearts/items/relics/custom/CryingCharm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/antthluca/blue_hearts/items/relics/custom/CryingCharm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/blue_hearts/recipes/blue_eye.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/blue_hearts/recipes/blue_eye.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/curios/tags/items/charm.json" beforeDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/io/github/antthluca/blue_hearts/handlers/CurioItemsHandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/io/github/antthluca/blue_hearts/recipes/BetterBrewingRecipe.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/io/github/antthluca/blue_hearts/recipes/BetterBrewingRecipe.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
