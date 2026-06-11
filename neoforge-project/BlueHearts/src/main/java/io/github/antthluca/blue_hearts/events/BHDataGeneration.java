@@ -4,6 +4,7 @@ import io.github.antthluca.blue_hearts.BlueHearts;
 import io.github.antthluca.blue_hearts.datagen.BHAdvancementsProvider;
 import io.github.antthluca.blue_hearts.datagen.BHBlockTagsProvider;
 import io.github.antthluca.blue_hearts.datagen.BHItemTagsProvider;
+import io.github.antthluca.blue_hearts.datagen.BHWorldGenProvider;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -42,6 +43,12 @@ public class BHDataGeneration {
                 out,
                 lookup,
                 existingFileHelper
+        ));
+
+        // World Generation
+        gen.addProvider(event.includeServer(), new BHWorldGenProvider(
+                out,
+                lookup
         ));
     }
 }
