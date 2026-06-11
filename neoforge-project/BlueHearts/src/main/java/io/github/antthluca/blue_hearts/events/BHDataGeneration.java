@@ -1,10 +1,7 @@
 package io.github.antthluca.blue_hearts.events;
 
 import io.github.antthluca.blue_hearts.BlueHearts;
-import io.github.antthluca.blue_hearts.datagen.BHAdvancementsProvider;
-import io.github.antthluca.blue_hearts.datagen.BHBlockTagsProvider;
-import io.github.antthluca.blue_hearts.datagen.BHItemTagsProvider;
-import io.github.antthluca.blue_hearts.datagen.BHWorldGenProvider;
+import io.github.antthluca.blue_hearts.datagen.*;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -49,6 +46,13 @@ public class BHDataGeneration {
         gen.addProvider(event.includeServer(), new BHWorldGenProvider(
                 out,
                 lookup
+        ));
+
+        // Curios Slots
+        gen.addProvider(event.includeServer(), new BHCurioSlotsProvider(
+                out,
+                lookup,
+                existingFileHelper
         ));
     }
 }
