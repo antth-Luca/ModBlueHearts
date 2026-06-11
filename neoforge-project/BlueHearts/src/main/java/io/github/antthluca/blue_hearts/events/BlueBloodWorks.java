@@ -4,14 +4,25 @@ import io.github.antthluca.blue_hearts.BlueHearts;
 import io.github.antthluca.blue_hearts.handlers.AttachmentsHandler;
 import io.github.antthluca.blue_hearts.init.InitAttachmentTypes;
 import io.github.antthluca.blue_hearts.serializers.custom.BlueBloodData;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
+import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerWakeUpEvent;
 
 @EventBusSubscriber(modid = BlueHearts.MODID)
 public class BlueBloodWorks {
+    @SubscribeEvent
+    public static void onPlayerJoinWorld(EntityJoinLevelEvent event) {
+        if (!event.getLevel().isClientSide()) {
+            if (event.getEntity() instanceof ServerPlayer serverPlayer) {
+                AttachmentsHandler.syncBlueBlood(serverPlayer);
+            }
+        }
+    }
+
     @SubscribeEvent
     public static void onPlayerHurted(LivingIncomingDamageEvent event) {
         if (event.getEntity() instanceof Player player) {

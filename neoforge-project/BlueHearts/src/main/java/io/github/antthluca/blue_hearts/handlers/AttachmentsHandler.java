@@ -22,4 +22,10 @@ public class AttachmentsHandler {
             PacketDistributor.sendToPlayer(serverPlayer, new BlueBloodDataSyncPayload(data));
         }
     }
+
+    public static void syncBlueBlood(ServerPlayer serverPlayer) {
+        PacketDistributor.sendToPlayer(serverPlayer, new BlueBloodDataSyncPayload(
+                serverPlayer.getData(InitAttachmentTypes.PLAYER_BLUE_BLOOD)
+        ));
+    }
 }
