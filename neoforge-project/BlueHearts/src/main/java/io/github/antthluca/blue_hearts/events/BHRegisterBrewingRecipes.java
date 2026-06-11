@@ -10,7 +10,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent;
 
-@EventBusSubscriber(modid = BlueHearts.MODID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = BlueHearts.MODID)
 public class BHRegisterBrewingRecipes {
     @SubscribeEvent
     public static void registerBrewingRecipes(RegisterBrewingRecipesEvent event) {

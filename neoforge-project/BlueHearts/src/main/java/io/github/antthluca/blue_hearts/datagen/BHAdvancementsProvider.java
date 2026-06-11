@@ -14,6 +14,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.neoforged.neoforge.common.data.AdvancementProvider;
 import net.neoforged.neoforge.common.data.ExistingFileHelper;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -26,7 +27,7 @@ public class BHAdvancementsProvider extends AdvancementProvider {
 
     private static class BHAdvancementsGenerator implements AdvancementGenerator {
         @Override
-        public void generate(HolderLookup.Provider registries, Consumer<AdvancementHolder> saver, ExistingFileHelper existingFileHelper) {
+        public void generate(HolderLookup.@NotNull Provider registries, @NotNull Consumer<AdvancementHolder> saver, ExistingFileHelper existingFileHelper) {
             // Acquire Vital Fruit
             AdvancementHolder acquireVitalFruit = Advancement.Builder.advancement()
                     .parent(ResourceLocation.withDefaultNamespace("adventure/root"))

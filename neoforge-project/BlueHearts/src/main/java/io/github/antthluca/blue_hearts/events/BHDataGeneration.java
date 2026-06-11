@@ -11,7 +11,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.data.event.GatherDataEvent;
 
-@EventBusSubscriber(modid = BlueHearts.MODID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = BlueHearts.MODID)
 public class BHDataGeneration {
     @SubscribeEvent
     public static void gatherClientData(GatherDataEvent event) {
