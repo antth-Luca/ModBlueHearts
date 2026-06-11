@@ -4,13 +4,14 @@ import io.github.antthluca.blue_hearts.BlueHearts;
 import io.github.antthluca.blue_hearts.handlers.AttachmentsHandler;
 import io.github.antthluca.blue_hearts.init.InitAttachmentTypes;
 import io.github.antthluca.blue_hearts.serializers.custom.BlueBloodData;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
-import net.neoforged.neoforge.event.entity.player.PlayerWakeUpEvent;
+import net.neoforged.neoforge.event.level.SleepFinishedTimeEvent;
 
 @EventBusSubscriber(modid = BlueHearts.MODID)
 public class BlueBloodWorks {
@@ -50,17 +51,15 @@ public class BlueBloodWorks {
     }
 
     @SubscribeEvent
-    public static void onPlayerWakeUp(PlayerWakeUpEvent event) {
-        Player player = event.getEntity();
+    public static void onPlayersWakeUp(SleepFinishedTimeEvent event) {
+        if (event.getLevel() instanceof ServerLevel serverLevel) {
+            serverLevel.players().forEach((serverPlayer) -> {
+                BlueBloodData currentData = serverPlayer.getData(InitAttachmentTypes.PLAYER_BLUE_BLOOD);
+                BlueBloodData newData = currentData.setBlueBlood(currentData.getMaxBlueBlood());
 
-        if (!player.level().isClientSide()
-              && !(player.getSleepTimer() < 100)) {
-                BlueBloodData currentData = player.getData(InitAttachmentTypes.PLAYER_BLUE_BLOOD);
-
-                AttachmentsHandler.setAndSyncBlueBlood(
-                        player,
-                        currentData.setBlueBlood(currentData.getMaxBlueBlood())
-                );
+                serverPlayer.setData(InitAttachmentTypes.PLAYER_BLUE_BLOOD, newData);
+                AttachmentsHandler.syncBlueBlood(serverPlayer);
+            });
         }
     }
 }

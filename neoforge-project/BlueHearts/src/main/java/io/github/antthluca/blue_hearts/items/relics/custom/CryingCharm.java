@@ -48,13 +48,13 @@ public class CryingCharm extends Item implements ICurioItem {
 
     @Override
     public void curioTick(SlotContext slotContext, ItemStack stack) {
-        if (slotContext.entity() instanceof ServerPlayer serverPlayer) {
+        if (slotContext.entity() instanceof Player player) {
             // Rastrear tempo global do jogo
-            long gameTime = serverPlayer.level().getGameTime();
+            long gameTime = player.level().getGameTime();
 
             // A cada 30 segundos (600 ticks)
             if (gameTime % 600 == 0) {
-                BlueBloodData currentData = serverPlayer.getData(InitAttachmentTypes.PLAYER_BLUE_BLOOD);
+                BlueBloodData currentData = player.getData(InitAttachmentTypes.PLAYER_BLUE_BLOOD);
 
                 if (currentData.getMaxBlueBlood() <= 0) return; // Sem "Max Blue Blood", sem efeito
 
@@ -62,7 +62,7 @@ public class CryingCharm extends Item implements ICurioItem {
 
                 // Incrementar Blue Blood em 0.5
                 AttachmentsHandler.setAndSyncBlueBlood(
-                        serverPlayer,
+                        player,
                         currentData.addBlueBlood(0.5F)
                 );
             }

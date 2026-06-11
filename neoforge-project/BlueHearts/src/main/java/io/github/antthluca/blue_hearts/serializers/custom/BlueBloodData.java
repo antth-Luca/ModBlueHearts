@@ -73,7 +73,7 @@ public record BlueBloodData(float current, float current_max) {
     }
 
     public float getMaxBlueBlood() {
-        return current;
+        return current_max;
     }
 
     public BlueBloodData addMaxBlueBlood(float add) {
