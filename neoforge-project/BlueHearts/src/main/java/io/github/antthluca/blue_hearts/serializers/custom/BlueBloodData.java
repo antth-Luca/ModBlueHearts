@@ -23,6 +23,10 @@ public record BlueBloodData(float current, float current_max) {
 
     // GETTERS AND SETTERS
     // Current Blue Blood
+    public boolean hasRemaining() {
+        return current > 0;
+    }
+
     public float getBlueBlood() {
         return current;
     }

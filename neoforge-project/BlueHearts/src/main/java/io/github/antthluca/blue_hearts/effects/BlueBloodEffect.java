@@ -1,5 +1,6 @@
 package io.github.antthluca.blue_hearts.effects;
 
+import io.github.antthluca.blue_hearts.handlers.AttachmentsHandler;
 import io.github.antthluca.blue_hearts.init.InitAttachmentTypes;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -13,9 +14,9 @@ public class BlueBloodEffect extends MobEffect {
 
     @Override
     public boolean applyEffectTick(LivingEntity entity, int amplifier) {
-        if (!entity.level().isClientSide && entity instanceof Player player) {
-            player.setData(
-                    InitAttachmentTypes.PLAYER_BLUE_BLOOD,
+        if (!entity.level().isClientSide() && entity instanceof Player player) {
+            AttachmentsHandler.setAndSyncBlueBlood(
+                    player,
                     player.getData(InitAttachmentTypes.PLAYER_BLUE_BLOOD)
                             .addMaxBlueBlood(amplifier + 1)
                             .addBlueBlood(amplifier + 1)

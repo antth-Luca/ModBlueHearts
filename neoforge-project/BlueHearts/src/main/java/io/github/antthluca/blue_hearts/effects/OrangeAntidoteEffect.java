@@ -1,5 +1,6 @@
 package io.github.antthluca.blue_hearts.effects;
 
+import io.github.antthluca.blue_hearts.handlers.AttachmentsHandler;
 import io.github.antthluca.blue_hearts.init.InitAttachmentTypes;
 import io.github.antthluca.blue_hearts.serializers.custom.BlueBloodData;
 import net.minecraft.world.damagesource.DamageSource;
@@ -15,14 +16,14 @@ public class OrangeAntidoteEffect extends MobEffect {
 
     @Override
     public boolean applyEffectTick(LivingEntity entity, int amplifier) {
-        if (!entity.level().isClientSide && entity instanceof Player player) {
+        if (!entity.level().isClientSide() && entity instanceof Player player) {
             BlueBloodData currentData = player.getData(InitAttachmentTypes.PLAYER_BLUE_BLOOD);
             if (currentData.getBlueBlood() == 0) {  // Se o player não tiver Blue Blood, recebe dano
                 DamageSource magic = entity.level().damageSources().magic();
                 player.hurt(magic, 19f);  // Dano de 9.5 corações
             } else {  // Se tiver, reduz para zero
-                player.setData(
-                        InitAttachmentTypes.PLAYER_BLUE_BLOOD,
+                AttachmentsHandler.setAndSyncBlueBlood(
+                        player,
                         currentData
                                 .setMaxBlueBlood(0)
                                 .setBlueBlood(0)
