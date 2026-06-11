@@ -1,6 +1,7 @@
 package io.github.antthluca.blue_hearts.events;
 
 import io.github.antthluca.blue_hearts.BlueHearts;
+import io.github.antthluca.blue_hearts.datagen.BHAdvancementsProvider;
 import io.github.antthluca.blue_hearts.datagen.BHBlockTagsProvider;
 import io.github.antthluca.blue_hearts.datagen.BHItemTagsProvider;
 import net.minecraft.data.DataGenerator;
@@ -18,6 +19,7 @@ public class BHDataGeneration {
         var lookup = event.getLookupProvider();
         var existingFileHelper = event.getExistingFileHelper();
 
+        // Block Tags
         BHBlockTagsProvider modBlockTagsProvider = new BHBlockTagsProvider(
             out,
             lookup,
@@ -26,11 +28,19 @@ public class BHDataGeneration {
         );
         gen.addProvider(true, modBlockTagsProvider);
 
+        // Item Tags
         gen.addProvider(true, new BHItemTagsProvider(
                 out,
                 lookup,
                 modBlockTagsProvider.contentsGetter(),
                 BlueHearts.MODID,
+                existingFileHelper
+        ));
+
+        // Advancements
+        gen.addProvider(event.includeServer(), new BHAdvancementsProvider(
+                out,
+                lookup,
                 existingFileHelper
         ));
     }
