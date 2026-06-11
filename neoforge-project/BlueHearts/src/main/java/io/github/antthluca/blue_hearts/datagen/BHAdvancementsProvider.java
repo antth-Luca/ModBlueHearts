@@ -9,6 +9,7 @@ import net.minecraft.advancements.critereon.ConsumeItemTrigger;
 import net.minecraft.advancements.critereon.InventoryChangeTrigger;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.advancements.AdvancementSubProvider;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -22,15 +23,15 @@ import java.util.function.Consumer;
 
 public class BHAdvancementsProvider extends AdvancementProvider {
     public BHAdvancementsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> registries, ExistingFileHelper existingFileHelper) {
-        super(output, registries, existingFileHelper, List.of());
+        super(output, registries, existingFileHelper, List.of(new BHAdvancementsGenerator()));
     }
 
-    private static class BHAdvancementsGenerator implements AdvancementGenerator {
+    private static final class BHAdvancementsGenerator implements AdvancementProvider.AdvancementGenerator {
         @Override
         public void generate(HolderLookup.@NotNull Provider registries, @NotNull Consumer<AdvancementHolder> saver, ExistingFileHelper existingFileHelper) {
             // Acquire Vital Fruit
             AdvancementHolder acquireVitalFruit = Advancement.Builder.advancement()
-                    .parent(ResourceLocation.withDefaultNamespace("adventure/root"))
+                    .parent(AdvancementSubProvider.createPlaceholder("minecraft:adventure/root"))
                     .display(
                             new ItemStack(InitFoods.VITAL_FRUIT.get()),
                             Component.translatable("advancement.blue_hearts.acquire_vital_fruit.title"),
@@ -48,7 +49,7 @@ public class BHAdvancementsProvider extends AdvancementProvider {
 
             // Eat Lazuli Apple
             AdvancementHolder eatVitalFruit = Advancement.Builder.advancement()
-                    .parent(ResourceLocation.withDefaultNamespace("husbandry/root"))
+                    .parent(AdvancementSubProvider.createPlaceholder("minecraft:husbandry/root"))
                     .display(
                             new ItemStack(InitFoods.LAZULI_APPLE.get()),
                             Component.translatable("advancement.blue_hearts.eat_lazuli_apple.title"),
