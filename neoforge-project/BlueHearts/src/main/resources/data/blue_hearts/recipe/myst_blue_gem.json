@@ -1,11 +1,5 @@
 {
     "type": "minecraft:crafting_shaped",
-    "conditions": [
-        {
-            "type": "forge:mod_loaded",
-            "modid": "curios"
-        }
-    ],
     "pattern": [
         " GR",
         "GEG",
@@ -23,7 +17,7 @@
         }
     },
     "result": {
-        "item": "blue_hearts:myst_blue_gem",
+        "id": "blue_hearts:myst_blue_gem",
         "count": 1
     }
 }
