@@ -19,10 +19,10 @@ Este projeto está sobre licença. [Ver licença](https://github.com/antth-Luca/
 
 ## Recursos das versões:
 * v.2.3:
-    * Melhor geração de Vital Bush;
+    * Melhor geração do Arbusto Vital;
     * Eliminação da sobrecarga de sincronização de pacotes;
-    * Novo sprite para Vital Bush;
-    * Nova receita alternativa de Blue Eye;
+    * Novo sprite para Arbusto Vital;
+    * Nova receita alternativa de Olho Azul;
     * CuriosAPI é definitivo, não mais opcional.
 * v.2:
     * Arbusto Vital: Um novo arbusto gerado pelo teto das Cavernas Exuberantes. Ele produz o novo Fruto Vital, que pode ser consumido, usado para replantar ou para fabricar Seiva Vital;
