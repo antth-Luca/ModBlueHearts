@@ -53,7 +53,7 @@ public class VitalBushBlock extends SweetBerryBushBlock {
 
     @Override
     protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
-        BlockState aboveBlockState = level.getBlockState(pos);
+        BlockState aboveBlockState = level.getBlockState(pos.above());
         return aboveBlockState.is(BHTags.VALID_BLOCKS_FOR_VITAL_BUSH);
     }
 

@@ -1,6 +1,7 @@
 package io.github.antthluca.blue_hearts.init;
 
 import io.github.antthluca.blue_hearts.BlueHearts;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
@@ -45,10 +46,10 @@ public class InitFoods {
             "vital_fruit", () -> new ItemNameBlockItem(
                     InitBlocks.VITAL_BUSH.get(),
                     new Item.Properties()
-                            .food(VITAL_FRUIT_PROP)));
+                            .component(DataComponents.FOOD, VITAL_FRUIT_PROP)));
 
     public static final DeferredItem<Item> LAZULI_APPLE = FOODS.register(
             "lazuli_apple", () -> new Item(new Item.Properties()
-                    .food(LAZULI_APPLE_PROP)
+                    .component(DataComponents.FOOD, LAZULI_APPLE_PROP)
                     .rarity(Rarity.RARE)));
 }

@@ -79,20 +79,12 @@ public class BHWorldGenProvider extends DatapackBuiltinEntriesProvider {
                                 VerticalAnchor.aboveBottom(0),
                                 VerticalAnchor.absolute(256)
                         ),
-                        EnvironmentScanPlacement.scanningFor(
-                                Direction.UP,
-                                BlockPredicate.allOf(
-                                        BlockPredicate.matchesTag(BHTags.VALID_BLOCKS_FOR_VITAL_BUSH),
-                                        BlockPredicate.hasSturdyFace(Direction.DOWN)
-                                ),
+                        BlockPredicateFilter.forPredicate(
                                 BlockPredicate.anyOf(
                                         BlockPredicate.matchesBlocks(Blocks.AIR),
-                                        BlockPredicate.matchesBlocks(Blocks.CAVE_AIR),
-                                        BlockPredicate.matchesBlocks(Blocks.MOSS_CARPET)
-                                ),
-                                12
+                                        BlockPredicate.matchesBlocks(Blocks.CAVE_AIR)
+                                )
                         ),
-                        RandomOffsetPlacement.vertical(ConstantInt.of(-1)),
                         BiomeFilter.biome()
                 )
         ));
