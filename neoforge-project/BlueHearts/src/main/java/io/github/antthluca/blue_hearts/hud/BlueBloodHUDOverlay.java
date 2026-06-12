@@ -9,7 +9,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.GameType;
 
 public class BlueBloodHUDOverlay {
     private static final ResourceLocation FULL_BLUE_HEART = ResourceLocation.fromNamespaceAndPath(BlueHearts.MODID,
@@ -19,10 +21,12 @@ public class BlueBloodHUDOverlay {
 
     public static void render(GuiGraphics gui, DeltaTracker partialTick) {
         Minecraft minecraft = Minecraft.getInstance();
+        GameType gameMode = minecraft.gameMode.getPlayerMode();
+
+        if (gameMode == GameType.CREATIVE
+          || gameMode == GameType.SPECTATOR) return;
+
         Player player = minecraft.player;
-
-        if (player.isCreative()) return;
-
         BlueBloodData currentData = player.getData(InitAttachmentTypes.PLAYER_BLUE_BLOOD);
         if (!currentData.hasRemaining()) return; // Não desenha se não houver blue blood
 
