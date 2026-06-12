@@ -3,6 +3,7 @@ package io.github.antthluca.blue_hearts.datagen;
 import io.github.antthluca.blue_hearts.BlueHearts;
 import io.github.antthluca.blue_hearts.blocks.custom.VitalBushBlock;
 import io.github.antthluca.blue_hearts.init.InitBlocks;
+import io.github.antthluca.blue_hearts.tags.BHTags;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
@@ -88,9 +89,15 @@ public class BHWorldGenProvider extends DatapackBuiltinEntriesProvider {
                                 VerticalAnchor.absolute(256)
                         ),
                         BlockPredicateFilter.forPredicate(
-                                BlockPredicate.anyOf(
-                                        BlockPredicate.matchesBlocks(Blocks.AIR),
-                                        BlockPredicate.matchesBlocks(Blocks.CAVE_AIR)
+                                BlockPredicate.allOf(
+                                        BlockPredicate.anyOf(
+                                            BlockPredicate.matchesBlocks(Blocks.AIR),
+                                            BlockPredicate.matchesBlocks(Blocks.CAVE_AIR)
+                                    ),
+                                    BlockPredicate.matchesTag(
+                                            new Vec3i(0, 1, 0),
+                                            BHTags.VALID_BLOCKS_FOR_VITAL_BUSH
+                                    )
                                 )
                         ),
                         BiomeFilter.biome()
@@ -106,7 +113,7 @@ public class BHWorldGenProvider extends DatapackBuiltinEntriesProvider {
         ctx.register(VITAL_BUSH_BIOME_MODIFIER, new BiomeModifiers.AddFeaturesBiomeModifier(
                 HolderSet.direct(biomes.getOrThrow(Biomes.LUSH_CAVES)),
                 HolderSet.direct(placedFeatures.getOrThrow(VITAL_BUSH_PLACED)),
-                GenerationStep.Decoration.SURFACE_STRUCTURES
+                GenerationStep.Decoration.VEGETAL_DECORATION
         ));
     }
 }
