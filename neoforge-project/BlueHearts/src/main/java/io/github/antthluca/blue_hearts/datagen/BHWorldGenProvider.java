@@ -1,24 +1,25 @@
 package io.github.antthluca.blue_hearts.datagen;
 
 import io.github.antthluca.blue_hearts.BlueHearts;
+import io.github.antthluca.blue_hearts.blocks.custom.VitalBushBlock;
 import io.github.antthluca.blue_hearts.init.InitBlocks;
-import io.github.antthluca.blue_hearts.tags.BHTags;
 import net.minecraft.core.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.worldgen.BootstrapContext;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.valueproviders.ConstantInt;
+import net.minecraft.util.random.SimpleWeightedRandomList;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.VerticalAnchor;
 import net.minecraft.world.level.levelgen.blockpredicates.BlockPredicate;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
-import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraft.world.level.levelgen.feature.stateproviders.WeightedStateProvider;
 import net.minecraft.world.level.levelgen.placement.*;
 import net.neoforged.neoforge.common.data.DatapackBuiltinEntriesProvider;
 import net.neoforged.neoforge.common.world.BiomeModifier;
@@ -60,9 +61,16 @@ public class BHWorldGenProvider extends DatapackBuiltinEntriesProvider {
 
     // Configured Features
     public static void bootstrapConfigured(BootstrapContext<ConfiguredFeature<?, ?>> ctx) {
+        BlockState baseState = InitBlocks.VITAL_BUSH.get().defaultBlockState();
+        SimpleWeightedRandomList.Builder<BlockState> stateList = SimpleWeightedRandomList.builder();
+        stateList.add(baseState.setValue(VitalBushBlock.AGE, 0), 35);
+        stateList.add(baseState.setValue(VitalBushBlock.AGE, 1), 35);
+        stateList.add(baseState.setValue(VitalBushBlock.AGE, 2), 25);
+        stateList.add(baseState.setValue(VitalBushBlock.AGE, 3), 5);
+
         ctx.register(VITAL_BUSH_CONFIGURED, new ConfiguredFeature<>(
                 Feature.SIMPLE_BLOCK,
-                new SimpleBlockConfiguration(BlockStateProvider.simple(InitBlocks.VITAL_BUSH.get()))
+                new SimpleBlockConfiguration(new WeightedStateProvider(stateList))
         ));
     }
 
