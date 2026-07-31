@@ -6,7 +6,9 @@ import io.github.antthluca.blue_hearts.init.InitAttachmentTypes;
 import io.github.antthluca.blue_hearts.serializers.custom.BlueBloodData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
@@ -30,6 +32,7 @@ public class BlueBloodWorks {
             BlueBloodData currentData = player.getData(InitAttachmentTypes.PLAYER_BLUE_BLOOD);
 
             if (currentData.hasRemaining()) {
+                // Damage
                 float adjustedDamage = event.getAmount();
                 float currentBlueBlood = currentData.getBlueBlood();
 
@@ -45,6 +48,19 @@ public class BlueBloodWorks {
                             currentData.setBlueBlood(0)
                     );
                     event.setAmount(adjustedDamage - currentBlueBlood);
+                }
+                // Sound
+                SoundEvent hurtSound = event.getSource().type().effects().sound();
+
+                if (hurtSound != null) {
+                    Level playerLevel = player.level();
+                    playerLevel.playSound(
+                            null,
+                            player.getX(), player.getY(), player.getZ(),
+                            hurtSound,
+                            player.getSoundSource(),
+                            1.0F, 1.0F + playerLevel.random.nextFloat() * 0.2F
+                    );
                 }
             }
         }
