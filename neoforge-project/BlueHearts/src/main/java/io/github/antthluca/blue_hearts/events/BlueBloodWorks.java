@@ -2,12 +2,17 @@ package io.github.antthluca.blue_hearts.events;
 
 import io.github.antthluca.blue_hearts.BlueHearts;
 import io.github.antthluca.blue_hearts.handlers.AttachmentsHandler;
+import io.github.antthluca.blue_hearts.handlers.CombatHandler;
+import io.github.antthluca.blue_hearts.handlers.CurioItemsHandler;
 import io.github.antthluca.blue_hearts.init.InitAttachmentTypes;
+import io.github.antthluca.blue_hearts.init.InitItems;
+import io.github.antthluca.blue_hearts.items.relics.custom.PetrifiedBlueBlood;
 import io.github.antthluca.blue_hearts.serializers.custom.BlueBloodData;
 import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.world.damagesource.CombatRules;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -43,7 +48,16 @@ public class BlueBloodWorks {
 
             if (currentData.hasRemaining()) {
                 // Damage
-                float adjustedDamage = event.getAmount();
+                float rawDamage = event.getAmount();
+                float adjustedDamage = rawDamage;
+                if (CurioItemsHandler.hasCurio(player, InitItems.PETRIFIED_BLUE_BLOOD.get())) {
+                    adjustedDamage = CombatHandler.getDamageAfterPureAbsorb(
+                            rawDamage,
+                            PetrifiedBlueBlood.ARMOR,
+                            PetrifiedBlueBlood.TOUGHNESS_ARMOR
+                    );
+                }
+
                 float currentBlueBlood = currentData.getBlueBlood();
 
                 if (adjustedDamage <= currentBlueBlood) {
