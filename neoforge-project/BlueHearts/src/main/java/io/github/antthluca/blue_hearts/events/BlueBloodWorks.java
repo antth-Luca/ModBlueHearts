@@ -93,30 +93,30 @@ public class BlueBloodWorks {
 
     @SubscribeEvent
     public static void onPlayerEffectAdded(MobEffectEvent.Applicable event) {
-        if (event.getEntity() instanceof Player player) {
+        if (event.getEntity() instanceof Player player && !player.level().isClientSide()) {
             MobEffectInstance effectIntance = event.getEffectInstance();
 
             if (effectIntance.getEffect().is(MobEffects.ABSORPTION)) {
                 BlueBloodData currentData = player.getData(InitAttachmentTypes.PLAYER_BLUE_BLOOD);
                 if (currentData.isMaximum()) return;
 
-                float yellowHearts = (float) 4 * (1 + effectIntance.getAmplifier());
+                float yellowHearts = (4 * (1 + effectIntance.getAmplifier())) / 2.0F;
                 float currentBlueBlood = currentData.getBlueBlood();
                 float maxBlueBlood = currentData.getMaxBlueBlood();
 
                 if (currentBlueBlood + yellowHearts > maxBlueBlood) {
-                    player.setAbsorptionAmount(yellowHearts - (maxBlueBlood - currentBlueBlood));
+                    player.setAbsorptionAmount((yellowHearts - (maxBlueBlood - currentBlueBlood)) / 2);
                     AttachmentsHandler.setAndSyncBlueBlood(
                             player,
                             currentData.setBlueBlood(maxBlueBlood)
                     );
                 } else {
-                    event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
                     AttachmentsHandler.setAndSyncBlueBlood(
                             player,
                             currentData.addBlueBlood(yellowHearts)
                     );
                 }
+                event.setResult(MobEffectEvent.Applicable.Result.DO_NOT_APPLY);
             }
         }
     }
