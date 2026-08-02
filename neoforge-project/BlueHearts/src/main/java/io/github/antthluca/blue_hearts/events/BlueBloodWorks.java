@@ -47,9 +47,11 @@ public class BlueBloodWorks {
             BlueBloodData currentData = player.getData(InitAttachmentTypes.PLAYER_BLUE_BLOOD);
 
             if (currentData.hasRemaining()) {
+
                 // Damage
                 float rawDamage = event.getAmount();
                 float adjustedDamage = rawDamage;
+                // Petrified Blue Blood
                 if (CurioItemsHandler.hasCurio(player, InitItems.PETRIFIED_BLUE_BLOOD.get())) {
                     adjustedDamage = CombatHandler.getDamageAfterPureAbsorb(
                             rawDamage,
@@ -73,6 +75,7 @@ public class BlueBloodWorks {
                     );
                     event.setAmount(adjustedDamage - currentBlueBlood);
                 }
+
                 // Sound
                 SoundEvent hurtSound = event.getSource().type().effects().sound();
 

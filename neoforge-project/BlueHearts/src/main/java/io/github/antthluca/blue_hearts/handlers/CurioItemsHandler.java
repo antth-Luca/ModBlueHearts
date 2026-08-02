@@ -9,9 +9,9 @@ import top.theillusivec4.curios.api.CuriosApi;
 import java.util.Optional;
 
 public class CurioItemsHandler {
-    @SuppressWarnings({"UnstableApiUsage", "deprecation"})
     public static boolean hasCurio(final LivingEntity entity, final Item curio) {
-        final Optional<ImmutableTriple<String, Integer, ItemStack>> data = CuriosApi.getCuriosHelper().findEquippedCurio(curio, entity);
-        return data.isPresent();
+        return CuriosApi.getCuriosInventory(entity)
+                .map(inv -> inv.isEquipped(curio))
+                .orElse(false);
     }
 }

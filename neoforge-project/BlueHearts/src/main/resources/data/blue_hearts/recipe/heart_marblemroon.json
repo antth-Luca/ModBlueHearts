@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "R R",
+    "BDO",
+    " Q "
+  ],
+  "key": {
+    "R": {
+      "item": "minecraft:red_dye"
+    },
+    "B": {
+      "item": "blue_hearts:blue_blood_potion"
+    },
+    "D": {
+      "item": "minecraft:diamond_block"
+    },
+    "O": {
+      "item": "blue_hearts:orange_antidote_potion"
+    },
+    "Q": {
+      "item": "minecraft:quartz"
+    }
+  },
+  "result": {
+    "id": "blue_hearts:heart_marblemaroon",
+    "count": 1
+  }
+}

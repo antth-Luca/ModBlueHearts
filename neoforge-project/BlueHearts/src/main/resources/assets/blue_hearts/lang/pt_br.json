@@ -28,6 +28,11 @@
     "item.blue_hearts.crying_charm.tooltip": "Este amuleto trazido pela dor, chora eternamente, lágrimas de Sangue Azul.",
     "item.blue_hearts.crying_charm.effect_tooltip": "§6Efeito: §rDe tempo em tempo, ele abastece 0.5 corações azuis com sua lágrima.",
     "item.blue_hearts.petrified_blue_blood": "Sangue Azul Petrificado",
+    "item.blue_hearts.petrified_blue_blood.tooltip": "Essa gota de Sangue Azul petrificada protege seus semelhantes.",
+    "item.blue_hearts.petrified_blue_blood.effect_tooltip": "§6Efeito: §rQuando sofrer dano nos corações azuis, receba 6 de armadura.",
+    "item.blue_hearts.heart_marblemaroon": "Coração de Marblemaroon",
+    "item.blue_hearts.heart_marblemaroon.tooltip": "Esse pedaço de mármore marrom-avermelhado esvazia a saúde do portador e substitui por Sangue Azul.",
+    "item.blue_hearts.heart_marblemaroon.effect_tooltip": "§6Efeito: §rSubstitui corações vermelhos por corações azuis.",
     "item.blue_hearts.myst_blue_gem": "Jóia Azul Misteriosa",
     "item.blue_hearts.myst_blue_gem.tooltip": "O efeito dessa jóia não é agradável, mas seu produto é restaurador. Use CLIQUE DIREITO.",
 

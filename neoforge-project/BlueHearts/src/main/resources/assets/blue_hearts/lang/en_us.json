@@ -28,6 +28,11 @@
     "item.blue_hearts.crying_charm.tooltip": "This amulet brought by pain, cry eternally, tears of Blue Blood.",
     "item.blue_hearts.crying_charm.effect_tooltip": "§6Effect: §rFrom time to time, it supplies 0.5 blue hearts with its tear.",
     "item.blue_hearts.petrified_blue_blood": "Petrified Blue Blood",
+    "item.blue_hearts.petrified_blue_blood.tooltip": "This drop of petrified Blue Blood protects its kind.",
+    "item.blue_hearts.petrified_blue_blood.effect_tooltip": "§6Effect: §rWhen you take damage to your blue hearts, you gain 6 armor.",
+    "item.blue_hearts.heart_marblemaroon": "Heart of Marblemaroon",
+    "item.blue_hearts.heart_marblemaroon.tooltip": "This piece of maroon marble drains the wearer's health and replaces it with Blue Blood.",
+    "item.blue_hearts.heart_marblemaroon.effect_tooltip": "§6Effect: §rReplace the red hearts with blue hearts.",
     "item.blue_hearts.myst_blue_gem": "Mysterious Blue Gem",
     "item.blue_hearts.myst_blue_gem.tooltip": "The effect of this jewel is not pleasant, but its product is restorative. Use RIGHT CLICK.",
 

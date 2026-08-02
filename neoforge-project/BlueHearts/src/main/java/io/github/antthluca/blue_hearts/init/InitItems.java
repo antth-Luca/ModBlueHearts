@@ -5,6 +5,7 @@ import io.github.antthluca.blue_hearts.items.custom.MystBlueGem;
 import io.github.antthluca.blue_hearts.items.potions.custom.BlueBloodPotion;
 import io.github.antthluca.blue_hearts.items.potions.custom.OrangeAntidotePotion;
 import io.github.antthluca.blue_hearts.items.relics.custom.CryingCharm;
+import io.github.antthluca.blue_hearts.items.relics.custom.HeartMarblemaroon;
 import io.github.antthluca.blue_hearts.items.relics.custom.PetrifiedBlueBlood;
 import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -29,6 +30,9 @@ public class InitItems {
 
     public static final DeferredItem<Item> PETRIFIED_BLUE_BLOOD = ITEMS.register(
             "petrified_blue_blood", PetrifiedBlueBlood::new);
+
+    public static final DeferredItem<Item> HEART_MARBLEMAROON = ITEMS.register(
+            "heart_marblemaroon", HeartMarblemaroon::new);
 
     // Potions
     public static final DeferredItem<Item> BLUE_BLOOD_POTION = ITEMS.register(

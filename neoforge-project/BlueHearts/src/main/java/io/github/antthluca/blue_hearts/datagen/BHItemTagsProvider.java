@@ -22,6 +22,7 @@ public class BHItemTagsProvider extends ItemTagsProvider {
     protected void addTags(@NotNull HolderLookup.Provider provider) {
         tag(CuriosTags.CHARM)
                 .add(InitItems.CRYING_CHARM.get())
-                .add(InitItems.PETRIFIED_BLUE_BLOOD.get());
+                .add(InitItems.PETRIFIED_BLUE_BLOOD.get())
+                .add(InitItems.HEART_MARBLEMAROON.get());
     }
 }

@@ -1,14 +1,12 @@
 package io.github.antthluca.blue_hearts.items.relics.custom;
 
-import io.github.antthluca.blue_hearts.handlers.AttachmentsHandler;
 import io.github.antthluca.blue_hearts.handlers.CurioItemsHandler;
-import io.github.antthluca.blue_hearts.init.InitAttachmentTypes;
 import io.github.antthluca.blue_hearts.init.InitItems;
-import io.github.antthluca.blue_hearts.serializers.custom.BlueBloodData;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.food.FoodData;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
@@ -20,14 +18,11 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.List;
 
-public class PetrifiedBlueBlood extends Item implements ICurioItem {
-    public static final float ARMOR = 6.0F;
-    public static final float TOUGHNESS_ARMOR = 2.0F;
-
-    public PetrifiedBlueBlood() {
+public class HeartMarblemaroon extends Item implements ICurioItem {
+    public HeartMarblemaroon() {
         super(new Properties()
                 .stacksTo(1)
-                .rarity(Rarity.RARE));
+                .rarity(Rarity.EPIC));
     }
 
     @Override
@@ -36,10 +31,10 @@ public class PetrifiedBlueBlood extends Item implements ICurioItem {
         super.appendHoverText(stack, context, tooltips, flagIn);
         if (Screen.hasShiftDown()) {
             tooltips.add(
-                    Component.translatable("item.blue_hearts.petrified_blue_blood.tooltip")
+                    Component.translatable("item.blue_hearts.heart_marblemaroon.tooltip")
                             .withStyle(ChatFormatting.GRAY));
             tooltips.add(
-                    Component.translatable("item.blue_hearts.petrified_blue_blood.effect_tooltip")
+                    Component.translatable("item.blue_hearts.heart_marblemaroon.effect_tooltip")
                             .withStyle(ChatFormatting.GRAY));
         } else {
             tooltips.add(
@@ -49,8 +44,33 @@ public class PetrifiedBlueBlood extends Item implements ICurioItem {
     }
 
     @Override
+    public void curioTick(SlotContext slotContext, ItemStack stack) {
+        if (slotContext.entity() instanceof Player player) {
+            FoodData food = player.getFoodData();
+            food.setExhaustion(0);
+        }
+    }
+
+    @Override
     public boolean canEquip(SlotContext context, ItemStack stack) {
         return ICurioItem.super.canEquip(context, stack)
-                && !CurioItemsHandler.hasCurio(context.entity(), InitItems.PETRIFIED_BLUE_BLOOD.get());
+                && !CurioItemsHandler.hasCurio(context.entity(), InitItems.HEART_MARBLEMAROON.get());
+    }
+
+    @Override
+    public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
+        // Hunger
+        if (slotContext.entity() instanceof Player player) {
+            FoodData food = player.getFoodData();
+            food.setFoodLevel(20);
+            food.setSaturation(0);
+        }
+
+        ICurioItem.super.onEquip(slotContext, prevStack, stack);
+    }
+
+    @Override
+    public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
+        ICurioItem.super.onUnequip(slotContext, newStack, stack);
     }
 }
