@@ -20,6 +20,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.Foods;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
@@ -44,6 +45,8 @@ public class BlueBloodWorks {
     @SubscribeEvent
     public static void onPlayerHurted(LivingIncomingDamageEvent event) {
         if (event.getEntity() instanceof Player player) {
+            if (player.level().isClientSide()) return;
+
             BlueBloodData currentData = player.getData(InitAttachmentTypes.PLAYER_BLUE_BLOOD);
 
             if (currentData.hasRemaining()) {
@@ -62,18 +65,29 @@ public class BlueBloodWorks {
 
                 float currentBlueBlood = currentData.getBlueBlood();
 
-                if (adjustedDamage <= currentBlueBlood) {
+                if (!(adjustedDamage > currentBlueBlood)) {
                     AttachmentsHandler.setAndSyncBlueBlood(
                             player,
                             currentData.subBlueBlood(adjustedDamage)
                     );
                     event.setCanceled(true);
                 } else {
+                    float overflowDamage = adjustedDamage - currentBlueBlood;
+
                     AttachmentsHandler.setAndSyncBlueBlood(
                             player,
                             currentData.setBlueBlood(0)
                     );
-                    event.setAmount(adjustedDamage - currentBlueBlood);
+
+                    // Heart of Marblemaroon
+                    if (CurioItemsHandler.hasCurio(player, InitItems.HEART_MARBLEMAROON.get())) {
+                        event.setCanceled(true);
+                        player.setHealth(1.0F);
+                        CurioItemsHandler.removeCurio(player, InitItems.HEART_MARBLEMAROON.get());
+                        return;
+                    } else {
+                        event.setAmount(overflowDamage);
+                    }
                 }
 
                 // Sound

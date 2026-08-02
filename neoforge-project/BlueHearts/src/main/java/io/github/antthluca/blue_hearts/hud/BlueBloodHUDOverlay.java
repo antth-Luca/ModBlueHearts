@@ -37,12 +37,11 @@ public class BlueBloodHUDOverlay {
         if (player == null) return;
 
         BlueBloodData currentData = player.getData(InitAttachmentTypes.PLAYER_BLUE_BLOOD);
-        if (!currentData.hasRemaining()) return; // Não desenha se não houver blue blood
 
         Gui guiObj = mc.gui;
         int currentLeftHeight = guiObj.leftHeight;
 
-        int x = mc.getWindow().getGuiScaledWidth() / 2 - 94;
+        int x = mc.getWindow().getGuiScaledWidth() / 2 - 91;
         int y = mc.getWindow().getGuiScaledHeight() - currentLeftHeight;
 
         RenderSystem.setShader(GameRenderer::getPositionTexShader);

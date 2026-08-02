@@ -1,7 +1,10 @@
 package io.github.antthluca.blue_hearts.items.relics.custom;
 
+import io.github.antthluca.blue_hearts.handlers.AttachmentsHandler;
 import io.github.antthluca.blue_hearts.handlers.CurioItemsHandler;
+import io.github.antthluca.blue_hearts.init.InitAttachmentTypes;
 import io.github.antthluca.blue_hearts.init.InitItems;
+import io.github.antthluca.blue_hearts.serializers.custom.BlueBloodData;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
@@ -53,14 +56,29 @@ public class HeartMarblemaroon extends Item implements ICurioItem {
 
     @Override
     public boolean canEquip(SlotContext context, ItemStack stack) {
-        return ICurioItem.super.canEquip(context, stack)
-                && !CurioItemsHandler.hasCurio(context.entity(), InitItems.HEART_MARBLEMAROON.get());
+        if (ICurioItem.super.canEquip(context, stack)
+            && !(CurioItemsHandler.hasCurio(context.entity(), InitItems.HEART_MARBLEMAROON.get()))
+            && context.entity() instanceof Player player) {
+                BlueBloodData currentData = player.getData(InitAttachmentTypes.PLAYER_BLUE_BLOOD);
+                return currentData.getMaxBlueBlood() > 0;
+        }
+
+        return false;
     }
 
     @Override
     public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
-        // Hunger
         if (slotContext.entity() instanceof Player player) {
+            // Add Blue Blood if not remaining
+            BlueBloodData currentData = player.getData(InitAttachmentTypes.PLAYER_BLUE_BLOOD);
+            if (!(currentData.getBlueBlood() > 0)) {
+                AttachmentsHandler.setAndSyncBlueBlood(
+                    player,
+                    currentData.setBlueBlood(1)
+                );
+            }
+
+            // Hunger
             FoodData food = player.getFoodData();
             food.setFoodLevel(20);
             food.setSaturation(0);
