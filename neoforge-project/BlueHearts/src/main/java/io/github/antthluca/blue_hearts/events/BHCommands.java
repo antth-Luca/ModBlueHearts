@@ -63,9 +63,9 @@ public class BHCommands {
             return BlueBloodData.MIN_BLUE_BLOOD;
         }
 
-        if (hearts > BlueBloodData.GLOBAL_MAX_BLUE_BLOOD) {
+        if (hearts > BlueBloodData.getGlobalMaxBlueBlood()) {
             source.sendSuccess(() -> Component.translatable("command.blue_hearts.capped_number"), true);
-            hearts = BlueBloodData.GLOBAL_MAX_BLUE_BLOOD;
+            hearts = BlueBloodData.getGlobalMaxBlueBlood();
         }
 
         final int adjustedHearts = hearts;
@@ -104,9 +104,9 @@ public class BHCommands {
             return BlueBloodData.MIN_BLUE_BLOOD;
         }
 
-        if (hearts > BlueBloodData.GLOBAL_MAX_BLUE_BLOOD) {
+        if (hearts > BlueBloodData.getGlobalMaxBlueBlood()) {
             source.sendSuccess(() -> Component.translatable("command.blue_hearts.capped_number"), true);
-            hearts = BlueBloodData.GLOBAL_MAX_BLUE_BLOOD;
+            hearts = BlueBloodData.getGlobalMaxBlueBlood();
         }
         final int adjustedHearts = hearts;
 
@@ -144,9 +144,9 @@ public class BHCommands {
             return BlueBloodData.MIN_BLUE_BLOOD;
         }
 
-        if (hearts > BlueBloodData.GLOBAL_MAX_BLUE_BLOOD) {
+        if (hearts > BlueBloodData.getGlobalMaxBlueBlood()) {
             source.sendSuccess(() -> Component.translatable("command.blue_hearts.capped_number"), true);
-            hearts = BlueBloodData.GLOBAL_MAX_BLUE_BLOOD;
+            hearts = BlueBloodData.getGlobalMaxBlueBlood();
         }
         final int adjustedHearts = hearts;
 

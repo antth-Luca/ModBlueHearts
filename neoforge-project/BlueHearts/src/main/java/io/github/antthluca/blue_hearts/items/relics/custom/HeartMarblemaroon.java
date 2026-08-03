@@ -22,6 +22,8 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 import java.util.List;
 
 public class HeartMarblemaroon extends Item implements ICurioItem {
+    public static final int CONVERSION_HEARTS = 10;
+
     public HeartMarblemaroon() {
         super(new Properties()
                 .stacksTo(1)
@@ -68,27 +70,34 @@ public class HeartMarblemaroon extends Item implements ICurioItem {
 
     @Override
     public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
+        ICurioItem.super.onEquip(slotContext, prevStack, stack);
+
         if (slotContext.entity() instanceof Player player) {
-            // Add Blue Blood if not remaining
-            BlueBloodData currentData = player.getData(InitAttachmentTypes.PLAYER_BLUE_BLOOD);
-            if (!(currentData.getBlueBlood() > 0)) {
-                AttachmentsHandler.setAndSyncBlueBlood(
+            AttachmentsHandler.setAndSyncBlueBlood(
                     player,
-                    currentData.setBlueBlood(1)
-                );
-            }
+                    player.getData(InitAttachmentTypes.PLAYER_BLUE_BLOOD)
+                            .addMaxBlueBlood(CONVERSION_HEARTS, player)
+                            .addBlueBlood(CONVERSION_HEARTS)
+            );
 
             // Hunger
             FoodData food = player.getFoodData();
             food.setFoodLevel(20);
             food.setSaturation(0);
         }
-
-        ICurioItem.super.onEquip(slotContext, prevStack, stack);
     }
 
     @Override
     public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
         ICurioItem.super.onUnequip(slotContext, newStack, stack);
+
+        if (slotContext.entity() instanceof Player player) {
+            AttachmentsHandler.setAndSyncBlueBlood(
+                    player,
+                    player.getData(InitAttachmentTypes.PLAYER_BLUE_BLOOD)
+                            .subMaxBlueBlood(CONVERSION_HEARTS)
+                            .subBlueBlood(CONVERSION_HEARTS)
+            );
+        }
     }
 }

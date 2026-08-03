@@ -3,10 +3,16 @@ package io.github.antthluca.blue_hearts.serializers.custom;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import io.github.antthluca.blue_hearts.config.BHCommonConfig;
+import io.github.antthluca.blue_hearts.handlers.CurioItemsHandler;
+import io.github.antthluca.blue_hearts.init.InitItems;
+import net.minecraft.world.entity.player.Player;
+
+import javax.annotation.Nullable;
+import java.util.Optional;
+import java.util.function.Function;
 
 public record BlueBloodData(float current, float current_max) {
     public static final int MIN_BLUE_BLOOD = 0;
-    public static final int GLOBAL_MAX_BLUE_BLOOD = 10;
 
     public static final Codec<BlueBloodData> CODEC = RecordCodecBuilder.create(instance ->
         instance.group(
@@ -19,6 +25,18 @@ public record BlueBloodData(float current, float current_max) {
         int initialHearts = BHCommonConfig.INITIAL_BLUE_HEARTS_PER_PLAYER.get();
 
         return new BlueBloodData(initialHearts, initialHearts);
+    }
+
+    public static int getGlobalMaxBlueBlood() {
+        return 10;
+    }
+
+    public static int getGlobalMaxBlueBlood(Player player) {
+        if (player != null && CurioItemsHandler.hasCurio(player, InitItems.HEART_MARBLEMAROON.get())) {
+            return 20;
+        }
+
+        return 10;
     }
 
     // GETTERS AND SETTERS
@@ -76,15 +94,19 @@ public record BlueBloodData(float current, float current_max) {
         return current_max;
     }
 
-    public BlueBloodData addMaxBlueBlood(float add) {
+    public BlueBloodData addMaxBlueBlood(float add, Player player) {
         if (add > 0) {
             return new BlueBloodData(
                     current,
-                    Math.min(current_max + add, GLOBAL_MAX_BLUE_BLOOD)
+                    Math.min(current_max + add, getGlobalMaxBlueBlood(player))
             );
         }
 
         return this;
+    }
+
+    public BlueBloodData addMaxBlueBlood(float add) {
+        return addMaxBlueBlood(add, null);
     }
 
     public BlueBloodData subMaxBlueBlood(float sub) {
@@ -98,17 +120,21 @@ public record BlueBloodData(float current, float current_max) {
         return this;
     }
 
-    public BlueBloodData setMaxBlueBlood(float set) {
+    public BlueBloodData setMaxBlueBlood(float set, Player player) {
         if (set >= 0) {
             return new BlueBloodData(
                     current,
                     Math.max(
                             MIN_BLUE_BLOOD,
-                            Math.min(set, GLOBAL_MAX_BLUE_BLOOD)
+                            Math.min(set, getGlobalMaxBlueBlood(player))
                     )
             );
         }
 
         return this;
+    }
+
+    public BlueBloodData setMaxBlueBlood(float set) {
+        return setMaxBlueBlood(set, null);
     }
 }
