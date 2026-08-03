@@ -13,6 +13,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.CombatRules;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -64,16 +65,15 @@ public class BlueBloodWorks {
                 }
 
                 float currentBlueBlood = currentData.getBlueBlood();
+                DamageSource source = event.getSource();
 
-                if (!(adjustedDamage > currentBlueBlood)) {
+                if (adjustedDamage < currentBlueBlood) {
                     AttachmentsHandler.setAndSyncBlueBlood(
                             player,
                             currentData.subBlueBlood(adjustedDamage)
                     );
                     event.setCanceled(true);
                 } else {
-                    float overflowDamage = adjustedDamage - currentBlueBlood;
-
                     AttachmentsHandler.setAndSyncBlueBlood(
                             player,
                             currentData.setBlueBlood(0)
@@ -81,17 +81,19 @@ public class BlueBloodWorks {
 
                     // Heart of Marblemaroon
                     if (CurioItemsHandler.hasCurio(player, InitItems.HEART_MARBLEMAROON.get())) {
-                        event.setCanceled(true);
-                        player.setHealth(1.0F);
+                        player.hurt(source, Float.MAX_VALUE);
                         CurioItemsHandler.removeCurio(player, InitItems.HEART_MARBLEMAROON.get());
+                        event.setCanceled(true);
                         return;
+                    } else if (adjustedDamage == currentBlueBlood) {
+                        event.setCanceled(true);
                     } else {
-                        event.setAmount(overflowDamage);
+                        event.setAmount(adjustedDamage - currentBlueBlood);
                     }
                 }
 
                 // Sound
-                SoundEvent hurtSound = event.getSource().type().effects().sound();
+                SoundEvent hurtSound = source.type().effects().sound();
 
                 if (hurtSound != null) {
                     Level playerLevel = player.level();
