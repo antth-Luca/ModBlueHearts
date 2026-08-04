@@ -1,24 +1,30 @@
 package io.github.antthluca.blue_hearts.serializers.custom;
 
 import com.mojang.serialization.Codec;
+import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import io.github.antthluca.blue_hearts.config.BHCommonConfig;
 import io.github.antthluca.blue_hearts.handlers.CurioItemsHandler;
 import io.github.antthluca.blue_hearts.init.InitItems;
+import io.netty.buffer.ByteBuf;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
 import net.minecraft.world.entity.player.Player;
-
-import javax.annotation.Nullable;
-import java.util.Optional;
-import java.util.function.Function;
 
 public record BlueBloodData(float current, float current_max) {
     public static final int MIN_BLUE_BLOOD = 0;
 
-    public static final Codec<BlueBloodData> CODEC = RecordCodecBuilder.create(instance ->
+    public static final MapCodec<BlueBloodData> MAP_CODEC = RecordCodecBuilder.mapCodec(instance ->
         instance.group(
                 Codec.FLOAT.fieldOf("current").forGetter(BlueBloodData::current),
                 Codec.FLOAT.fieldOf("current_max").forGetter(BlueBloodData::current_max)
         ).apply(instance, BlueBloodData::new)
+    );
+
+    public static final StreamCodec<ByteBuf, BlueBloodData> STREAM_CODEC = StreamCodec.composite(
+            ByteBufCodecs.FLOAT, BlueBloodData::current,
+            ByteBufCodecs.FLOAT, BlueBloodData::current_max,
+            BlueBloodData::new
     );
 
     public static BlueBloodData getDefault() {

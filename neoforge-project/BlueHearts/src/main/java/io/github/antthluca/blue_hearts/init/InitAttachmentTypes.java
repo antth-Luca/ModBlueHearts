@@ -18,7 +18,7 @@ public class InitAttachmentTypes {
     // Attachment Types
     public static final Supplier<AttachmentType<BlueBloodData>> PLAYER_BLUE_BLOOD = TYPES.register(
             "player_blue_blood", () -> AttachmentType.builder(BlueBloodData::getDefault)
-                    .serialize(BlueBloodData.CODEC)
+                    .serialize(BlueBloodData.MAP_CODEC)
                     .copyOnDeath().build()
     );
 }

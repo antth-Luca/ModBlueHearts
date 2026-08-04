@@ -22,8 +22,8 @@ public class BHCommands {
         CommandDispatcher<CommandSourceStack> dispatcher = event.getDispatcher();
 
         dispatcher.register(Commands.literal("bhmanager")
+                .requires(Commands.hasPermission(Commands.LEVEL_GAMEMASTERS))
                 .then(Commands.literal("addhearts")
-                        .requires(source -> source.hasPermission(2))
                         .then(Commands.argument("int_hearts", IntegerArgumentType.integer(0))
                                 .then(Commands.argument("targets", EntityArgument.players())
                                         .executes(ctx -> addHearts(ctx,
@@ -33,7 +33,6 @@ public class BHCommands {
                         )
                 )
                 .then(Commands.literal("rmhearts")
-                        .requires(source -> source.hasPermission(2))
                         .then(Commands.argument("int_hearts", IntegerArgumentType.integer(0))
                                 .then(Commands.argument("targets", EntityArgument.players())
                                         .executes(ctx -> rmHearts(ctx,
@@ -43,7 +42,6 @@ public class BHCommands {
                         )
                 )
                 .then(Commands.literal("sethearts")
-                        .requires(source -> source.hasPermission(2))
                         .then(Commands.argument("int_hearts", IntegerArgumentType.integer(0))
                                 .then(Commands.argument("targets", EntityArgument.players())
                                         .executes(ctx -> setHearts(ctx,
