@@ -51,14 +51,13 @@ public class InitFoods {
             ))).build();
 
     // Foods
-    public static final DeferredItem<Item> VITAL_FRUIT = FOODS.register(
-            "vital_fruit", () -> new BlockItem(
-                    InitBlocks.VITAL_BUSH.get(),
-                    new Item.Properties()
-                            .food(VITAL_FRUIT_PROP)));
+    public static final DeferredItem<BlockItem> VITAL_FRUIT = FOODS.registerSimpleBlockItem(
+            "vital_fruit",
+            InitBlocks.VITAL_BUSH,
+            new Item.Properties().food(VITAL_FRUIT_PROP));
 
-    public static final DeferredItem<Item> LAZULI_APPLE = FOODS.register(
-            "lazuli_apple", () -> new Item(new Item.Properties()
+    public static final DeferredItem<Item> LAZULI_APPLE = FOODS.registerItem(
+            "lazuli_apple", props -> new Item(props
                     .food(LAZULI_APPLE_PROP, LAZULI_APPLE_CONSUMABLE)
                     .rarity(Rarity.RARE)));
 }

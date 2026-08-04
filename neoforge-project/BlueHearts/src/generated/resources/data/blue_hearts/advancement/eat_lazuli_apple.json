@@ -1,7 +1,7 @@
 {
   "parent": "minecraft:husbandry/root",
   "criteria": {
-    "": {
+    "eat_vital_fruit": {
       "conditions": {
         "item": {
           "items": "blue_hearts:lazuli_apple"
@@ -15,7 +15,6 @@
       "translate": "advancement.blue_hearts.eat_lazuli_apple.description"
     },
     "icon": {
-      "count": 1,
       "id": "blue_hearts:lazuli_apple"
     },
     "title": {
@@ -24,7 +23,7 @@
   },
   "requirements": [
     [
-      ""
+      "eat_vital_fruit"
     ]
   ],
   "sends_telemetry_event": true

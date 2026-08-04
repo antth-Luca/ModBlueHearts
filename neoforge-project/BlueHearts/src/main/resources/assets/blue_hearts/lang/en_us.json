@@ -13,6 +13,7 @@
     "command.blue_hearts.success.rm": "[Blue Hearts] Removed %s blue hearts from %s",
     "command.blue_hearts.success.set": "[Blue Hearts] Set blue hearts of %s to %s",
 
+    "block.blue_hearts.vital_fruit": "Vital Fruit",
     "block.blue_hearts.vital_bush": "Vital Bush",
 
     "item.blue_hearts.common_tooltip": "Press SHIFT for details",
@@ -23,7 +24,6 @@
     "item.blue_hearts.blue_eye": "Blue Eye",
     "item.blue_hearts.vital_sap": "Vital Sap",
     "item.blue_hearts.lazuli_apple": "Lazuli Apple",
-    "item.blue_hearts.vital_fruit": "Vital Fruit",
     "item.blue_hearts.crying_charm": "Revitalizing Crying Charm",
     "item.blue_hearts.crying_charm.tooltip": "This amulet brought by pain, cry eternally, tears of Blue Blood.",
     "item.blue_hearts.crying_charm.effect_tooltip": "§6Effect: §rFrom time to time, it supplies 0.5 blue hearts with its tear.",

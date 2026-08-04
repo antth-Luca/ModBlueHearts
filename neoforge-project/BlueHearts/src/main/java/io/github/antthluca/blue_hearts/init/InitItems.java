@@ -21,23 +21,23 @@ public class InitItems {
     public static final DeferredItem<Item> BLUE_EYE = ITEMS.registerSimpleItem(
             "blue_eye", new Item.Properties().stacksTo(16));
 
-    public static final DeferredItem<Item> MYST_BLUE_GEM = ITEMS.register(
+    public static final DeferredItem<Item> MYST_BLUE_GEM = ITEMS.registerItem(
             "myst_blue_gem", MystBlueGem::new);
 
     // Relics
-    public static final DeferredItem<Item> CRYING_CHARM = ITEMS.register(
+    public static final DeferredItem<Item> CRYING_CHARM = ITEMS.registerItem(
             "crying_charm", CryingCharm::new);
 
-    public static final DeferredItem<Item> PETRIFIED_BLUE_BLOOD = ITEMS.register(
+    public static final DeferredItem<Item> PETRIFIED_BLUE_BLOOD = ITEMS.registerItem(
             "petrified_blue_blood", PetrifiedBlueBlood::new);
 
-    public static final DeferredItem<Item> HEART_MARBLEMAROON = ITEMS.register(
+    public static final DeferredItem<Item> HEART_MARBLEMAROON = ITEMS.registerItem(
             "heart_marblemaroon", HeartMarblemaroon::new);
 
     // Potions
-    public static final DeferredItem<Item> BLUE_BLOOD_POTION = ITEMS.register(
+    public static final DeferredItem<Item> BLUE_BLOOD_POTION = ITEMS.registerItem(
             "blue_blood_potion", BlueBloodPotion::new);
 
-    public static final DeferredItem<Item> ORANGE_ANTIDOTE_POTION = ITEMS.register(
+    public static final DeferredItem<Item> ORANGE_ANTIDOTE_POTION = ITEMS.registerItem(
             "orange_antidote_potion", OrangeAntidotePotion::new);
 }

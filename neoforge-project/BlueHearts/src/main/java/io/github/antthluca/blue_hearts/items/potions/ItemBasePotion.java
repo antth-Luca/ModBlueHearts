@@ -16,8 +16,6 @@ import net.minecraft.world.item.component.Consumable;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 
 import java.util.List;
 import java.util.Random;
@@ -32,10 +30,6 @@ import java.util.Random;
 public class ItemBasePotion extends Item {
     protected static final Random random = new Random();
     protected boolean isPlaceholder;
-
-    public ItemBasePotion() {
-        this(getDefaultProperties());
-    }
 
     public ItemBasePotion(Properties props) {
         super(props);
@@ -53,9 +47,8 @@ public class ItemBasePotion extends Item {
         return ImmutableList.of(new ItemStack(this));
     }
 
-    public static Properties getDefaultProperties() {
-        Properties props = new Item.Properties();
-        props.stacksTo(64);
+    public static Properties setDefaultProperties(Properties props) {
+        props.stacksTo(1);
         props.rarity(Rarity.COMMON);
         props.component(
                 DataComponents.CONSUMABLE,
@@ -138,7 +131,6 @@ public class ItemBasePotion extends Item {
     }
 
     @Override
-    @OnlyIn(Dist.CLIENT)
     public boolean isFoil(ItemStack stack) {
         return true;
     }

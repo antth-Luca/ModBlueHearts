@@ -17,7 +17,6 @@
       "translate": "advancement.blue_hearts.acquire_vital_fruit.description"
     },
     "icon": {
-      "count": 1,
       "id": "blue_hearts:vital_fruit"
     },
     "title": {

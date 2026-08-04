@@ -1,15 +1,9 @@
 {
     "type": "minecraft:crafting_shapeless",
     "ingredients": [
-        {
-            "item": "blue_hearts:blue_blood_potion"
-        },
-        {
-            "item": "minecraft:diamond"
-        },
-        {
-            "item": "minecraft:bone_block"
-        }
+        "blue_hearts:blue_blood_potion",
+        "minecraft:diamond",
+        "minecraft:bone_block"
     ],
     "result": {
         "id": "blue_hearts:petrified_blue_blood",

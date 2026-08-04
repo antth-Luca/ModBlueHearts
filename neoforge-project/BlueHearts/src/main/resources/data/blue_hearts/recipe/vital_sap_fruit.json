@@ -1,12 +1,8 @@
 {
     "type": "minecraft:crafting_shapeless",
     "ingredients": [
-        {
-            "item": "blue_hearts:vital_fruit"
-        },
-        {
-            "item": "blue_hearts:vital_fruit"
-        }
+        "blue_hearts:vital_fruit",
+        "blue_hearts:vital_fruit"
     ],
     "result": {
         "id": "blue_hearts:vital_sap",

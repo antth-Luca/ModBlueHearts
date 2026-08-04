@@ -14,22 +14,19 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.component.TooltipDisplay;
-import net.neoforged.api.distmarker.Dist;
-import net.neoforged.api.distmarker.OnlyIn;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
 import java.util.function.Consumer;
 
 public class CryingCharm extends Item implements ICurioItem {
-    public CryingCharm() {
-        super(new Properties()
+    public CryingCharm(Properties props) {
+        super(props
                 .stacksTo(1)
                 .rarity(Rarity.RARE));
     }
 
     @Override
-    @OnlyIn(Dist.CLIENT)
     public void appendHoverText(ItemStack itemStack, TooltipContext context, TooltipDisplay display, Consumer<Component> builder, TooltipFlag tooltipFlag) {
         super.appendHoverText(itemStack, context, display, builder, tooltipFlag);
         if (Minecraft.getInstance().hasShiftDown()) {

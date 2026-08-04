@@ -11,5 +11,5 @@ public class InitBlocks {
 
     // Blocks
     public static final DeferredBlock<Block> VITAL_BUSH = BLOCKS.registerBlock(
-            "vital_bush", (prop) -> new VitalBushBlock());
+            "vital_bush", VitalBushBlock::new);
 }

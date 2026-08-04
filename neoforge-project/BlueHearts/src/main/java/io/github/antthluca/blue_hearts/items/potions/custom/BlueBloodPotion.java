@@ -10,8 +10,10 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.Level;
 
 public class BlueBloodPotion extends ItemBasePotion {
-    public BlueBloodPotion() {
-        super(getDefaultProperties().stacksTo(1).rarity(Rarity.RARE));
+    public BlueBloodPotion(Properties props) {
+        super(setDefaultProperties(props)
+                .stacksTo(1)
+                .rarity(Rarity.RARE));
     }
 
     @Override

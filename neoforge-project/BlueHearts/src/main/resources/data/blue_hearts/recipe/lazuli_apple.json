@@ -6,12 +6,8 @@
         "LLL"
     ],
     "key": {
-        "L": {
-            "item": "minecraft:lapis_lazuli"
-        },
-        "A": {
-            "item": "minecraft:golden_apple"
-        }
+        "L": "minecraft:lapis_lazuli",
+        "A": "minecraft:golden_apple"
     },
     "result": {
         "id": "blue_hearts:lazuli_apple",

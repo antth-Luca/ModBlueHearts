@@ -1,24 +1,12 @@
 {
     "type": "minecraft:crafting_shapeless",
     "ingredients": [
-        {
-            "item": "minecraft:slime_ball"
-        },
-        {
-            "item": "minecraft:glistering_melon_slice"
-        },
-        {
-            "tag": "minecraft:soul_fire_base_blocks"
-        },
-        {
-            "item": "minecraft:glow_berries"
-        },
-        {
-            "item": "blue_hearts:lazuli_apple"
-        },
-        {
-            "item": "minecraft:sugar"
-        }
+        "minecraft:slime_ball",
+        "minecraft:glistering_melon_slice",
+        "#minecraft:soul_fire_base_blocks",
+        "minecraft:glow_berries",
+        "blue_hearts:lazuli_apple",
+        "minecraft:sugar"
     ],
     "result": {
         "id": "blue_hearts:vital_sap",

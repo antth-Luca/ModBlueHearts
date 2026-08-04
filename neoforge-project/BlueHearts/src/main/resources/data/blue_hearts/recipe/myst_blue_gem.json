@@ -6,15 +6,9 @@
         "RG "
     ],
     "key": {
-        "G": {
-            "item": "minecraft:gold_ingot"
-        },
-        "R": {
-            "item": "minecraft:rotten_flesh"
-        },
-        "E": {
-            "item": "blue_hearts:blue_eye"
-        }
+        "G": "minecraft:gold_ingot",
+        "R": "minecraft:rotten_flesh",
+        "E": "blue_hearts:blue_eye"
     },
     "result": {
         "id": "blue_hearts:myst_blue_gem",

@@ -13,6 +13,7 @@
     "command.blue_hearts.success.rm": "[Blue Hearts] Removidos %s corações azuis de %s",
     "command.blue_hearts.success.set": "[Blue Hearts] Definido os corações azuis de %s como %s",
 
+    "block.blue_hearts.vital_fruit": "Fruto Vital",
     "block.blue_hearts.vital_bush": "Arbusto Vital",
 
     "item.blue_hearts.common_tooltip": "Pressione SHIFT para detalhes",
@@ -23,7 +24,6 @@
     "item.blue_hearts.blue_eye": "Olho Azul",
     "item.blue_hearts.vital_sap": "Seiva Vital",
     "item.blue_hearts.lazuli_apple": "Maçã Lazulada",
-    "item.blue_hearts.vital_fruit": "Fruto Vital",
     "item.blue_hearts.crying_charm": "Amuleto do Choro Revitalizante",
     "item.blue_hearts.crying_charm.tooltip": "Este amuleto trazido pela dor, chora eternamente, lágrimas de Sangue Azul.",
     "item.blue_hearts.crying_charm.effect_tooltip": "§6Efeito: §rDe tempo em tempo, ele abastece 0.5 corações azuis com sua lágrima.",
