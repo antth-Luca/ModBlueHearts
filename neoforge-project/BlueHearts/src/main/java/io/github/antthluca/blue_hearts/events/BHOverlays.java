@@ -2,11 +2,10 @@ package io.github.antthluca.blue_hearts.events;
 
 import io.github.antthluca.blue_hearts.BlueHearts;
 import io.github.antthluca.blue_hearts.handlers.CurioItemsHandler;
-import io.github.antthluca.blue_hearts.handlers.SuperpositionHandler;
 import io.github.antthluca.blue_hearts.hud.BlueBloodHUDOverlay;
 import io.github.antthluca.blue_hearts.init.InitItems;
 import net.minecraft.client.Minecraft;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.entity.player.Player;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.bus.api.SubscribeEvent;
@@ -21,7 +20,7 @@ public class BHOverlays {
     public static void registerGuiOverlays(RegisterGuiLayersEvent event) {
         event.registerBelow(
                 VanillaGuiLayers.ARMOR_LEVEL,
-                ResourceLocation.fromNamespaceAndPath(
+                Identifier.fromNamespaceAndPath(
                     BlueHearts.MODID,
                     "blue_blood_overlay"
                 ),

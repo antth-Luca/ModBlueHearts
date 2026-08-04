@@ -1,18 +1,16 @@
 package io.github.antthluca.blue_hearts.blocks.custom;
 
-import io.github.antthluca.blue_hearts.BlueHearts;
 import io.github.antthluca.blue_hearts.init.InitFoods;
 import io.github.antthluca.blue_hearts.tags.BHTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -61,17 +59,17 @@ public class VitalBushBlock extends SweetBerryBushBlock {
     protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         int i = state.getValue(AGE);
         if (i < 3
-                && level.getRawBrightness(pos.below(), 0) >= 9
-                && CommonHooks.canCropGrow(level, pos, state, random.nextInt(5) == 0)) {
-            BlockState blockState = state.setValue(AGE, Integer.valueOf(i + 1));
-            level.setBlock(pos, blockState, 2);
-            level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(blockState));
-            CommonHooks.fireCropGrowPost(level, pos, state);
+            && level.getRawBrightness(pos.below(), 0) >= 9
+            && CommonHooks.canCropGrow(level, pos, state, random.nextInt(5) == 0)) {
+                BlockState blockState = state.setValue(AGE, i + 1);
+                level.setBlock(pos, blockState, 2);
+                level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(blockState));
+                CommonHooks.fireCropGrowPost(level, pos, state);
         }
     }
 
     @Override
-    protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity) {
+    protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier effectApplier, boolean isPrecise) {
         return;
     }
 
@@ -96,9 +94,9 @@ public class VitalBushBlock extends SweetBerryBushBlock {
                         pos,
                         SoundEvents.SWEET_BERRY_BUSH_PICK_BERRIES,
                         SoundSource.BLOCKS,
-                        1.0F, 0.8F + level.random.nextFloat() * 0.4F
+                        1.0F, 0.8F + level.getRandom().nextFloat() * 0.4F
                 );
-                BlockState blockState = state.setValue(AGE, Integer.valueOf(1));
+                BlockState blockState = state.setValue(AGE, 1);
                 level.setBlock(pos, blockState, 2);
                 level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(blockState));
                 return InteractionResult.SUCCESS;
@@ -111,13 +109,13 @@ public class VitalBushBlock extends SweetBerryBushBlock {
     }
 
     @Override
-    public ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state) {
+    protected ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state, boolean includeData) {
         return new ItemStack(InitFoods.VITAL_FRUIT.get());
     }
 
     @Override
     public void performBonemeal(ServerLevel level, RandomSource random, BlockPos pos, BlockState state) {
-        if (level.random.nextInt() < 0.2F) {  // 20% of chance
+        if (level.getRandom().nextInt() < 0.2F) {  // 20% of chance
             super.performBonemeal(level, random, pos, state);
         }
     }

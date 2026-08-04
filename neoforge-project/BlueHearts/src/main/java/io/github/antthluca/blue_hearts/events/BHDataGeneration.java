@@ -11,48 +11,41 @@ import net.neoforged.neoforge.data.event.GatherDataEvent;
 @EventBusSubscriber(modid = BlueHearts.MODID)
 public class BHDataGeneration {
     @SubscribeEvent
-    public static void gatherClientData(GatherDataEvent event) {
+    public static void gatherClientData(GatherDataEvent.Client event) {
         DataGenerator gen = event.getGenerator();
         PackOutput out = gen.getPackOutput();
         var lookup = event.getLookupProvider();
-        var existingFileHelper = event.getExistingFileHelper();
 
         // Block Tags
-        BHBlockTagsProvider modBlockTagsProvider = new BHBlockTagsProvider(
-            out,
-            lookup,
-            BlueHearts.MODID,
-            event.getExistingFileHelper()
-        );
-        gen.addProvider(true, modBlockTagsProvider);
+        gen.addProvider(true, new BHBlockTagsProvider(
+                out,
+                lookup,
+                BlueHearts.MODID
+        ));
 
         // Item Tags
         gen.addProvider(true, new BHItemTagsProvider(
                 out,
                 lookup,
-                modBlockTagsProvider.contentsGetter(),
-                BlueHearts.MODID,
-                existingFileHelper
+                BlueHearts.MODID
         ));
 
         // Advancements
-        gen.addProvider(event.includeServer(), new BHAdvancementsProvider(
+        gen.addProvider(true, new BHAdvancementsProvider(
                 out,
-                lookup,
-                existingFileHelper
+                lookup
         ));
 
         // World Generation
-        gen.addProvider(event.includeServer(), new BHWorldGenProvider(
+        gen.addProvider(true, new BHWorldGenProvider(
                 out,
                 lookup
         ));
 
         // Curios Slots
-        gen.addProvider(event.includeServer(), new BHCurioSlotsProvider(
+        gen.addProvider(true, new BHCurioSlotsProvider(
                 out,
-                lookup,
-                existingFileHelper
+                lookup
         ));
     }
 }

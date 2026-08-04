@@ -8,9 +8,9 @@ import net.minecraft.core.*;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.worldgen.BootstrapContext;
+import net.minecraft.resources.Identifier;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.util.random.SimpleWeightedRandomList;
+import net.minecraft.util.random.WeightedList;
 import net.minecraft.world.level.biome.Biomes;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -37,7 +37,7 @@ public class BHWorldGenProvider extends DatapackBuiltinEntriesProvider {
             .add(Registries.PLACED_FEATURE, BHWorldGenProvider::bootstrapPlaced)
             .add(NeoForgeRegistries.Keys.BIOME_MODIFIERS, BHWorldGenProvider::bootstrapModifier);
 
-    public static final ResourceLocation vitalBushKey = ResourceLocation.fromNamespaceAndPath(
+    public static final Identifier vitalBushKey = Identifier.fromNamespaceAndPath(
         BlueHearts.MODID, "vital_bush"
     );
     public static final ResourceKey<ConfiguredFeature<?, ?>> VITAL_BUSH_CONFIGURED =
@@ -63,7 +63,7 @@ public class BHWorldGenProvider extends DatapackBuiltinEntriesProvider {
     // Configured Features
     public static void bootstrapConfigured(BootstrapContext<ConfiguredFeature<?, ?>> ctx) {
         BlockState baseState = InitBlocks.VITAL_BUSH.get().defaultBlockState();
-        SimpleWeightedRandomList.Builder<BlockState> stateList = SimpleWeightedRandomList.builder();
+        WeightedList.Builder<BlockState> stateList = WeightedList.builder();
         stateList.add(baseState.setValue(VitalBushBlock.AGE, 0), 35);
         stateList.add(baseState.setValue(VitalBushBlock.AGE, 1), 35);
         stateList.add(baseState.setValue(VitalBushBlock.AGE, 2), 25);

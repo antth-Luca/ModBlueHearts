@@ -1,24 +1,21 @@
 package io.github.antthluca.blue_hearts.items.relics.custom;
 
-import io.github.antthluca.blue_hearts.handlers.AttachmentsHandler;
 import io.github.antthluca.blue_hearts.handlers.CurioItemsHandler;
-import io.github.antthluca.blue_hearts.init.InitAttachmentTypes;
 import io.github.antthluca.blue_hearts.init.InitItems;
-import io.github.antthluca.blue_hearts.serializers.custom.BlueBloodData;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.Minecraft;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.component.TooltipDisplay;
 import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 
-import java.util.List;
+import java.util.function.Consumer;
 
 public class PetrifiedBlueBlood extends Item implements ICurioItem {
     public static final float ARMOR = 6.0F;
@@ -32,17 +29,17 @@ public class PetrifiedBlueBlood extends Item implements ICurioItem {
 
     @Override
     @OnlyIn(Dist.CLIENT)
-    public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltips, TooltipFlag flagIn) {
-        super.appendHoverText(stack, context, tooltips, flagIn);
-        if (Screen.hasShiftDown()) {
-            tooltips.add(
+    public void appendHoverText(ItemStack itemStack, TooltipContext context, TooltipDisplay display, Consumer<Component> builder, TooltipFlag tooltipFlag) {
+        super.appendHoverText(itemStack, context, display, builder, tooltipFlag);
+        if (Minecraft.getInstance().hasShiftDown()) {
+            builder.accept(
                     Component.translatable("item.blue_hearts.petrified_blue_blood.tooltip")
                             .withStyle(ChatFormatting.GRAY));
-            tooltips.add(
+            builder.accept(
                     Component.translatable("item.blue_hearts.petrified_blue_blood.effect_tooltip")
                             .withStyle(ChatFormatting.GRAY));
         } else {
-            tooltips.add(
+            builder.accept(
                     Component.translatable("item.blue_hearts.common_tooltip")
                             .withStyle(ChatFormatting.GRAY));
         }

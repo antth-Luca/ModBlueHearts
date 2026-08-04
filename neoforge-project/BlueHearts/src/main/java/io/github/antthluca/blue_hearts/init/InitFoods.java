@@ -1,15 +1,19 @@
 package io.github.antthluca.blue_hearts.init;
 
 import io.github.antthluca.blue_hearts.BlueHearts;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.item.Rarity;
+import net.minecraft.world.item.component.Consumable;
+import net.minecraft.world.item.component.Consumables;
+import net.minecraft.world.item.consume_effects.ApplyStatusEffectsConsumeEffect;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
+
+import java.util.List;
 
 public class InitFoods {
     public static final DeferredRegister.Items FOODS = DeferredRegister.createItems(BlueHearts.MODID);
@@ -24,32 +28,37 @@ public class InitFoods {
             .nutrition(12)
             .saturationModifier(19.2f)
             .alwaysEdible()
-            .effect(() -> new MobEffectInstance(
-                MobEffects.ABSORPTION, 1800, 1), 1.0f // Absorção II por 1:30
-            )
-            .effect(() -> new MobEffectInstance(
-                    MobEffects.REGENERATION, 200, 1), 1.0f // Regeneração II por 0:10
-            )
-            .effect(() -> new MobEffectInstance(
-                    MobEffects.HEAL, 1, 2), 1.0f // Cura III
-            )
-            .effect(() -> new MobEffectInstance(
-                    MobEffects.DAMAGE_BOOST, 1200, 0), 1.0f // Força por 1:00
-            )
-            .effect(() -> new MobEffectInstance(
-                    MobEffects.MOVEMENT_SPEED, 1200, 0), 1.0f // Velocidade por 1:00
-            )
             .build();
+
+    // Consumables
+    private static final Consumable LAZULI_APPLE_CONSUMABLE = Consumables.defaultFood()
+            .onConsume(new ApplyStatusEffectsConsumeEffect(List.of(
+                    new MobEffectInstance(
+                            MobEffects.ABSORPTION, 1800, 1 // Absorção II por 1:30
+                    ),
+                    new MobEffectInstance(
+                            MobEffects.REGENERATION, 200, 1 // Regeneração II por 0:10
+                    ),
+                    new MobEffectInstance(
+                            MobEffects.INSTANT_HEALTH, 1, 2 // Cura III
+                    ),
+                    new MobEffectInstance(
+                            MobEffects.STRENGTH, 1200, 0 // Força por 1:00
+                    ),
+                    new MobEffectInstance(
+                            MobEffects.SPEED, 1200, 0 // Velocidade por 1:00
+                    )
+            ))).build();
 
     // Foods
     public static final DeferredItem<Item> VITAL_FRUIT = FOODS.register(
-            "vital_fruit", () -> new ItemNameBlockItem(
+            "vital_fruit", () -> new BlockItem(
                     InitBlocks.VITAL_BUSH.get(),
                     new Item.Properties()
-                            .component(DataComponents.FOOD, VITAL_FRUIT_PROP)));
+                            .food(VITAL_FRUIT_PROP)));
 
     public static final DeferredItem<Item> LAZULI_APPLE = FOODS.register(
             "lazuli_apple", () -> new Item(new Item.Properties()
-                    .component(DataComponents.FOOD, LAZULI_APPLE_PROP)
+                    .food(LAZULI_APPLE_PROP, LAZULI_APPLE_CONSUMABLE)
                     .rarity(Rarity.RARE)));
 }

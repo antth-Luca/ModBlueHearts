@@ -8,27 +8,18 @@ import io.github.antthluca.blue_hearts.init.InitAttachmentTypes;
 import io.github.antthluca.blue_hearts.init.InitItems;
 import io.github.antthluca.blue_hearts.items.relics.custom.PetrifiedBlueBlood;
 import io.github.antthluca.blue_hearts.serializers.custom.BlueBloodData;
-import net.minecraft.core.Holder;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
-import net.minecraft.world.damagesource.CombatRules;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.food.Foods;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
-import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
-import net.neoforged.neoforge.event.entity.living.MobDespawnEvent;
 import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
 import net.neoforged.neoforge.event.level.SleepFinishedTimeEvent;
 
@@ -103,8 +94,8 @@ public class BlueBloodWorks {
                             hurtSound,
                             player.getSoundSource(),
                             1.0F,
-                            (playerLevel.random.nextFloat()
-                                    - playerLevel.random.nextFloat()) * 0.2F + 1.0F
+                            (playerLevel.getRandom().nextFloat()
+                                    - playerLevel.getRandom().nextFloat()) * 0.2F + 1.0F
                     );
                 }
             }
