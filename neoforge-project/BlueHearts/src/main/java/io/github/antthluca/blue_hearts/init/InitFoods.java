@@ -54,7 +54,7 @@ public class InitFoods {
     public static final DeferredItem<BlockItem> VITAL_FRUIT = FOODS.registerSimpleBlockItem(
             "vital_fruit",
             InitBlocks.VITAL_BUSH,
-            new Item.Properties().food(VITAL_FRUIT_PROP));
+            (props) -> props.food(VITAL_FRUIT_PROP));
 
     public static final DeferredItem<Item> LAZULI_APPLE = FOODS.registerItem(
             "lazuli_apple", props -> new Item(props

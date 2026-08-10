@@ -7,6 +7,7 @@ import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.LivingEntity;
@@ -54,6 +55,7 @@ public class ItemBasePotion extends Item {
                 DataComponents.CONSUMABLE,
                 Consumable.builder()
                         .animation(ItemUseAnimation.DRINK)
+                        .sound(SoundEvents.GENERIC_DRINK)
                         .build()
         );
         return props;

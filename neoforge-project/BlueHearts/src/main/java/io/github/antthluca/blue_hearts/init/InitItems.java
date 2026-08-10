@@ -19,7 +19,7 @@ public class InitItems {
             "vital_sap");
 
     public static final DeferredItem<Item> BLUE_EYE = ITEMS.registerSimpleItem(
-            "blue_eye", new Item.Properties().stacksTo(16));
+            "blue_eye", (props) -> props.stacksTo(16));
 
     public static final DeferredItem<Item> MYST_BLUE_GEM = ITEMS.registerItem(
             "myst_blue_gem", MystBlueGem::new);

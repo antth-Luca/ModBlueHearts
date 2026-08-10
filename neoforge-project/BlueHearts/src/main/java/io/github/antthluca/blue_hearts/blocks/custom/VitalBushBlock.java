@@ -1,9 +1,13 @@
 package io.github.antthluca.blue_hearts.blocks.custom;
 
+import io.github.antthluca.blue_hearts.BlueHearts;
 import io.github.antthluca.blue_hearts.init.InitFoods;
 import io.github.antthluca.blue_hearts.tags.BHTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.Identifier;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -12,6 +16,7 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemInstance;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -26,6 +31,7 @@ import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.level.material.PushReaction;
+import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -33,6 +39,9 @@ import net.neoforged.neoforge.common.CommonHooks;
 import org.jetbrains.annotations.Nullable;
 
 public class VitalBushBlock extends SweetBerryBushBlock {
+    public static final ResourceKey<LootTable> VITAL_BUSH_HARVEST_LOOT_TABLE = ResourceKey.create(
+            Registries.LOOT_TABLE, Identifier.fromNamespaceAndPath(BlueHearts.MODID, "harvest/vital_bush"));
+
     public VitalBushBlock(BlockBehaviour.Properties prop) {
         super(prop
             .randomTicks()
@@ -87,13 +96,14 @@ public class VitalBushBlock extends SweetBerryBushBlock {
             if (!flag && player.getItemInHand(player.getUsedItemHand()).is(Items.BONE_MEAL)) {
                 return InteractionResult.PASS;
             } else if (i > 1) {
-                popResource(
-                        level,
-                        pos,
-                        new ItemStack(
-                                InitFoods.VITAL_FRUIT.get(),
-                                (flag ? 1 : 0)
-                        )
+                Block.dropFromBlockInteractLootTable(
+                        (ServerLevel) level,
+                        VITAL_BUSH_HARVEST_LOOT_TABLE,
+                        state,
+                        level.getBlockEntity(pos),
+                        (ItemInstance) null,
+                        player,
+                        (serverlvl, itemStack) -> Block.popResource(serverlvl, pos, itemStack)
                 );
                 level.playSound(
                         null,
