@@ -1,21 +1,26 @@
-![Blue Hearts Logo](https://github.com/antth-Luca/ModBlueHearts/blob/v3.0-mc1.21.1/neoforge-project/BlueHearts/src/main/resources/logo.png)
+![Blue Hearts Logo](https://github.com/antth-Luca/ModBlueHearts/blob/v3.1-mc26.1.2/neoforge-project/BlueHearts/src/main/resources/logo.png)
  
  # Repository: ModBlueHearts
 
-This repository houses the mod Forge “Blue Hearts” for Minecraft. Blue hearts doesn't add much. 
+This repository houses the mod NeoForge “Blue Hearts” for Minecraft. Blue hearts doesn't add much. 
 
 I've always wanted to create a mod for Minecraft and I'm very creative, but everything has to start somehow. Taking advantage of my need to master Java, I created my first simple mod!
 
 ## License
-This project is under license. [See license](https://github.com/antth-Luca/ModBlueHearts/blob/v3.0-mc1.21.1/LICENSE-en-us).
+This project is under license. [See license](https://github.com/antth-Luca/ModBlueHearts/blob/v3.1-mc26.1.2/LICENSE-en-us).
 
 ## Minecraft versions supported
+* 26.1 - 26.1.2;
 * 1.21.1;
 * 1.20 - 1.20.4;
 * 1.19 - 1.19.4;
 * 1.18 - 1.18.2.
 
 ## Version features:
+* v.3.1:
+    * Fix: The Blue Blood Potion and Orange Antidote Potion play the “DRINK” sound when consumed.
+    * Balancing: Recipe for artificial Vital Sap removed.
+    * Mod-friendly: Vital Bush drops resources via the loot table; no longer hard-coded.
 * v.3.0:
     * Improved display of the blue heart bar.
     * Added a sound effect when blue hearts take damage.
