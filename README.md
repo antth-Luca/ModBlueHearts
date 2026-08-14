@@ -2,7 +2,7 @@
  
  # Repository: ModBlueHearts
 
-This repository houses the mod Forge “Blue Hearts” for Minecraft. Blue hearts doesn't add much. 
+This repository houses the mod NeoForge “Blue Hearts” for Minecraft. Blue hearts doesn't add much. 
 
 I've always wanted to create a mod for Minecraft and I'm very creative, but everything has to start somehow. Taking advantage of my need to master Java, I created my first simple mod!
 
