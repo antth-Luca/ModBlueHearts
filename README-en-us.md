@@ -1,15 +1,16 @@
-![Blue Hearts Logo](https://github.com/antth-Luca/ModBlueHearts/blob/v3.0-mc1.21.1/neoforge-project/BlueHearts/src/main/resources/logo.png)
+![Blue Hearts Logo](https://github.com/antth-Luca/ModBlueHearts/blob/v3.0-mc26.1/neoforge-project/BlueHearts/src/main/resources/logo.png)
  
  # Repository: ModBlueHearts
 
-This repository houses the mod Forge “Blue Hearts” for Minecraft. Blue hearts doesn't add much. 
+This repository houses the mod NeoForge “Blue Hearts” for Minecraft. Blue hearts doesn't add much. 
 
 I've always wanted to create a mod for Minecraft and I'm very creative, but everything has to start somehow. Taking advantage of my need to master Java, I created my first simple mod!
 
 ## License
-This project is under license. [See license](https://github.com/antth-Luca/ModBlueHearts/blob/v3.0-mc1.21.1/LICENSE-en-us).
+This project is under license. [See license](https://github.com/antth-Luca/ModBlueHearts/blob/v3.0-mc26.1/LICENSE-en-us).
 
 ## Minecraft versions supported
+* 26.1;
 * 1.21.1;
 * 1.20 - 1.20.4;
 * 1.19 - 1.19.4;
