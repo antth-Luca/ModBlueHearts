@@ -1,7 +1,6 @@
 package io.github.antthluca.blue_hearts.hud;
 
 import io.github.antthluca.blue_hearts.BlueHearts;
-import io.github.antthluca.blue_hearts.init.InitAttachmentTypes;
 import io.github.antthluca.blue_hearts.serializers.custom.BlueBloodData;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;

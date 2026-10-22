@@ -5,18 +5,15 @@ import io.github.antthluca.blue_hearts.init.InitFoods;
 import io.github.antthluca.blue_hearts.tags.BHTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.Identifier;
-import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.InsideBlockEffectApplier;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemInstance;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -25,29 +22,29 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.SweetBerryBushBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
-import net.minecraft.world.level.material.PushReaction;
+import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.level.storage.loot.parameters.LootContextParams;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.neoforged.neoforge.common.CommonHooks;
+import net.minecraftforge.common.ForgeHooks;
 import org.jetbrains.annotations.Nullable;
 
-public class VitalBushBlock extends SweetBerryBushBlock {
-    public static final ResourceKey<LootTable> VITAL_BUSH_HARVEST_LOOT_TABLE = ResourceKey.create(
-            Registries.LOOT_TABLE, Identifier.fromNamespaceAndPath(BlueHearts.MODID, "harvest/vital_bush"));
+import java.util.List;
 
-    public VitalBushBlock(BlockBehaviour.Properties prop) {
-        super(prop
-            .randomTicks()
-            .sound(SoundType.SWEET_BERRY_BUSH)
-            .noCollision()
-            .pushReaction(PushReaction.DESTROY));
+public class VitalBushBlock extends SweetBerryBushBlock {
+    public static final ResourceLocation VITAL_BUSH_HARVEST_LOOT_TABLE = ResourceLocation.fromNamespaceAndPath(
+        BlueHearts.MODID, "harvest/vital_bush");
+
+    public VitalBushBlock() {
+        super(BlockBehaviour.Properties.copy(Blocks.SWEET_BERRY_BUSH));
     }
 
     @Override
@@ -65,46 +62,50 @@ public class VitalBushBlock extends SweetBerryBushBlock {
     }
 
     @Override
-    protected boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
+    public boolean canSurvive(BlockState state, LevelReader level, BlockPos pos) {
         BlockState aboveBlockState = level.getBlockState(pos.above());
         return aboveBlockState.is(BHTags.VALID_BLOCKS_FOR_VITAL_BUSH);
     }
 
     @Override
-    protected void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
+    public void randomTick(BlockState state, ServerLevel level, BlockPos pos, RandomSource random) {
         int i = state.getValue(AGE);
         if (i < 3
             && level.getRawBrightness(pos.below(), 0) >= 9
-            && CommonHooks.canCropGrow(level, pos, state, random.nextInt(5) == 0)) {
-                BlockState blockState = state.setValue(AGE, i + 1);
-                level.setBlock(pos, blockState, 2);
-                level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(blockState));
-                CommonHooks.fireCropGrowPost(level, pos, state);
+                && ForgeHooks.onCropsGrowPre(level, pos, state, random.nextInt(5) == 0)) {
+                    BlockState blockState = state.setValue(AGE, i + 1);
+                    level.setBlock(pos, blockState, 2);
+                    level.gameEvent(GameEvent.BLOCK_CHANGE, pos, GameEvent.Context.of(blockState));
+                    ForgeHooks.onCropsGrowPost(level, pos, state);
         }
     }
 
     @Override
-    protected void entityInside(BlockState state, Level level, BlockPos pos, Entity entity, InsideBlockEffectApplier effectApplier, boolean isPrecise) {
+    public void entityInside(BlockState p_57270_, Level p_57271_, BlockPos p_57272_, Entity p_57273_) {
         return;
     }
 
     @Override
-    protected InteractionResult useWithoutItem(BlockState state, Level level, BlockPos pos, Player player, BlockHitResult hitResult) {
+    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult hitResult) {
         if (!level.isClientSide()) {
             int i = state.getValue(AGE);
             boolean flag = i == 3;
             if (!flag && player.getItemInHand(player.getUsedItemHand()).is(Items.BONE_MEAL)) {
                 return InteractionResult.PASS;
             } else if (i > 1) {
-                Block.dropFromBlockInteractLootTable(
-                        (ServerLevel) level,
-                        VITAL_BUSH_HARVEST_LOOT_TABLE,
-                        state,
-                        level.getBlockEntity(pos),
-                        (ItemInstance) null,
-                        player,
-                        (serverlvl, itemStack) -> Block.popResource(serverlvl, pos, itemStack)
-                );
+                ServerLevel serverLevel = (ServerLevel) level;
+                LootParams lootParams = new LootParams.Builder(serverLevel)
+                        .withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(pos))
+                        .withParameter(LootContextParams.TOOL, player.getItemInHand(hand))
+                        .withOptionalParameter(LootContextParams.THIS_ENTITY, player)
+                        .withOptionalParameter(LootContextParams.BLOCK_ENTITY, level.getBlockEntity(pos))
+                        .create(LootContextParamSets.BLOCK);
+                LootTable lootTable = serverLevel.getServer().getLootData().getLootTable(VITAL_BUSH_HARVEST_LOOT_TABLE);
+
+                List<ItemStack> drops = lootTable.getRandomItems(lootParams);
+                for (ItemStack drop : drops) {
+                    Block.popResource(serverLevel, pos, drop);
+                }
                 level.playSound(
                         null,
                         pos,
@@ -125,7 +126,7 @@ public class VitalBushBlock extends SweetBerryBushBlock {
     }
 
     @Override
-    protected ItemStack getCloneItemStack(LevelReader level, BlockPos pos, BlockState state, boolean includeData) {
+    public ItemStack getCloneItemStack(BlockGetter p_57256_, BlockPos p_57257_, BlockState p_57258_) {
         return new ItemStack(InitFoods.VITAL_FRUIT.get());
     }
 

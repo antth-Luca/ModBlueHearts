@@ -10,8 +10,8 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.Level;
 
 public class OrangeAntidotePotion extends ItemBasePotion {
-    public OrangeAntidotePotion(Properties props) {
-        super(setDefaultProperties(props)
+    public OrangeAntidotePotion() {
+        super(setDefaultProperties(new Properties())
                 .stacksTo(1)
                 .rarity(Rarity.RARE));
     }
@@ -19,7 +19,7 @@ public class OrangeAntidotePotion extends ItemBasePotion {
     @Override
     public void onConsumed(Level worldIn, Player player, ItemStack potion) {
         if (player instanceof ServerPlayer) {
-            player.addEffect(new MobEffectInstance(InitEffects.ORANGE_ANTIDOTE, 1, 0));
+            player.addEffect(new MobEffectInstance(InitEffects.ORANGE_ANTIDOTE.get(), 1, 0));
         }
     }
 }

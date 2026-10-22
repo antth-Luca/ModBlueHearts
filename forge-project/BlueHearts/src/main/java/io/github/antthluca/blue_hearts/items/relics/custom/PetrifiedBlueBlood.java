@@ -19,8 +19,8 @@ public class PetrifiedBlueBlood extends Item implements ICurioItem {
     public static final float ARMOR = 6.0F;
     public static final float TOUGHNESS_ARMOR = 2.0F;
 
-    public PetrifiedBlueBlood(Properties props) {
-        super(props
+    public PetrifiedBlueBlood() {
+        super(new Properties()
                 .stacksTo(1)
                 .rarity(Rarity.RARE));
     }

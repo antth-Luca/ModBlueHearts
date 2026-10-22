@@ -1,8 +1,6 @@
 package io.github.antthluca.blue_hearts.effects;
 
-import io.github.antthluca.blue_hearts.handlers.AttachmentsHandler;
-import io.github.antthluca.blue_hearts.init.InitAttachmentTypes;
-import net.minecraft.server.level.ServerLevel;
+import io.github.antthluca.blue_hearts.handlers.CapabilitesHandler;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
@@ -14,21 +12,17 @@ public class BlueBloodEffect extends MobEffect {
     }
 
     @Override
-    public boolean applyEffectTick(ServerLevel serverLevel, LivingEntity mob, int amplifier) {
-        if (mob instanceof Player player) {
-            AttachmentsHandler.setAndSyncBlueBlood(
-                    player,
-                    player.getData(InitAttachmentTypes.PLAYER_BLUE_BLOOD)
-                            .addMaxBlueBlood(amplifier + 1)
-                            .addBlueBlood(amplifier + 1)
-            );
+    public void applyEffectTick(LivingEntity entity, int amplifier) {
+        if (entity instanceof Player player) {
+            CapabilitesHandler.setAndSyncBlueBlood(player, bb -> {
+                bb.addMAXBlueBlood(amplifier + 1);
+                bb.addBlueBlood(amplifier + 1);
+            });
         }
-
-        return true;
     }
 
     @Override
-    public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
+    public boolean isDurationEffectTick(int duration, int amplifier) {
         return duration > 0;
     }
 }

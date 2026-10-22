@@ -4,8 +4,7 @@ import com.mojang.brigadier.CommandDispatcher;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import io.github.antthluca.blue_hearts.BlueHearts;
-import io.github.antthluca.blue_hearts.handlers.AttachmentsHandler;
-import io.github.antthluca.blue_hearts.init.InitAttachmentTypes;
+import io.github.antthluca.blue_hearts.handlers.CapabilitesHandler;
 import io.github.antthluca.blue_hearts.serializers.custom.BlueBloodData;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
@@ -71,7 +70,7 @@ public class BHCommands {
             var targetPlayers = EntityArgument.getPlayers(ctx, "targets");
 
             targetPlayers.forEach(target -> {
-                AttachmentsHandler.setAndSyncBlueBlood(
+                CapabilitesHandler.setAndSyncBlueBlood(
                         target,
                         target.getData(InitAttachmentTypes.PLAYER_BLUE_BLOOD)
                                 .addMaxBlueBlood(adjustedHearts)
@@ -112,7 +111,7 @@ public class BHCommands {
             var targetPlayers = EntityArgument.getPlayers(ctx, "targets");
 
             targetPlayers.forEach(target -> {
-                AttachmentsHandler.setAndSyncBlueBlood(
+                CapabilitesHandler.setAndSyncBlueBlood(
                         target,
                         target.getData(InitAttachmentTypes.PLAYER_BLUE_BLOOD)
                                 .subMaxBlueBlood(adjustedHearts)
@@ -152,7 +151,7 @@ public class BHCommands {
             var targetPlayers = EntityArgument.getPlayers(ctx, "targets");
 
             targetPlayers.forEach(target -> {
-                AttachmentsHandler.setAndSyncBlueBlood(
+                CapabilitesHandler.setAndSyncBlueBlood(
                         target,
                         new BlueBloodData(adjustedHearts, adjustedHearts)
                 );

@@ -1,14 +1,14 @@
 package io.github.antthluca.blue_hearts.config;
 
-import net.neoforged.neoforge.common.ModConfigSpec;
+import net.minecraftforge.common.ForgeConfigSpec;
 
 public class BHCommonConfig {
-    public static final ModConfigSpec SPEC;
+    public static final ForgeConfigSpec SPEC;
 
-    public static final ModConfigSpec.ConfigValue<Integer> INITIAL_BLUE_HEARTS_PER_PLAYER;
+    public static final ForgeConfigSpec.ConfigValue<Integer> INITIAL_BLUE_HEARTS_PER_PLAYER;
 
     static {
-        ModConfigSpec.Builder BUILDER = new ModConfigSpec.Builder();
+        ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
 
         BUILDER.push("Configs for Blue Hearts");
 

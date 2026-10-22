@@ -10,8 +10,8 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.level.Level;
 
 public class BlueBloodPotion extends ItemBasePotion {
-    public BlueBloodPotion(Properties props) {
-        super(setDefaultProperties(props)
+    public BlueBloodPotion() {
+        super(setDefaultProperties(new Properties())
                 .stacksTo(1)
                 .rarity(Rarity.RARE));
     }
@@ -19,7 +19,7 @@ public class BlueBloodPotion extends ItemBasePotion {
     @Override
     public void onConsumed(Level worldIn, Player player, ItemStack potion) {
         if (player instanceof ServerPlayer) {
-            player.addEffect(new MobEffectInstance(InitEffects.BLUE_BLOOD, 1, 0));
+            player.addEffect(new MobEffectInstance(InitEffects.BLUE_BLOOD.get(), 1, 0));
         }
     }
 }

@@ -1,7 +1,6 @@
 package io.github.antthluca.blue_hearts.effects;
 
-import io.github.antthluca.blue_hearts.handlers.AttachmentsHandler;
-import io.github.antthluca.blue_hearts.init.InitAttachmentTypes;
+import io.github.antthluca.blue_hearts.handlers.CapabilitesHandler;
 import io.github.antthluca.blue_hearts.serializers.custom.BlueBloodData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
@@ -23,7 +22,7 @@ public class OrangeAntidoteEffect extends MobEffect {
                 DamageSource magic = player.level().damageSources().magic();
                 player.hurt(magic, 19f);  // Dano de 9.5 corações
             } else {  // Se tiver, reduz para zero
-                AttachmentsHandler.setAndSyncBlueBlood(
+                CapabilitesHandler.setAndSyncBlueBlood(
                         player,
                         currentData
                                 .setMaxBlueBlood(0)

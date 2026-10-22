@@ -1,8 +1,7 @@
 package io.github.antthluca.blue_hearts.items.relics.custom;
 
-import io.github.antthluca.blue_hearts.handlers.AttachmentsHandler;
+import io.github.antthluca.blue_hearts.handlers.CapabilitesHandler;
 import io.github.antthluca.blue_hearts.handlers.CurioItemsHandler;
-import io.github.antthluca.blue_hearts.init.InitAttachmentTypes;
 import io.github.antthluca.blue_hearts.init.InitItems;
 import io.github.antthluca.blue_hearts.serializers.custom.BlueBloodData;
 import net.minecraft.ChatFormatting;
@@ -23,8 +22,8 @@ import java.util.function.Consumer;
 public class HeartMarblemaroon extends Item implements ICurioItem {
     public static final int CONVERSION_HEARTS = 10;
 
-    public HeartMarblemaroon(Properties props) {
-        super(props
+    public HeartMarblemaroon() {
+        super(new Properties()
                 .stacksTo(1)
                 .rarity(Rarity.EPIC));
     }
@@ -72,7 +71,7 @@ public class HeartMarblemaroon extends Item implements ICurioItem {
         ICurioItem.super.onEquip(slotContext, prevStack, stack);
 
         if (slotContext.entity() instanceof Player player) {
-            AttachmentsHandler.setAndSyncBlueBlood(
+            CapabilitesHandler.setAndSyncBlueBlood(
                     player,
                     player.getData(InitAttachmentTypes.PLAYER_BLUE_BLOOD)
                             .addMaxBlueBlood(CONVERSION_HEARTS, player)
@@ -86,7 +85,7 @@ public class HeartMarblemaroon extends Item implements ICurioItem {
         ICurioItem.super.onUnequip(slotContext, newStack, stack);
 
         if (slotContext.entity() instanceof Player player) {
-            AttachmentsHandler.setAndSyncBlueBlood(
+            CapabilitesHandler.setAndSyncBlueBlood(
                     player,
                     player.getData(InitAttachmentTypes.PLAYER_BLUE_BLOOD)
                             .subMaxBlueBlood(CONVERSION_HEARTS)

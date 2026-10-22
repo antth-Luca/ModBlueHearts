@@ -1,8 +1,7 @@
 package io.github.antthluca.blue_hearts.items.relics.custom;
 
-import io.github.antthluca.blue_hearts.handlers.AttachmentsHandler;
+import io.github.antthluca.blue_hearts.handlers.CapabilitesHandler;
 import io.github.antthluca.blue_hearts.handlers.CurioItemsHandler;
-import io.github.antthluca.blue_hearts.init.InitAttachmentTypes;
 import io.github.antthluca.blue_hearts.init.InitItems;
 import io.github.antthluca.blue_hearts.serializers.custom.BlueBloodData;
 import net.minecraft.ChatFormatting;
@@ -20,8 +19,8 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 import java.util.function.Consumer;
 
 public class CryingCharm extends Item implements ICurioItem {
-    public CryingCharm(Properties props) {
-        super(props
+    public CryingCharm() {
+        super(new Properties()
                 .stacksTo(1)
                 .rarity(Rarity.RARE));
     }
@@ -58,7 +57,7 @@ public class CryingCharm extends Item implements ICurioItem {
                 if (currentData.isMaximum()) return;  // Já está no máximo
 
                 // Incrementar Blue Blood em 0.5
-                AttachmentsHandler.setAndSyncBlueBlood(
+                CapabilitesHandler.setAndSyncBlueBlood(
                         player,
                         currentData.addBlueBlood(0.5F)
                 );

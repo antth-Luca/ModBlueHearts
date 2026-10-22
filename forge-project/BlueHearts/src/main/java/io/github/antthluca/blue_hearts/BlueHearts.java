@@ -4,11 +4,9 @@ import io.github.antthluca.blue_hearts.config.BHCommonConfig;
 import io.github.antthluca.blue_hearts.init.*;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.ModContainer;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.neoforged.bus.api.IEventBus;
-import net.neoforged.fml.ModContainer;
-import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.config.ModConfig;
+import net.minecraftforge.fml.config.ModConfig;
 
 @Mod(BlueHearts.MODID)
 public class BlueHearts {
@@ -16,7 +14,6 @@ public class BlueHearts {
 
     public BlueHearts(IEventBus bus, ModContainer container) {
         // Init
-        InitAttachmentTypes.TYPES.register(bus);
         InitEffects.MOB_EFFECTS.register(bus);
         InitFoods.FOODS.register(bus);
         InitItems.ITEMS.register(bus);
@@ -24,6 +21,6 @@ public class BlueHearts {
         InitCreativeTabs.TABS.register(bus);
 
         // Config
-        container.registerConfig(ModConfig.Type.COMMON, BHCommonConfig.SPEC, "bluehearts-common.toml");
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, BHCommonConfig.SPEC, "bluehearts-common.toml");
     }
 }

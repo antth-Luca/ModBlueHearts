@@ -18,8 +18,9 @@ import net.minecraft.world.level.Level;
 import java.util.function.Consumer;
 
 public class MystBlueGem extends Item {
-    public MystBlueGem(Properties props) {
-        super(props.stacksTo(1));
+    public MystBlueGem() {
+        super(new Properties()
+                .stacksTo(1));
     }
 
     @Override

@@ -6,58 +6,52 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.item.Rarity;
-import net.minecraft.world.item.component.Consumable;
-import net.minecraft.world.item.component.Consumables;
-import net.minecraft.world.item.consume_effects.ApplyStatusEffectsConsumeEffect;
-import net.neoforged.neoforge.registries.DeferredItem;
-import net.neoforged.neoforge.registries.DeferredRegister;
-
-import java.util.List;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public class InitFoods {
-    public static final DeferredRegister.Items FOODS = DeferredRegister.createItems(BlueHearts.MODID);
+    public static final DeferredRegister<Item> FOODS = DeferredRegister.create(
+        ForgeRegistries.ITEMS, BlueHearts.MODID);
 
     // Food Properties
     private static final FoodProperties VITAL_FRUIT_PROP = new FoodProperties.Builder()
             .nutrition(2)
-            .saturationModifier(0.2F)
+            .saturationMod(0.2F)
             .build();
 
     private static final FoodProperties LAZULI_APPLE_PROP = new FoodProperties.Builder()
             .nutrition(12)
-            .saturationModifier(19.2f)
-            .alwaysEdible()
+            .saturationMod(19.2f)
+            .alwaysEat()
+            .effect(() -> new MobEffectInstance(
+                MobEffects.ABSORPTION, 1800, 1 // Absorção II por 1:30
+            ), 1.0F)
+            .effect(() -> new MobEffectInstance(
+                MobEffects.REGENERATION, 200, 1 // Regeneração II por 0:10
+            ), 1.0F)
+            .effect(() -> new MobEffectInstance(
+                MobEffects.HEAL, 1, 2 // Cura III
+            ), 1.0F)
+            .effect(() -> new MobEffectInstance(
+                MobEffects.DAMAGE_BOOST, 1200, 0 // Força por 1:00
+            ), 1.0F)
+            .effect(() -> new MobEffectInstance(
+                MobEffects.MOVEMENT_SPEED, 1200, 0 // Velocidade por 1:00
+            ), 1.0F)
             .build();
 
-    // Consumables
-    private static final Consumable LAZULI_APPLE_CONSUMABLE = Consumables.defaultFood()
-            .onConsume(new ApplyStatusEffectsConsumeEffect(List.of(
-                    new MobEffectInstance(
-                            MobEffects.ABSORPTION, 1800, 1 // Absorção II por 1:30
-                    ),
-                    new MobEffectInstance(
-                            MobEffects.REGENERATION, 200, 1 // Regeneração II por 0:10
-                    ),
-                    new MobEffectInstance(
-                            MobEffects.INSTANT_HEALTH, 1, 2 // Cura III
-                    ),
-                    new MobEffectInstance(
-                            MobEffects.STRENGTH, 1200, 0 // Força por 1:00
-                    ),
-                    new MobEffectInstance(
-                            MobEffects.SPEED, 1200, 0 // Velocidade por 1:00
-                    )
-            ))).build();
-
     // Foods
-    public static final DeferredItem<BlockItem> VITAL_FRUIT = FOODS.registerSimpleBlockItem(
-            "vital_fruit",
-            InitBlocks.VITAL_BUSH,
-            (props) -> props.food(VITAL_FRUIT_PROP));
+    public static final RegistryObject<BlockItem> VITAL_FRUIT = FOODS.register(
+        "vital_fruit", () -> new ItemNameBlockItem(
+            InitBlocks.VITAL_BUSH.get(),
+            new Item.Properties()
+                    .food(VITAL_FRUIT_PROP)));
 
-    public static final DeferredItem<Item> LAZULI_APPLE = FOODS.registerItem(
-            "lazuli_apple", props -> new Item(props
-                    .food(LAZULI_APPLE_PROP, LAZULI_APPLE_CONSUMABLE)
-                    .rarity(Rarity.RARE)));
+    public static final RegistryObject<Item> LAZULI_APPLE = FOODS.register(
+        "lazuli_apple", () -> new Item(new Item.Properties()
+                .food(LAZULI_APPLE_PROP)
+                .rarity(Rarity.RARE)));
 }

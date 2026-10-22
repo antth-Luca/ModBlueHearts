@@ -1,35 +1,52 @@
 package io.github.antthluca.blue_hearts.events;
 
 import io.github.antthluca.blue_hearts.BlueHearts;
-import io.github.antthluca.blue_hearts.handlers.AttachmentsHandler;
+import io.github.antthluca.blue_hearts.capabilities.BHCapabilities;
+import io.github.antthluca.blue_hearts.capabilities.PlayerBlueBlood;
+import io.github.antthluca.blue_hearts.capabilities.PlayerBlueBloodProvider;
+import io.github.antthluca.blue_hearts.handlers.CapabilitesHandler;
 import io.github.antthluca.blue_hearts.handlers.CombatHandler;
 import io.github.antthluca.blue_hearts.handlers.CurioItemsHandler;
-import io.github.antthluca.blue_hearts.init.InitAttachmentTypes;
 import io.github.antthluca.blue_hearts.init.InitItems;
 import io.github.antthluca.blue_hearts.items.relics.custom.PetrifiedBlueBlood;
 import io.github.antthluca.blue_hearts.serializers.custom.BlueBloodData;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.neoforged.bus.api.SubscribeEvent;
-import net.neoforged.fml.common.EventBusSubscriber;
-import net.neoforged.neoforge.event.entity.EntityJoinLevelEvent;
-import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
-import net.neoforged.neoforge.event.entity.living.MobEffectEvent;
-import net.neoforged.neoforge.event.level.SleepFinishedTimeEvent;
+import net.minecraftforge.common.capabilities.RegisterCapabilitiesEvent;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
-@EventBusSubscriber(modid = BlueHearts.MODID)
+@Mod.EventBusSubscriber(modid = BlueHearts.MODID)
 public class BlueBloodWorks {
+    @SubscribeEvent
+    public static void onRegisterCapabilities(RegisterCapabilitiesEvent event) {
+        event.register(PlayerBlueBlood.class);
+    }
+
+    @SubscribeEvent
+    public static void onAttachCapabilitiesPlayer(AttachCapabilitiesEvent<Entity> event) {
+        if (event.getObject() instanceof Player) {
+            if (!event.getObject().getCapability(BHCapabilities.PLAYER_BLUE_BLOOD).isPresent()) {
+                event.addCapability(new ResourceLocation(BlueHearts.MODID, "properties"), new PlayerBlueBloodProvider());
+            }
+        }
+    }
+
     @SubscribeEvent
     public static void onPlayerJoinWorld(EntityJoinLevelEvent event) {
         if (!event.getLevel().isClientSide()) {
             if (event.getEntity() instanceof ServerPlayer serverPlayer) {
-                AttachmentsHandler.syncBlueBlood(serverPlayer);
+                CapabilitesHandler.syncBlueBlood(serverPlayer);
             }
         }
     }
@@ -59,13 +76,13 @@ public class BlueBloodWorks {
                 DamageSource source = event.getSource();
 
                 if (adjustedDamage < currentBlueBlood) {
-                    AttachmentsHandler.setAndSyncBlueBlood(
+                    CapabilitesHandler.setAndSyncBlueBlood(
                             player,
                             currentData.subBlueBlood(adjustedDamage)
                     );
                     event.setCanceled(true);
                 } else {
-                    AttachmentsHandler.setAndSyncBlueBlood(
+                    CapabilitesHandler.setAndSyncBlueBlood(
                             player,
                             currentData.setBlueBlood(0)
                     );
@@ -110,7 +127,7 @@ public class BlueBloodWorks {
                 BlueBloodData newData = currentData.setBlueBlood(currentData.getMaxBlueBlood());
 
                 serverPlayer.setData(InitAttachmentTypes.PLAYER_BLUE_BLOOD, newData);
-                AttachmentsHandler.syncBlueBlood(serverPlayer);
+                CapabilitesHandler.syncBlueBlood(serverPlayer);
             });
         }
     }
@@ -130,12 +147,12 @@ public class BlueBloodWorks {
 
                 if (currentBlueBlood + yellowHearts > maxBlueBlood) {
                     player.setAbsorptionAmount((yellowHearts - (maxBlueBlood - currentBlueBlood)) / 2);
-                    AttachmentsHandler.setAndSyncBlueBlood(
+                    CapabilitesHandler.setAndSyncBlueBlood(
                             player,
                             currentData.setBlueBlood(maxBlueBlood)
                     );
                 } else {
-                    AttachmentsHandler.setAndSyncBlueBlood(
+                    CapabilitesHandler.setAndSyncBlueBlood(
                             player,
                             currentData.addBlueBlood(yellowHearts)
                     );

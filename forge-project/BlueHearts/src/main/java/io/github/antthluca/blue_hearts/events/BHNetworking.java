@@ -1,7 +1,6 @@
 package io.github.antthluca.blue_hearts.events;
 
 import io.github.antthluca.blue_hearts.BlueHearts;
-import io.github.antthluca.blue_hearts.init.InitAttachmentTypes;
 import io.github.antthluca.blue_hearts.networking.packets.BlueBloodDataSyncPayload;
 import net.minecraft.client.Minecraft;
 import net.neoforged.bus.api.SubscribeEvent;

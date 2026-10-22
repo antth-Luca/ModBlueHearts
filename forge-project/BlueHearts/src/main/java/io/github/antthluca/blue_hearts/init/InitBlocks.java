@@ -3,13 +3,15 @@ package io.github.antthluca.blue_hearts.init;
 import io.github.antthluca.blue_hearts.BlueHearts;
 import io.github.antthluca.blue_hearts.blocks.custom.VitalBushBlock;
 import net.minecraft.world.level.block.Block;
-import net.neoforged.neoforge.registries.DeferredBlock;
-import net.neoforged.neoforge.registries.DeferredRegister;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public class InitBlocks {
-    public static final DeferredRegister.Blocks BLOCKS = DeferredRegister.createBlocks(BlueHearts.MODID);
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(
+        ForgeRegistries.BLOCKS, BlueHearts.MODID);
 
     // Blocks
-    public static final DeferredBlock<Block> VITAL_BUSH = BLOCKS.registerBlock(
-            "vital_bush", VitalBushBlock::new);
+    public static final RegistryObject<Block> VITAL_BUSH = BLOCKS.register(
+        "vital_bush", VitalBushBlock::new);
 }
