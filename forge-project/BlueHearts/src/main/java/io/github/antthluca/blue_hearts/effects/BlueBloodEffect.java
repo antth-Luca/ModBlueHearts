@@ -15,7 +15,7 @@ public class BlueBloodEffect extends MobEffect {
     public void applyEffectTick(LivingEntity entity, int amplifier) {
         if (entity instanceof Player player) {
             CapabilitesHandler.setAndSyncBlueBlood(player, bb -> {
-                bb.addMAXBlueBlood(amplifier + 1);
+                bb.addMaxBlueBlood(amplifier + 1);
                 bb.addBlueBlood(amplifier + 1);
             });
         }

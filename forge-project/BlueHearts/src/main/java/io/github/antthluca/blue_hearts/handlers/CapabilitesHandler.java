@@ -15,7 +15,7 @@ public class CapabilitesHandler {
         PlayerBlueBlood data = new PlayerBlueBlood();
         int initialHearts = BHCommonConfig.INITIAL_BLUE_HEARTS_PER_PLAYER.get();
 
-        data.setMAXBlueBlood(initialHearts);
+        data.setMaxBlueBlood(initialHearts);
         data.setBlueBlood(initialHearts);
 
         return data;

@@ -37,6 +37,9 @@ public class BlueHearts {
 
     private void setup(final FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
+            // Networking
+            BHMessages.register();
+
             // Brewing Recipes
             BrewingRecipeRegistry.addRecipe(new BetterBrewingRecipe(
                 Potions.REGENERATION,

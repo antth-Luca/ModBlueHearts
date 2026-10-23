@@ -75,7 +75,7 @@ public class HeartMarblemaroon extends Item implements ICurioItem {
 
         if (slotContext.entity() instanceof Player player) {
             CapabilitesHandler.setAndSyncBlueBlood(player, bb -> {
-                bb.addMAXBlueBlood(CONVERSION_HEARTS, player);
+                bb.addMaxBlueBlood(CONVERSION_HEARTS, player);
                 bb.addBlueBlood(CONVERSION_HEARTS);
             });
         }
@@ -87,7 +87,7 @@ public class HeartMarblemaroon extends Item implements ICurioItem {
 
         if (slotContext.entity() instanceof Player player) {
             CapabilitesHandler.setAndSyncBlueBlood(player, bb -> {
-                bb.subMAXBlueBlood(CONVERSION_HEARTS);
+                bb.subMaxBlueBlood(CONVERSION_HEARTS);
                 bb.subBlueBlood(CONVERSION_HEARTS);
             });
         }
