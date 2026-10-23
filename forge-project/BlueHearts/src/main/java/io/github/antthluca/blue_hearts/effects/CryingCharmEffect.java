@@ -2,7 +2,6 @@ package io.github.antthluca.blue_hearts.effects;
 
 import io.github.antthluca.blue_hearts.init.InitEffects;
 import io.github.antthluca.blue_hearts.init.InitItems;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -16,11 +15,11 @@ public class CryingCharmEffect extends MobEffect {
     }
 
     @Override
-    public boolean applyEffectTick(ServerLevel serverLevel, LivingEntity mob, int amplifier) {
-        if (mob instanceof Player player) {
-            if (player.getHealth() > 1.0f) {
-                DamageSource magic = player.level().damageSources().magic();
-                player.hurt(magic, 1.0f);
+    public void applyEffectTick(LivingEntity entity, int amplifier) {
+        if (entity instanceof Player player) {
+            if (player.getHealth() > 1.0F) {
+                DamageSource source = player.level().damageSources().magic();
+                player.hurt(source, 1.0F);
             } else {
                 for (int i = 0; i < player.getInventory().getContainerSize(); i++) {
                     ItemStack stack = player.getInventory().getItem(i);
@@ -32,15 +31,14 @@ public class CryingCharmEffect extends MobEffect {
                 }
 
                 // Remove o efeito após a troca
-                player.removeEffect(InitEffects.CRYING_CHARM);
+                player.removeEffect(InitEffects.CRYING_CHARM.get());
             }
         }
-
-        return true;
     }
 
     @Override
-    public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
+    public boolean isDurationEffectTick(int duration, int amplifier) {
+        // Aplica o efeito a cada tick
         return true;
     }
 }

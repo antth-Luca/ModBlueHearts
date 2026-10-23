@@ -1,19 +1,18 @@
 package io.github.antthluca.blue_hearts.recipes;
 
 import net.minecraft.core.Holder;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.alchemy.Potion;
-import net.minecraft.world.item.alchemy.PotionContents;
-import net.neoforged.neoforge.common.brewing.IBrewingRecipe;
+import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraftforge.common.brewing.IBrewingRecipe;
 
 public class BetterBrewingRecipe implements IBrewingRecipe {
-    private final Holder<Potion> input;
+    private final Potion input;
     private final Item ingredient;
     private final Item output;
 
-    public BetterBrewingRecipe(Holder<Potion> input, Item ingredient, Item output) {
+    public BetterBrewingRecipe(Potion input, Item ingredient, Item output) {
         this.input = input;
         this.ingredient = ingredient;
         this.output = output;
@@ -21,15 +20,7 @@ public class BetterBrewingRecipe implements IBrewingRecipe {
 
     @Override
     public boolean isInput(ItemStack input) {
-        if (input == null || input.isEmpty()) return false;
-
-        PotionContents contents = input.get(DataComponents.POTION_CONTENTS);
-        if (contents != null) {
-            Holder<Potion> potion = contents.potion().get();
-            return potion.is(this.input);
-        }
-
-        return false;
+        return input != null && PotionUtils.getPotion(input) == this.input;
     }
 
     @Override

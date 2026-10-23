@@ -12,7 +12,6 @@ import net.minecraft.world.level.Level;
 public class BlueBloodPotion extends ItemBasePotion {
     public BlueBloodPotion() {
         super(setDefaultProperties(new Properties())
-                .stacksTo(1)
                 .rarity(Rarity.RARE));
     }
 

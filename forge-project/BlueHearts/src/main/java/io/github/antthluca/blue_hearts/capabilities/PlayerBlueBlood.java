@@ -32,6 +32,10 @@ public class PlayerBlueBlood {
     }
 
     // Max Blue Blood
+    public boolean isMaximum() {
+        return blue_blood >= MAX_BLUE_BLOOD;
+    }
+
     public float getMAXBlueBlood() {
         return MAX_BLUE_BLOOD;
     }

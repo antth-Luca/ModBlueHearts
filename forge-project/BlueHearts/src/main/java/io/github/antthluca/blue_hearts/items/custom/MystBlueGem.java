@@ -2,20 +2,20 @@ package io.github.antthluca.blue_hearts.items.custom;
 
 import io.github.antthluca.blue_hearts.init.InitEffects;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import net.minecraft.world.item.component.TooltipDisplay;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 
-import java.util.function.Consumer;
+import java.util.List;
 
 public class MystBlueGem extends Item {
     public MystBlueGem() {
@@ -24,34 +24,33 @@ public class MystBlueGem extends Item {
     }
 
     @Override
-    public void appendHoverText(ItemStack itemStack, TooltipContext context, TooltipDisplay display, Consumer<Component> builder, TooltipFlag tooltipFlag) {
-        super.appendHoverText(itemStack, context, display, builder, tooltipFlag);
-        if (Minecraft.getInstance().hasShiftDown()) {
-            builder.accept(
-                    Component.translatable("item.blue_hearts.myst_blue_gem.tooltip")
-                            .withStyle(ChatFormatting.GRAY));
+    public void appendHoverText(ItemStack itemStack, Level level, List<Component> tooltip, TooltipFlag flagIn) {
+        super.appendHoverText(itemStack, level, tooltip, flagIn);
+        if (Screen.hasShiftDown()) {
+            tooltip.add(
+                Component.translatable("item.blue_hearts.myst_blue_gem.tooltip")
+                        .withStyle(ChatFormatting.GRAY));
         } else {
-            builder.accept(
-                    Component.translatable("item.blue_hearts.common_tooltip")
-                            .withStyle(ChatFormatting.GRAY));
-
+            tooltip.add(
+                Component.translatable("item.blue_hearts.common_tooltip")
+                        .withStyle(ChatFormatting.GRAY));
         }
     }
 
     @Override
-    public InteractionResult use(Level level, Player player, InteractionHand hand) {
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         if (!level.isClientSide()) {
-            player.addEffect(new MobEffectInstance(InitEffects.CRYING_CHARM, -1, 0));
-            return InteractionResult.SUCCESS;
+            player.addEffect(new MobEffectInstance(InitEffects.CRYING_CHARM.get(), -1, 0));
+            return InteractionResultHolder.success(player.getItemInHand(hand));
         }
 
-        return InteractionResult.PASS;
+        return InteractionResultHolder.pass(player.getItemInHand(hand));
     }
 
     @Override
-    public InteractionResult useOn(UseOnContext context) {
-        if (!context.getLevel().isClientSide()) {
-            context.getPlayer().addEffect(new MobEffectInstance(InitEffects.CRYING_CHARM, -1, 0));
+    public InteractionResult useOn(UseOnContext ctx) {
+        if (!ctx.getLevel().isClientSide()) {
+            ctx.getPlayer().addEffect(new MobEffectInstance(InitEffects.CRYING_CHARM.get(), -1, 0));
             return InteractionResult.SUCCESS;
         }
 

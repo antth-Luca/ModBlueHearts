@@ -1,8 +1,6 @@
 package io.github.antthluca.blue_hearts.effects;
 
 import io.github.antthluca.blue_hearts.handlers.CapabilitesHandler;
-import io.github.antthluca.blue_hearts.serializers.custom.BlueBloodData;
-import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -15,27 +13,26 @@ public class OrangeAntidoteEffect extends MobEffect {
     }
 
     @Override
-    public boolean applyEffectTick(ServerLevel serverLevel, LivingEntity mob, int amplifier) {
-        if (mob instanceof Player player) {
-            BlueBloodData currentData = player.getData(InitAttachmentTypes.PLAYER_BLUE_BLOOD);
-            if (currentData.getBlueBlood() == 0) {  // Se o player não tiver Blue Blood, recebe dano
-                DamageSource magic = player.level().damageSources().magic();
-                player.hurt(magic, 19f);  // Dano de 9.5 corações
-            } else {  // Se tiver, reduz para zero
-                CapabilitesHandler.setAndSyncBlueBlood(
-                        player,
-                        currentData
-                                .setMaxBlueBlood(0)
-                                .setBlueBlood(0)
-                );
-            }
-        }
+    public void applyEffectTick(LivingEntity entity, int amplifier) {
+        if (entity instanceof Player player) {
+            CapabilitesHandler.getBlueBlood(player).ifPresent(bb -> {
+                float current = bb.getBlueBlood();
 
-        return true;
+                if (current == 0) {  // Se o player não tiver Blue Blood, recebe dano
+                    DamageSource source = player.level().damageSources().magic();
+                    player.hurt(source, 19.0F);  // Dano de 9.5 corações
+                } else {  // Se tiver, reduz para zero
+                    CapabilitesHandler.setAndSyncBlueBlood(player, consumer -> {
+                        consumer.setMAXBlueBlood(0);
+                        consumer.setBlueBlood(0);
+                    });
+                }
+            });
+        }
     }
 
     @Override
-    public boolean shouldApplyEffectTickThisTick(int duration, int amplifier) {
+    public boolean isDurationEffectTick(int duration, int amplifier) {
         return duration > 0;
     }
 }

@@ -12,7 +12,6 @@ import net.minecraft.world.level.Level;
 public class OrangeAntidotePotion extends ItemBasePotion {
     public OrangeAntidotePotion() {
         super(setDefaultProperties(new Properties())
-                .stacksTo(1)
                 .rarity(Rarity.RARE));
     }
 

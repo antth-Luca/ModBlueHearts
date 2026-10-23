@@ -3,17 +3,14 @@ package io.github.antthluca.blue_hearts.items.potions;
 import com.google.common.collect.ImmutableList;
 import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.core.component.DataComponents;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
-import net.minecraft.world.item.component.Consumable;
 import net.minecraft.world.level.ClipContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.BlockHitResult;
@@ -40,7 +37,7 @@ public class ItemBasePotion extends Item {
     /* Métodos da funcionalidade base */
 
     @Override
-    public void onCraftedBy(ItemStack itemStack, Player player) {
+    public void onCraftedBy(ItemStack itemStack, Level level, Player player) {
         // Existencial void
     }
 
@@ -51,13 +48,6 @@ public class ItemBasePotion extends Item {
     public static Properties setDefaultProperties(Properties props) {
         props.stacksTo(1);
         props.rarity(Rarity.COMMON);
-        props.component(
-                DataComponents.CONSUMABLE,
-                Consumable.builder()
-                        .animation(ItemUseAnimation.DRINK)
-                        .sound(SoundEvents.GENERIC_DRINK)
-                        .build()
-        );
         return props;
     }
 
@@ -118,17 +108,21 @@ public class ItemBasePotion extends Item {
     }
 
     @Override
-    public int getUseDuration(ItemStack stack, LivingEntity entity) {
+    public int getUseDuration(ItemStack p_41454_) {
         return 32;
     }
 
     @Override
-    public InteractionResult use(Level level, Player player, InteractionHand hand) {
+    public UseAnim getUseAnimation(ItemStack p_41452_) {
+        return UseAnim.DRINK;
+    }
+
+    public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         if (this.canDrink(level, player, player.getItemInHand(hand))) {
             player.startUsingItem(hand);
             return super.use(level, player, hand);
         } else {
-            return InteractionResult.PASS;
+            return InteractionResultHolder.pass(player.getItemInHand(hand));
         }
     }
 

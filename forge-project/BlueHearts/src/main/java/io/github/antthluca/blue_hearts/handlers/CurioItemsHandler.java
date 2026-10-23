@@ -3,11 +3,12 @@ package io.github.antthluca.blue_hearts.handlers;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import org.apache.commons.lang3.tuple.ImmutableTriple;
 import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.SlotResult;
 import top.theillusivec4.curios.api.type.capability.ICuriosItemHandler;
 import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
+import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 
 import java.util.Optional;
 
@@ -19,27 +20,23 @@ public class CurioItemsHandler {
     }
 
     public static ItemStack removeCurio(final LivingEntity entity, final Item curio) {
-        Optional<ICuriosItemHandler> curiosHandler = CuriosApi.getCuriosInventory(entity);
-        if (curiosHandler.isPresent()) {
-            ICuriosItemHandler handler = curiosHandler.get();
+        Optional<ICuriosItemHandler> curiosHandler = CuriosApi.getCuriosInventory(entity).resolve();
+        if (curiosHandler.isEmpty()) return ItemStack.EMPTY;
 
-            Optional<SlotResult> found = handler.findFirstCurio(curio);
-            if (found.isPresent()) {
-                var slotResult = found.get();
+        ICuriosItemHandler handler = curiosHandler.get();
 
-                var slotContext = slotResult.slotContext();
+        Optional<SlotResult> found = handler.findFirstCurio(curio);
+        if (found.isEmpty()) return ItemStack.EMPTY;
 
-                Optional<ICurioStacksHandler> stacksHandler = handler.getStacksHandler(slotContext.identifier());
-                if (stacksHandler.isPresent()) {
-                    ItemStack stackInSlot = stacksHandler.get().getStacks().getStackInSlot(slotContext.index());
+        SlotContext slotCtx = found.get().slotContext();
 
-                    stacksHandler.get().getStacks().setStackInSlot(slotContext.index(), ItemStack.EMPTY);
+        Optional<ICurioStacksHandler> stacksHandler = handler.getStacksHandler(slotCtx.identifier());
+        if (stacksHandler.isEmpty()) return ItemStack.EMPTY;
 
-                    return stackInSlot;
-                }
-            }
-        }
+        IDynamicStackHandler stacks = stacksHandler.get().getStacks();
+        ItemStack stackInSlot = stacks.getStackInSlot(slotCtx.index());
+        stacks.setStackInSlot(slotCtx.index(), ItemStack.EMPTY);
 
-        return ItemStack.EMPTY;
+        return stackInSlot;
     }
 }
