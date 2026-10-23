@@ -41,7 +41,7 @@ import java.util.List;
 
 public class VitalBushBlock extends SweetBerryBushBlock {
     public static final ResourceLocation VITAL_BUSH_HARVEST_LOOT_TABLE = ResourceLocation.fromNamespaceAndPath(
-        BlueHearts.MODID, "harvest/vital_bush");
+        BlueHearts.MODID, "block/vital_bush");
 
     public VitalBushBlock() {
         super(BlockBehaviour.Properties.copy(Blocks.SWEET_BERRY_BUSH));
