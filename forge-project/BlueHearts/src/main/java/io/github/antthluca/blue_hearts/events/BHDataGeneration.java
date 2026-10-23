@@ -36,13 +36,21 @@ public class BHDataGeneration {
         // Advancements
         gen.addProvider(event.includeServer(), new BHAdvancementsProvider(
             out,
-            lookup
+            lookup,
+            helper
         ));
 
         // World Generation
         gen.addProvider(event.includeServer(), new BHWorldGenProvider(
             out,
             lookup
+        ));
+
+        // Curios Slots
+        gen.addProvider(event.includeServer(), new BHCurioSlotsProvider(
+            out,
+            lookup,
+            helper
         ));
     }
 }

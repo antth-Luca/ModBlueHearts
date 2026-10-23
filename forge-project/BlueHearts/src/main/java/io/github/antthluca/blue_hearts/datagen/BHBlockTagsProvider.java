@@ -1,17 +1,19 @@
 package io.github.antthluca.blue_hearts.datagen;
 
+import io.github.antthluca.blue_hearts.BlueHearts;
 import io.github.antthluca.blue_hearts.tags.BHTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.block.Blocks;
-import net.neoforged.neoforge.common.data.BlockTagsProvider;
+import net.minecraftforge.common.data.BlockTagsProvider;
+import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.CompletableFuture;
 
 public class BHBlockTagsProvider extends BlockTagsProvider {
-    public BHBlockTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, String modId) {
-        super(output, lookupProvider, modId);
+    public BHBlockTagsProvider(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, ExistingFileHelper helper) {
+        super(output, lookupProvider, BlueHearts.MODID, helper);
     }
 
     @Override
