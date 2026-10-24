@@ -1,6 +1,6 @@
 package io.github.antthluca.blue_hearts.effects;
 
-import io.github.antthluca.blue_hearts.init.InitEffects;
+import io.github.antthluca.blue_hearts.init.InitMobEffects;
 import io.github.antthluca.blue_hearts.init.InitItems;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffect;
@@ -31,7 +31,7 @@ public class CryingCharmEffect extends MobEffect {
                 }
 
                 // Remove o efeito após a troca
-                player.removeEffect(InitEffects.CRYING_CHARM.get());
+                player.removeEffect(InitMobEffects.CRYING_CHARM.get());
             }
         }
     }

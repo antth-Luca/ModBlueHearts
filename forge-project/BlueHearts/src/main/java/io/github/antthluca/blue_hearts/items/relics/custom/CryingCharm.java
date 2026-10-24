@@ -2,9 +2,8 @@ package io.github.antthluca.blue_hearts.items.relics.custom;
 
 import io.github.antthluca.blue_hearts.handlers.CapabilitesHandler;
 import io.github.antthluca.blue_hearts.handlers.CurioItemsHandler;
+import io.github.antthluca.blue_hearts.handlers.ItemTooltipHandler;
 import io.github.antthluca.blue_hearts.init.InitItems;
-import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -27,21 +26,7 @@ public class CryingCharm extends Item implements ICurioItem {
     @Override
     public void appendHoverText(ItemStack itemStack, Level level, List<Component> tooltip, TooltipFlag flagIn) {
         super.appendHoverText(itemStack, level, tooltip, flagIn);
-        if (Screen.hasShiftDown()) {
-            tooltip.add(
-                Component.translatable("item.blue_hearts.crying_charm.tooltip")
-                        .withStyle(ChatFormatting.GRAY)
-            );
-            tooltip.add(
-                Component.translatable("item.blue_hearts.crying_charm.effect_tooltip")
-                        .withStyle(ChatFormatting.GRAY)
-            );
-        } else {
-            tooltip.add(
-                Component.translatable("item.blue_hearts.common_tooltip")
-                        .withStyle(ChatFormatting.GRAY)
-            );
-        }
+        ItemTooltipHandler.addLoreAndEffects(InitItems.CRYING_CHARM.get().getDescriptionId(), 1, tooltip);
     }
 
     @Override
@@ -53,7 +38,7 @@ public class CryingCharm extends Item implements ICurioItem {
             // A cada 30 segundos (600 ticks)
             if (gameTime % 600 == 0) {
                 CapabilitesHandler.getBlueBlood(player).ifPresent(current -> {
-                    if (current.getMAXBlueBlood() <= 0) return;  // Sem "Max Blue Blood", sem efeito
+                    if (current.getMaxBlueBlood() <= 0) return;  // Sem "Max Blue Blood", sem efeito
 
                     if (current.isMaximum()) return;  // Já está no máximo
 

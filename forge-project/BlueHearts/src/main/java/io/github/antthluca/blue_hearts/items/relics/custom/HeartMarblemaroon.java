@@ -2,9 +2,8 @@ package io.github.antthluca.blue_hearts.items.relics.custom;
 
 import io.github.antthluca.blue_hearts.handlers.CapabilitesHandler;
 import io.github.antthluca.blue_hearts.handlers.CurioItemsHandler;
+import io.github.antthluca.blue_hearts.handlers.ItemTooltipHandler;
 import io.github.antthluca.blue_hearts.init.InitItems;
-import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodData;
@@ -30,21 +29,7 @@ public class HeartMarblemaroon extends Item implements ICurioItem {
     @Override
     public void appendHoverText(ItemStack itemStack, Level level, List<Component> tooltip, TooltipFlag flagIn) {
         super.appendHoverText(itemStack, level, tooltip, flagIn);
-        if (Screen.hasShiftDown()) {
-            tooltip.add(
-                Component.translatable("item.blue_hearts.heart_marblemaroon.tooltip")
-                        .withStyle(ChatFormatting.GRAY)
-            );
-            tooltip.add(
-                Component.translatable("item.blue_hearts.heart_marblemaroon.effect_tooltip")
-                        .withStyle(ChatFormatting.GRAY)
-            );
-        } else {
-            tooltip.add(
-                Component.translatable("item.blue_hearts.common_tooltip")
-                        .withStyle(ChatFormatting.GRAY)
-            );
-        }
+        ItemTooltipHandler.addLoreAndEffects(InitItems.HEART_MARBLEMAROON.get().getDescriptionId(), 1, tooltip);
     }
 
     @Override
@@ -58,15 +43,13 @@ public class HeartMarblemaroon extends Item implements ICurioItem {
 
     @Override
     public boolean canEquip(SlotContext context, ItemStack stack) {
-        if (ICurioItem.super.canEquip(context, stack)
-            && !(CurioItemsHandler.hasCurio(context.entity(), InitItems.HEART_MARBLEMAROON.get()))
-            && context.entity() instanceof Player player) {
-                CapabilitesHandler.getBlueBlood(player).ifPresent(bb -> {
-                    return bb.getMAXBlueBlood() > 0;
-                });
-        }
+        if (ICurioItem.super.canEquip(context, stack)) return false;
+        if (CurioItemsHandler.hasCurio(context.entity(), InitItems.HEART_MARBLEMAROON.get())) return false;
+        if (!(context.entity() instanceof Player player)) return false;
 
-        return false;
+        return CapabilitesHandler.getBlueBlood(player)
+                .map(bb -> bb.getMaxBlueBlood() > 0)
+                .orElse(false);
     }
 
     @Override

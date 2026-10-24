@@ -1,8 +1,8 @@
 package io.github.antthluca.blue_hearts.items.custom;
 
-import io.github.antthluca.blue_hearts.init.InitEffects;
-import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.screens.Screen;
+import io.github.antthluca.blue_hearts.handlers.ItemTooltipHandler;
+import io.github.antthluca.blue_hearts.init.InitItems;
+import io.github.antthluca.blue_hearts.init.InitMobEffects;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -26,21 +26,13 @@ public class MystBlueGem extends Item {
     @Override
     public void appendHoverText(ItemStack itemStack, Level level, List<Component> tooltip, TooltipFlag flagIn) {
         super.appendHoverText(itemStack, level, tooltip, flagIn);
-        if (Screen.hasShiftDown()) {
-            tooltip.add(
-                Component.translatable("item.blue_hearts.myst_blue_gem.tooltip")
-                        .withStyle(ChatFormatting.GRAY));
-        } else {
-            tooltip.add(
-                Component.translatable("item.blue_hearts.common_tooltip")
-                        .withStyle(ChatFormatting.GRAY));
-        }
+        ItemTooltipHandler.addLore(InitItems.MYST_BLUE_GEM.get().getDescriptionId(), tooltip);
     }
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         if (!level.isClientSide()) {
-            player.addEffect(new MobEffectInstance(InitEffects.CRYING_CHARM.get(), -1, 0));
+            player.addEffect(new MobEffectInstance(InitMobEffects.CRYING_CHARM.get(), -1, 0));
             return InteractionResultHolder.success(player.getItemInHand(hand));
         }
 
@@ -50,7 +42,7 @@ public class MystBlueGem extends Item {
     @Override
     public InteractionResult useOn(UseOnContext ctx) {
         if (!ctx.getLevel().isClientSide()) {
-            ctx.getPlayer().addEffect(new MobEffectInstance(InitEffects.CRYING_CHARM.get(), -1, 0));
+            ctx.getPlayer().addEffect(new MobEffectInstance(InitMobEffects.CRYING_CHARM.get(), -1, 0));
             return InteractionResult.SUCCESS;
         }
 

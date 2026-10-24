@@ -1,6 +1,6 @@
 package io.github.antthluca.blue_hearts.items.potions.custom;
 
-import io.github.antthluca.blue_hearts.init.InitEffects;
+import io.github.antthluca.blue_hearts.init.InitMobEffects;
 import io.github.antthluca.blue_hearts.items.potions.ItemBasePotion;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -18,7 +18,7 @@ public class BlueBloodPotion extends ItemBasePotion {
     @Override
     public void onConsumed(Level worldIn, Player player, ItemStack potion) {
         if (player instanceof ServerPlayer) {
-            player.addEffect(new MobEffectInstance(InitEffects.BLUE_BLOOD.get(), 1, 0));
+            player.addEffect(new MobEffectInstance(InitMobEffects.BLUE_BLOOD.get(), 1, 0));
         }
     }
 }

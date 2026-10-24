@@ -78,5 +78,8 @@ public class BHDataGeneration {
             out,
             helper
         ));
+
+        // Languages
+        gen.addProvider(event.includeClient(), new BHLanguageProvider(out));
     }
 }
