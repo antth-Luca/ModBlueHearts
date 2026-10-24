@@ -1,4 +1,4 @@
-![Blue Hearts Logo](https://github.com/antth-Luca/ModBlueHearts/blob/v3.1-mc1.20.1/neoforge-project/BlueHearts/src/main/resources/logo.png)
+![Blue Hearts Logo](https://github.com/antth-Luca/ModBlueHearts/blob/v3.2-mc1.20.1/forge-project/BlueHearts/src/main/resources/logo.png)
  
  # Repositório: ModBlueHearts
 
@@ -7,7 +7,7 @@ Este repositório abriga o mod NeoForge “Blue Hearts” para Minecraft. O Blue
 Eu sempre quis criar um mod para o Minecraft e sou muito criativo, mas tudo tem que começar de alguma forma. Aproveitando minha necessidade de dominar o Java, criei meu primeiro mod simples!
 
 ## Licença
-Este projeto está sobre licença. [Ver licença](https://github.com/antth-Luca/ModBlueHearts/blob/v3.1-mc1.20.1/LICENSE-pt-br).
+Este projeto está sobre licença. [Ver licença](https://github.com/antth-Luca/ModBlueHearts/blob/v3.2-mc1.20.1/LICENSE-pt-br).
 
 ## Versões de Minecraft suportadas
 * 26.1 - 26.1.2;
@@ -17,6 +17,9 @@ Este projeto está sobre licença. [Ver licença](https://github.com/antth-Luca/
 * 1.18 - 1.18.2.
 
 ## Recursos das versões:
+* v.3.2:
+    * Conversão dos assets e data criados à mão em Datagen;
+    * Melhoria nas tooltips (texto e unificação em Handler).
 * v.3.1:
     * Correção: A Poção de Sangue Azul e a Poção de Antídoto Laranja reproduzem o som “DRINK” quando consumidas.
     * Balanceamento: A receita da Seiva Vital Artificial foi removida.
