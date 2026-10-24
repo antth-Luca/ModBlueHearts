@@ -18,7 +18,11 @@ public class BHOverlays {
     public static class Registry {
         @SubscribeEvent
         public static void registerGuiOverlays(RegisterGuiOverlaysEvent event) {
-            event.registerAboveAll("blue_blood", BlueBloodHUDOverlay.HUD_BLUE_BLOOD);
+            event.registerBelow(
+                VanillaGuiOverlay.ARMOR_LEVEL.id(),
+                "blue_blood",
+                BlueBloodHUDOverlay.HUD_BLUE_BLOOD
+            );
         }
     }
 

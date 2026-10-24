@@ -67,7 +67,7 @@ public abstract class LanguagesProvider implements DataProvider{
     }
 
     protected void addCommand(String key, String... descriptions) {
-        add("command.%s.%s.".formatted(this.modid, key), descriptions);
+        add("command.%s.%s".formatted(this.modid, key), descriptions);
     }
 
     protected void addAdvancement(String key, String[] titles, String[] descriptions) {

@@ -41,7 +41,7 @@ import java.util.List;
 
 public class VitalBushBlock extends SweetBerryBushBlock {
     public static final ResourceLocation VITAL_BUSH_HARVEST_LOOT_TABLE = ResourceLocation.fromNamespaceAndPath(
-        BlueHearts.MODID, "block/vital_bush");
+        BlueHearts.MODID, "blocks/vital_bush");
 
     public VitalBushBlock() {
         super(BlockBehaviour.Properties.copy(Blocks.SWEET_BERRY_BUSH));
@@ -96,6 +96,7 @@ public class VitalBushBlock extends SweetBerryBushBlock {
                 ServerLevel serverLevel = (ServerLevel) level;
                 LootParams lootParams = new LootParams.Builder(serverLevel)
                         .withParameter(LootContextParams.ORIGIN, Vec3.atCenterOf(pos))
+                        .withParameter(LootContextParams.BLOCK_STATE, state)
                         .withParameter(LootContextParams.TOOL, player.getItemInHand(hand))
                         .withOptionalParameter(LootContextParams.THIS_ENTITY, player)
                         .withOptionalParameter(LootContextParams.BLOCK_ENTITY, level.getBlockEntity(pos))
