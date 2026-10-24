@@ -1,4 +1,4 @@
-![Blue Hearts Logo](https://github.com/antth-Luca/ModBlueHearts/blob/v3.1-mc26.1.2/neoforge-project/BlueHearts/src/main/resources/logo.png)
+![Blue Hearts Logo](https://github.com/antth-Luca/ModBlueHearts/blob/v3.2-mc1.20.1/forge-project/BlueHearts/src/main/resources/logo.png)
  
  # Repository: ModBlueHearts
 
@@ -7,5 +7,5 @@ This repository houses the mod NeoForge “Blue Hearts” for Minecraft. Blue he
 I've always wanted to create a mod for Minecraft and I'm very creative, but everything has to start somehow. Taking advantage of my need to master Java, I created my first simple mod!
 
 ## Supported/translated languages:
-* PT-BR: Português, Brasil - Dê uma olhada no [README completo](https://github.com/antth-Luca/ModBlueHearts/blob/v3.1-mc26.1.2/README-pt-br.md)!
-* EN-US: English, USA - Take a look at the [complete README](https://github.com/antth-Luca/ModBlueHearts/blob/v3.1-mc26.1.2/README-en-us.md)!
+* PT-BR: Português, Brasil - Dê uma olhada no [README completo](https://github.com/antth-Luca/ModBlueHearts/blob/v3.2-mc1.20.1/README-pt-br.md)!
+* EN-US: English, USA - Take a look at the [complete README](https://github.com/antth-Luca/ModBlueHearts/blob/v3.2-mc1.20.1/README-en-us.md)!
