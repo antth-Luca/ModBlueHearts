@@ -52,9 +52,9 @@ public class BHRecipesProvider extends RecipeProvider implements IConditionBuild
                 .pattern("LAL")
                 .pattern("LLL")
                 .define('L', Items.LAPIS_LAZULI)
-                .define('A', Items.APPLE)
+                .define('A', Items.GOLDEN_APPLE)
                 .unlockedBy("has_lapis", has(Items.LAPIS_LAZULI))
-                .unlockedBy("has_apple", has(Items.APPLE))
+                .unlockedBy("has_golden_apple", has(Items.GOLDEN_APPLE))
                 .save(consumer);
 
         // Shapeless

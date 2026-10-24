@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "B": {
+      "item": "blue_hearts:blue_blood_potion"
+    },
+    "D": {
+      "item": "minecraft:diamond_block"
+    },
+    "O": {
+      "item": "blue_hearts:orange_antidote_potion"
+    },
+    "Q": {
+      "item": "minecraft:quartz"
+    },
+    "R": {
+      "item": "minecraft:red_dye"
+    }
+  },
+  "pattern": [
+    "R R",
+    "BDO",
+    " Q "
+  ],
+  "result": {
+    "item": "blue_hearts:heart_marblemaroon"
+  },
+  "show_notification": true
+}

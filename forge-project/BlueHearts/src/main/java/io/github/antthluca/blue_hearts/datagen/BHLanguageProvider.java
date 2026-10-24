@@ -35,6 +35,7 @@ public class BHLanguageProvider extends LanguagesProvider {
         addCommand("success.set", "Set blue hearts of %s to %s.", "Definido os corações azuis de %s como %s.");
 
         add("item.%s.common.hold_shift".formatted(BlueHearts.MODID), "Hold down the §6Shift§r to view the item's abilities.", "Mantenha o §6Shift§r pressionado para ver as habilidades do item.");
+        add("item.%s.common.abilities".formatted(BlueHearts.MODID), "Abilities", "Habilidades");
 
         addItem(InitItems.BLUE_BLOOD_POTION.get(), "Blue Blood Potion", "Poção de Sangue Azul");
         addItem(InitItems.ORANGE_ANTIDOTE_POTION.get(), "Orange Antidote Potion", "Poção de Antídoto Laranja");
@@ -51,9 +52,9 @@ public class BHLanguageProvider extends LanguagesProvider {
         addItemAbilities(InitItems.HEART_MARBLEMAROON.get(), new String[]{"Replace the red hearts with blue hearts.", "Substitui corações vermelhos por corações azuis."});
         addItem(InitItems.MYST_BLUE_GEM.get(), "Mysterious Blue Gem", "Jóia Azul Misteriosa");
         addItemLore(InitItems.MYST_BLUE_GEM.get(), "The effect of this jewel is not pleasant, but its product is restorative. Use §6Right Click§r.", "O efeito dessa jóia não é agradável, mas seu produto é restaurador. Use §6Clique Direito§r.");
+        addItem(InitFoods.VITAL_FRUIT.get(), "Vital Fruit", "Fruto Vital");
         addItem(InitFoods.LAZULI_APPLE.get(), "Lazuli Apple", "Maçã Lazulada");
 
-        add("block.blue_hearts.vital_fruit", "Vital Fruit", "Fruto Vital");
         addBlock(InitBlocks.VITAL_BUSH.get(), "Vital Bush", "Arbusto Vital");
 
         addMobEffect(InitMobEffects.BLUE_BLOOD.get(), "Blue Blood Effect", "Efeito de Sangue Azul");

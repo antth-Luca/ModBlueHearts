@@ -25,14 +25,14 @@ public class ItemTooltipHandler {
 
     public static void addLore(String itemName, List<Component> tooltip) {
         addSpace(tooltip);
-        tooltip.add(Component.translatable("item.blue_hearts." + itemName + ".lore").withStyle(ChatFormatting.GRAY));
+        tooltip.add(Component.translatable(itemName + ".lore").withStyle(ChatFormatting.GRAY));
     }
 
     public static void addAbilities(String itemName, int cont, List<Component> tooltip) {
         addSpace(tooltip);
         tooltip.add(Component.translatable("item.blue_hearts.common.abilities").append(":").withStyle(ChatFormatting.LIGHT_PURPLE));
 
-        String baseKey = "item.blue_hearts." + itemName + ".ability";
+        String baseKey = itemName + ".ability";
         for (int c = 1; c <= cont; c++) {
             tooltip.add(
                     Component.literal(LIST_ITEM)

@@ -13,12 +13,15 @@ import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
 @Mod(BlueHearts.MODID)
 public class BlueHearts {
     public static final String MODID = "blue_hearts";
 
-    public BlueHearts(IEventBus bus, ModContainer container) {
+    public BlueHearts() {
+        IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
+
         // Init
         InitMobEffects.MOB_EFFECTS.register(bus);
         InitFoods.FOODS.register(bus);

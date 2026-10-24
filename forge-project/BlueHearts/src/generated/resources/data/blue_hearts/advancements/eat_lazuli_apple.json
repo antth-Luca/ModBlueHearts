@@ -1,0 +1,36 @@
+{
+  "parent": "minecraft:husbandry/root",
+  "criteria": {
+    "eat_vital_fruit": {
+      "conditions": {
+        "item": {
+          "items": [
+            "blue_hearts:lazuli_apple"
+          ]
+        }
+      },
+      "trigger": "minecraft:consume_item"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.blue_hearts.eat_lazuli_apple.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "blue_hearts:lazuli_apple"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.blue_hearts.eat_lazuli_apple.title"
+    }
+  },
+  "requirements": [
+    [
+      "eat_vital_fruit"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

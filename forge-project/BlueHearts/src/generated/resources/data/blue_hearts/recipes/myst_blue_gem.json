@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "E": {
+      "item": "blue_hearts:blue_eye"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "R": {
+      "item": "minecraft:rotten_flesh"
+    }
+  },
+  "pattern": [
+    " GR",
+    "GEG",
+    "RG "
+  ],
+  "result": {
+    "item": "blue_hearts:myst_blue_gem"
+  },
+  "show_notification": true
+}

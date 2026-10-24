@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.Mod;
 
 import java.util.concurrent.CompletableFuture;
 
-@Mod.EventBusSubscriber(modid = BlueHearts.MODID)
+@Mod.EventBusSubscriber(modid = BlueHearts.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class BHDataGeneration {
     @SubscribeEvent
     public static void gatherServerData(GatherDataEvent event) {
@@ -64,7 +64,6 @@ public class BHDataGeneration {
     public static void gatherClientData(GatherDataEvent event) {
         DataGenerator gen = event.getGenerator();
         PackOutput out = gen.getPackOutput();
-        CompletableFuture<HolderLookup.Provider> lookup = event.getLookupProvider();
         ExistingFileHelper helper = event.getExistingFileHelper();
 
         // Models

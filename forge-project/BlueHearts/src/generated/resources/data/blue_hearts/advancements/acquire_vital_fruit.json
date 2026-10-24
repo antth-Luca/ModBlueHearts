@@ -1,0 +1,38 @@
+{
+  "parent": "minecraft:adventure/root",
+  "criteria": {
+    "acquire_vital_fruit": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "blue_hearts:vital_fruit"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancement.blue_hearts.acquire_vital_fruit.description"
+    },
+    "frame": "task",
+    "hidden": false,
+    "icon": {
+      "item": "blue_hearts:vital_fruit"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancement.blue_hearts.acquire_vital_fruit.title"
+    }
+  },
+  "requirements": [
+    [
+      "acquire_vital_fruit"
+    ]
+  ],
+  "sends_telemetry_event": true
+}

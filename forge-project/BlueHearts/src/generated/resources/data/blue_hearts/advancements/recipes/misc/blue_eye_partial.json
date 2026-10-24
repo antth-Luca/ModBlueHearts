@@ -1,0 +1,48 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_ender_eye": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:ender_eye"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "blue_hearts:blue_eye_partial"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_vital_sap": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "blue_hearts:vital_sap"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_ender_eye",
+      "has_vital_sap",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "blue_hearts:blue_eye_partial"
+    ]
+  },
+  "sends_telemetry_event": false
+}
