@@ -17,6 +17,9 @@ This project is under license. [See license](https://github.com/antth-Luca/ModBl
 * 1.18 - 1.18.2.
 
 ## Version features:
+* v.3.2:
+    * Conversion of assets and data created manually in Datagen;
+    * Improvements to tooltips (text and unification in Handler).
 * v.3.1:
     * Fix: The Blue Blood Potion and Orange Antidote Potion play the “DRINK” sound when consumed.
     * Balancing: Recipe for artificial Vital Sap removed.
