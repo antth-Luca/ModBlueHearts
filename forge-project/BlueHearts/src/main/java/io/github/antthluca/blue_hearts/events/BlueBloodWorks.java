@@ -10,6 +10,7 @@ import io.github.antthluca.blue_hearts.handlers.CurioItemsHandler;
 import io.github.antthluca.blue_hearts.init.InitItems;
 import io.github.antthluca.blue_hearts.items.relics.custom.PetrifiedBlueBlood;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.damagesource.DamageSource;
@@ -25,6 +26,7 @@ import net.minecraftforge.event.entity.living.LivingHurtEvent;
 import net.minecraftforge.event.entity.living.MobEffectEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerWakeUpEvent;
+import net.minecraftforge.event.level.SleepFinishedTimeEvent;
 import net.minecraftforge.eventbus.api.Event;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -47,13 +49,14 @@ public class BlueBloodWorks {
 
     @SubscribeEvent
     public static void onPlayerCloned(PlayerEvent.Clone event) {
-        if (event.isWasDeath()) {
-            event.getOriginal().getCapability(BHCapabilities.PLAYER_BLUE_BLOOD).ifPresent(oldStore -> {
-                event.getEntity().getCapability(BHCapabilities.PLAYER_BLUE_BLOOD).ifPresent(newStore -> {
-                    newStore.copyFrom(oldStore);
-                });
-            });
-        }
+        Player original = event.getOriginal();
+        original.reviveCaps();
+
+        CapabilitesHandler.getBlueBlood(original).ifPresent(oldStore ->
+                CapabilitesHandler.getBlueBlood(event.getEntity()).ifPresent(newStore ->
+                        newStore.copyFrom(oldStore)));
+
+        original.invalidateCaps();
     }
 
     @SubscribeEvent
@@ -122,12 +125,12 @@ public class BlueBloodWorks {
     }
 
     @SubscribeEvent
-    public static void onPlayersWakeUp(PlayerWakeUpEvent event) {
-        Player player = event.getEntity();
-
-        if (!(player.level().isClientSide() && event.isCanceled())) {
-            CapabilitesHandler.setAndSyncBlueBlood(player, bb -> {
-                bb.setBlueBlood(bb.getMaxBlueBlood());
+    public static void onPlayersWakeUp(SleepFinishedTimeEvent event) {
+        if (event.getLevel() instanceof ServerLevel serverLevel) {
+            serverLevel.players().forEach(serverPlayer -> {
+                CapabilitesHandler.setAndSyncBlueBlood(serverPlayer, bb -> {
+                    bb.setBlueBlood(bb.getMaxBlueBlood());
+                });
             });
         }
     }

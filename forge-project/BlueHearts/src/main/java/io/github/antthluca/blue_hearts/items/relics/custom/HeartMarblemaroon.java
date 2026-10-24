@@ -43,7 +43,7 @@ public class HeartMarblemaroon extends Item implements ICurioItem {
 
     @Override
     public boolean canEquip(SlotContext context, ItemStack stack) {
-        if (ICurioItem.super.canEquip(context, stack)) return false;
+        if (!ICurioItem.super.canEquip(context, stack)) return false;
         if (CurioItemsHandler.hasCurio(context.entity(), InitItems.HEART_MARBLEMAROON.get())) return false;
         if (!(context.entity() instanceof Player player)) return false;
 
