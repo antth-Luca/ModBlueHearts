@@ -13,25 +13,30 @@ import net.minecraftforge.client.gui.overlay.VanillaGuiOverlay;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(modid = BlueHearts.MODID, value = Dist.CLIENT)
 public class BHOverlays {
-    @SubscribeEvent
-    public static void registerGuiOverlays(RegisterGuiOverlaysEvent event) {
-        event.registerAboveAll("blue_blood", BlueBloodHUDOverlay.HUD_BLUE_BLOOD);
+    @Mod.EventBusSubscriber(modid = BlueHearts.MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+    public static class Registry {
+        @SubscribeEvent
+        public static void registerGuiOverlays(RegisterGuiOverlaysEvent event) {
+            event.registerAboveAll("blue_blood", BlueBloodHUDOverlay.HUD_BLUE_BLOOD);
+        }
     }
 
-    @SubscribeEvent
-    public static void onRenderGuiOverlay(RenderGuiOverlayEvent.Pre event) {
-        Minecraft mc = Minecraft.getInstance();
-        Player player = mc.player;
-        if (player == null) return;
+    @Mod.EventBusSubscriber(modid = BlueHearts.MODID, bus = Mod.EventBusSubscriber.Bus.FORGE, value = Dist.CLIENT)
+    public static class Render {
+        @SubscribeEvent
+        public static void onRenderGuiOverlay(RenderGuiOverlayEvent.Pre event) {
+            Minecraft mc = Minecraft.getInstance();
+            Player player = mc.player;
+            if (player == null) return;
 
-        if (CurioItemsHandler.hasCurio(player, InitItems.HEART_MARBLEMAROON.get())
-        && (
-            event.getOverlay().id().equals(VanillaGuiOverlay.FOOD_LEVEL.id())
-            || event.getOverlay().id().equals(VanillaGuiOverlay.PLAYER_HEALTH.id())
-        )) {
-            event.setCanceled(true);
+            if (CurioItemsHandler.hasCurio(player, InitItems.HEART_MARBLEMAROON.get())
+                    && (
+                    event.getOverlay().id().equals(VanillaGuiOverlay.FOOD_LEVEL.id())
+                            || event.getOverlay().id().equals(VanillaGuiOverlay.PLAYER_HEALTH.id())
+            )) {
+                event.setCanceled(true);
+            }
         }
     }
 }
