@@ -19,7 +19,7 @@ public class BHMessages {
 
     public static void register() {
         SimpleChannel net = NetworkRegistry.ChannelBuilder
-                .named(new ResourceLocation(BlueHearts.MODID, "messages"))
+                .named(ResourceLocation.fromNamespaceAndPath(BlueHearts.MODID, "messages"))
                 .networkProtocolVersion(() -> "1.0")
                 .clientAcceptedVersions(s -> true)
                 .serverAcceptedVersions(s -> true)

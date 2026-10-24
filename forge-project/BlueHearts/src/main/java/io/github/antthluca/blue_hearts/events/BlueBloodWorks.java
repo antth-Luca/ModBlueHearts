@@ -40,7 +40,7 @@ public class BlueBloodWorks {
     public static void onAttachCapabilitiesPlayer(AttachCapabilitiesEvent<Entity> event) {
         if (event.getObject() instanceof Player) {
             if (!event.getObject().getCapability(BHCapabilities.PLAYER_BLUE_BLOOD).isPresent()) {
-                event.addCapability(new ResourceLocation(BlueHearts.MODID, "properties"), new PlayerBlueBloodProvider());
+                event.addCapability(ResourceLocation.fromNamespaceAndPath(BlueHearts.MODID, "properties"), new PlayerBlueBloodProvider());
             }
         }
     }
@@ -67,67 +67,58 @@ public class BlueBloodWorks {
 
     @SubscribeEvent
     public static void onPlayerHurted(LivingHurtEvent event) {
-        if (event.getEntity() instanceof Player player) {
-            if (player.level().isClientSide()) return;
+        if (!(event.getEntity() instanceof Player player)) return;
+        if (player.level().isClientSide()) return;
 
-            CapabilitesHandler.getBlueBlood(player).ifPresent(current -> {
-                if (current.hasRemaining()) {
-                    // Damage
-                    float rawDamage = event.getAmount();
-                    float adjustedDamage = rawDamage;
-                    // Petrified Blue Blood
-                    if (CurioItemsHandler.hasCurio(player, InitItems.PETRIFIED_BLUE_BLOOD.get())) {
-                        adjustedDamage = CombatHandler.getDamageAfterPureAbsorb(
-                            rawDamage,
-                            PetrifiedBlueBlood.ARMOR,
-                            PetrifiedBlueBlood.TOUGHNESS_ARMOR
-                        );
-                    }
+        CapabilitesHandler.getBlueBlood(player).ifPresent(current -> {
+            if (!current.hasRemaining()) return;
 
-                    float currentBlueBlood = current.getBlueBlood();
-                    DamageSource source = event.getSource();
+            final float rawDamage = event.getAmount();
 
-                    if (adjustedDamage < currentBlueBlood) {
-                        CapabilitesHandler.setAndSyncBlueBlood(player, bb -> {
-                            bb.subBlueBlood(adjustedDamage);
-                        });
-                        event.setCanceled(true);
-                    } else {
-                        CapabilitesHandler.setAndSyncBlueBlood(player, bb -> {
-                            bb.setBlueBlood(0);
-                        });
+            // Petrified Blue Blood
+            final float adjustedDamage = CurioItemsHandler.hasCurio(player, InitItems.PETRIFIED_BLUE_BLOOD.get())
+                    ? CombatHandler.getDamageAfterPureAbsorb(
+                    rawDamage,
+                    PetrifiedBlueBlood.ARMOR,
+                    PetrifiedBlueBlood.TOUGHNESS_ARMOR)
+                    : rawDamage;
 
-                        // Heart of Marblemaroon
-                        if (CurioItemsHandler.hasCurio(player, InitItems.HEART_MARBLEMAROON.get())) {
-                            player.hurt(source, Float.MAX_VALUE);
-                            CurioItemsHandler.removeCurio(player, InitItems.HEART_MARBLEMAROON.get());
-                            event.setCanceled(true);
-                            return;
-                        } else if (adjustedDamage == currentBlueBlood) {
-                            event.setCanceled(true);
-                        } else {
-                            event.setAmount(adjustedDamage - currentBlueBlood);
-                        }
-                    }
+            final float currentBlueBlood = current.getBlueBlood();
+            final DamageSource source = event.getSource();
 
-                    // Sound
-                    SoundEvent hurtSound = source.type().effects().sound();
+            if (adjustedDamage < currentBlueBlood) {
+                CapabilitesHandler.setAndSyncBlueBlood(player, bb -> bb.subBlueBlood(adjustedDamage));
+                event.setCanceled(true);
+            } else {
+                CapabilitesHandler.setAndSyncBlueBlood(player, bb -> bb.setBlueBlood(0));
 
-                    if (hurtSound != null) {
-                        Level playerLevel = player.level();
-                        playerLevel.playSound(
-                                null,
-                                player.getX(), player.getY(), player.getZ(),
-                                hurtSound,
-                                player.getSoundSource(),
-                                1.0F,
-                                (playerLevel.getRandom().nextFloat()
-                                        - playerLevel.getRandom().nextFloat()) * 0.2F + 1.0F
-                        );
-                    }
+                // Heart of Marblemaroon
+                if (CurioItemsHandler.hasCurio(player, InitItems.HEART_MARBLEMAROON.get())) {
+                    player.hurt(source, Float.MAX_VALUE);
+                    CurioItemsHandler.removeCurio(player, InitItems.HEART_MARBLEMAROON.get());
+                    event.setCanceled(true);
+                    return;
+                } else if (adjustedDamage == currentBlueBlood) {
+                    event.setCanceled(true);
+                } else {
+                    event.setAmount(adjustedDamage - currentBlueBlood);
                 }
-            });
-        }
+            }
+
+            // Sound
+            SoundEvent hurtSound = source.type().effects().sound();
+            if (hurtSound != null) {
+                Level level = player.level();
+                level.playSound(
+                        null,
+                        player.getX(), player.getY(), player.getZ(),
+                        hurtSound,
+                        player.getSoundSource(),
+                        1.0F,
+                        (level.getRandom().nextFloat() - level.getRandom().nextFloat()) * 0.2F + 1.0F
+                );
+            }
+        });
     }
 
     @SubscribeEvent

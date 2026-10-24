@@ -24,7 +24,7 @@ side="BOTH"
 [[dependencies.${mod_id}]]
 modId="curios"
 mandatory=true
-versionRange="[15.74.0.228,)"
+versionRange="[5.14.1,)"
 ordering="NONE"
 side="BOTH"
 

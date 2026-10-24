@@ -12,7 +12,7 @@ public class BlueBloodDataSyncS2CPacket {
     private final float maxBlueBlood;
 
     public BlueBloodDataSyncS2CPacket(PlayerBlueBlood data) {
-        this(data.getBlueBlood(), data.getMAXBlueBlood());
+        this(data.getBlueBlood(), data.getMaxBlueBlood());
     }
 
     public BlueBloodDataSyncS2CPacket(float blueBlood, float maxBlueBlood) {

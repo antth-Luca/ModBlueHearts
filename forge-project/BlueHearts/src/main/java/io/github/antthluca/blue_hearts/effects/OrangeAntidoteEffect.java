@@ -23,7 +23,7 @@ public class OrangeAntidoteEffect extends MobEffect {
                     player.hurt(source, 19.0F);  // Dano de 9.5 corações
                 } else {  // Se tiver, reduz para zero
                     CapabilitesHandler.setAndSyncBlueBlood(player, consumer -> {
-                        consumer.setMAXBlueBlood(0);
+                        consumer.setMaxBlueBlood(0);
                         consumer.setBlueBlood(0);
                     });
                 }
