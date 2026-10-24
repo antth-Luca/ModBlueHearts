@@ -17,6 +17,9 @@ Este projeto está sobre licença. [Ver licença](https://github.com/antth-Luca/
 * 1.18 - 1.18.2.
 
 ## Recursos das versões:
+* v.3.2:
+    * Conversão dos assets e data criados à mão em Datagen;
+    * Melhoria nas tooltips (texto e unificação em Handler).
 * v.3.1:
     * Correção: A Poção de Sangue Azul e a Poção de Antídoto Laranja reproduzem o som “DRINK” quando consumidas.
     * Balanceamento: A receita da Seiva Vital Artificial foi removida.
